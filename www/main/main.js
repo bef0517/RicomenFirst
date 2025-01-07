@@ -30,7 +30,7 @@ bt3.addEventListener('click', function(){
 //人物リコメンド画面遷移
 
 function linkUrlB() {
-    location.href = 'people/chat/chat.html'
+    location.href = 'people/people1.html'
 };
  
 var bt4 = document.getElementById('buttonY');
