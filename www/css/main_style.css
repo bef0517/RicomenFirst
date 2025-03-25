@@ -1,452 +1,50 @@
 body {
-    position:fixed;
-    width:100%; 
-    height:100%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
     margin: 0;
-    padding: 0px;
-    background-color: #1285ffa8;
+    padding: 0;
+    background-color: #d6eeff;
     font-family: 'Helvetica';
     text-align: center;
     transition: all 1s;
 }
 
-
-.NewOrder{
-  float: left;
-  height:30%; 
-  width:50%;
-  border: 1px solid white;
-  box-sizing:border-box;
+.NewOrder, .Update, .People, .Object {
+    border: 1px solid white;
+    box-sizing: border-box;
 }
 
-.Update{
-  float: right;
-  height:30%; 
-  width:50%; 
-  border: 1px solid white;
-  box-sizing:border-box;
+.NewOrder, .Update {
+    height: 30%;
+    width: 50%;
 }
 
-.People{
-  height:35%; 
-  width:100%; 
-  clear:both;
-  border: 1px solid white;
-  box-sizing:border-box;
+.NewOrder {
+    float: left;
 }
 
-.Object{
-  height:35%; 
-  width:100%; 
-  clear:both;
-  border: 1px solid white;
-  box-sizing:border-box;
+.Update {
+    float: right;
 }
 
-.anime3 {
-    transition: 0.5s;
-    margin-left: -100%;
-}
-
-
-/* Magnific Popup CSS */
-
-/*＜有効（全体表示領域（でもバックグラウンドで実質意味なし））＞*/
-.mfp-bg {
-  top: 0%;
-  bottom:0%;
-  width: 100%;
-  max-height: 100%;
-  z-index: 1;
-  text-align: center;
-  overflow: hidden;
-  position: fixed;
-  background: rgb(255, 255, 255);
-  opacity: 0; 
-  }
-
-/*＜有効（メイン記述領域）＞*/
-.mfp-wrap {
-  position: fixed; 
-  width: 100%;
-  left: 0%;
-  height: 100%;
-  max-height: 100%;
-  z-index: 2;
-  background: rgb(197, 191, 191, 0.7);
-  }
-
-/*＜有効（メイン記述領域補佐）＞*/
-.mfp-container {
-  text-align: center;
-  position: fixed;
-  width: 90%;
-  left: 5%;
-  top: 10%;
-  bottom: 80%;
-  max-height: 70%;
-  height: 70%;
-  padding: 2%;
-  outline: inset 5px #33df4281;
-  z-index: 3;
-  background: rgb(255, 255, 255);
-  opacity: 1;
-  box-sizing: border-box; }
-
-/*＜有効（メイン記述領域補佐内の記述）＞*/
-.mfp-container:before {
-  content: 'メッセージ';
-  width: 100%;
-  display: inline-block;
-  text-align: left;
-  height: 100%;
-  outline: inset 3px #050b1f81;
-  z-index: 3;
-  background: rgb(255, 255, 255);
-  opacity: 1;
-  vertical-align: middle; }
-
-/*＜よくわからない＞*/
-.mfp-align-top .mfp-container:before {
-  display: none; }
-
-/*＜有効（メインメッセージ部分）＞*/
-.mfp-content {
-  position: fixed;
-  display: block;
-  top:20%;
-  bottom: 30%;
-  max-width: 80%;
-  text-align: left;
-  outline: inset 3px #e01d8881;
-  background: rgb(255, 255, 255);
-  opacity: 1;
-  z-index: 3; }
-
-/*＜よくわからない（カーソル系？）＞*/
-.mfp-inline-holder .mfp-content,
-.mfp-ajax-holder .mfp-content {
-  width: 100%;
-  cursor: auto; }
-
-/*＜よくわからない（カーソル系？）＞*/
-.mfp-ajax-cur {
-  cursor: auto; }
-
-/*＜よくわからない（カーソル系？）＞*/
-.mfp-zoom-out-cur, .mfp-zoom-out-cur .mfp-image-holder .mfp-close {
-  cursor: -moz-zoom-out;
-  cursor: -webkit-zoom-out;
-  cursor: zoom-out; }
-
-/*＜よくわからない（カーソル系？）＞*/
-.mfp-zoom {
-  cursor: pointer;
-  cursor: -webkit-zoom-in;
-  cursor: -moz-zoom-in;
-  cursor: zoom-in; }
-
-/*＜よくわからない（カーソル系？）＞*/
-.mfp-auto-cursor .mfp-content {
-  cursor: auto; }
-
-/*＜よくわからない＞*/
-.mfp-close,
-.mfp-arrow,
-.mfp-preloader,
-.mfp-counter {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none; }
-
-/*＜よくわからない＞*/
-.mfp-loading.mfp-figure {
-  display: none; }
-
-/*＜よくわからない＞*/
-.mfp-hide {
-  display: none !important; }
-
-/*＜よくわからない(ローダー系)＞*/
-.mfp-preloader {
-  color: rgb(235, 19, 19);
-  position: fixed;
-  top: 50%;
-  width: auto;
-  text-align: center;
-  margin-top: -0.8em;
-  left: 8px;
-  right: 8px;
-  z-index: 1044; }
-  .mfp-preloader a {
-    color: rgb(226, 45, 45); }
-    .mfp-preloader a:hover {
-      color: rgb(224, 50, 50); }
-
-/*＜使わない(ローダー系)＞*/
-.mfp-s-ready .mfp-preloader {
-  display: none; }
-
-/*＜よくわからない＞*/
-.mfp-s-error .mfp-content {
-  display: none; }
-
-/*＜有効（閉じるボタン部分）＞*/
-button.mfp-close,
-button.mfp-arrow {
-  overflow: visible;
-  cursor: pointer;
-  border: inset;
-  -webkit-appearance: none;
-  display: block;
-  outline: none;
-  padding: 2%;
-  z-index: 10;
-  box-shadow: none;
-  touch-action: manipulation; }
-
-/*＜よくわからない＞*/
-button::-moz-focus-inner {
-  padding: 0;
-  border: 0; }
-
-/*＜有効（閉じるボタン周辺）＞*/
-.mfp-close {
-  width: 90%;
-  height: 10%;
-  position: fixed;
-  left: 5%;
-  top: 70%;
-  text-decoration: none;
-  text-align: right;
-  opacity: 0.7;
-  padding: 2%;
-  font-style: normal;
-  font-size: 20px;
-  font-family: Arial, Baskerville, monospace; }
-
-/*＜有効（閉じるフォーカスしたとき）＞*/
-  .mfp-close:hover,
-  .mfp-close:focus {
-    opacity: 1; }
-
-/*＜有効（閉じる時に必要な調整）＞*/
-  .mfp-close:active {
-    top: 70%; }
-
-/*＜有効（閉じるボタンの色）＞*/
-.mfp-close-btn-in .mfp-close {
-  color: #333;}
-
-
-.mfp-image-holder .mfp-close,
-.mfp-iframe-holder .mfp-close {
-  color: #FFF;
-  right: -6px;
-  text-align: right;
-  padding-right: 6px;
-  width: 100%; }
-
-.mfp-counter {
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: #CCC;
-  font-size: 12px;
-  line-height: 18px;
-  white-space: nowrap; }
-
-.mfp-arrow {
-  position: absolute;
-  opacity: 0.65;
-  margin: 0;
-  top: 50%;
-  margin-top: -55px;
-  padding: 0;
-  width: 90px;
-  height: 110px;
-  -webkit-tap-highlight-color: transparent; }
-  .mfp-arrow:active {
-    margin-top: -54px; }
-  .mfp-arrow:hover,
-  .mfp-arrow:focus {
-    opacity: 1; }
-  .mfp-arrow:before,
-  .mfp-arrow:after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    margin-top: 35px;
-    margin-left: 35px;
-    border: medium inset transparent; }
-  .mfp-arrow:after {
-    border-top-width: 13px;
-    border-bottom-width: 13px;
-    top: 8px; }
-  .mfp-arrow:before {
-    border-top-width: 21px;
-    border-bottom-width: 21px;
-    opacity: 0.7; }
-
-.mfp-arrow-left {
-  left: 0; }
-  .mfp-arrow-left:after {
-    border-right: 17px solid #FFF;
-    margin-left: 31px; }
-  .mfp-arrow-left:before {
-    margin-left: 25px;
-    border-right: 27px solid #3F3F3F; }
-
-.mfp-arrow-right {
-  right: 0; }
-  .mfp-arrow-right:after {
-    border-left: 17px solid #FFF;
-    margin-left: 39px; }
-  .mfp-arrow-right:before {
-    border-left: 27px solid #3F3F3F; }
-
-.mfp-iframe-holder {
-  padding-top: 40px;
-  padding-bottom: 40px; }
-  .mfp-iframe-holder .mfp-content {
-    line-height: 0;
+.People, .Object {
+    height: 35%;
     width: 100%;
-    max-width: 900px; }
-  .mfp-iframe-holder .mfp-close {
-    top: -40px; }
+    clear: both;
+}
 
-.mfp-iframe-scaler {
-  width: 100%;
-  height: 0;
-  overflow: hidden;
-  padding-top: 56.25%; }
-  .mfp-iframe-scaler iframe {
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-    background: rgb(0, 0, 0); }
+body.anime-slide-fade {
+    animation: slideFadeOut 0.6s ease forwards;
+}
 
-/* Main image in popup */
-img.mfp-img {
-  width: auto;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  line-height: 0;
-  box-sizing: border-box;
-  padding: 40px 0 40px;
-  margin: 0 auto; }
-
-/* The shadow behind the image */
-.mfp-figure {
-  line-height: 0; }
-  .mfp-figure:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 40px;
-    bottom: 40px;
-    display: block;
-    right: 0;
-    width: auto;
-    height: auto;
-    z-index: -1;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-    background: #444; }
-  .mfp-figure small {
-    color: #BDBDBD;
-    display: block;
-    font-size: 12px;
-    line-height: 14px; }
-  .mfp-figure figure {
-    margin: 0; }
-
-.mfp-bottom-bar {
-  margin-top: -36px;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  cursor: auto; }
-
-.mfp-title {
-  text-align: left;
-  line-height: 18px;
-  color: #F3F3F3;
-  word-wrap: break-word;
-  padding-right: 36px; }
-
-.mfp-image-holder .mfp-content {
-  max-width: 100%; }
-
-.mfp-gallery .mfp-image-holder .mfp-figure {
-  cursor: pointer; }
-
-@media screen and (max-width: 800px) and (orientation: landscape), screen and (max-height: 300px) {
-  /**
-       * Remove all paddings around the image on small screen
-       */
-  .mfp-img-mobile .mfp-image-holder {
-    padding-left: 0;
-    padding-right: 0; }
-  .mfp-img-mobile img.mfp-img {
-    padding: 0; }
-  .mfp-img-mobile .mfp-figure:after {
-    top: 0;
-    bottom: 0; }
-  .mfp-img-mobile .mfp-figure small {
-    display: inline;
-    margin-left: 5px; }
-  .mfp-img-mobile .mfp-bottom-bar {
-    background: rgba(0, 0, 0, 0.6);
-    bottom: 0;
-    margin: 0;
-    top: auto;
-    padding: 3px 5px;
-    position: fixed;
-    box-sizing: border-box; }
-    .mfp-img-mobile .mfp-bottom-bar:empty {
-      padding: 0; }
-  .mfp-img-mobile .mfp-counter {
-    right: 5px;
-    top: 3px; }
-  .mfp-img-mobile .mfp-close {
-    top: 0;
-    right: 0;
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    background: rgba(0, 0, 0, 0.6);
-    position: fixed;
-    text-align: center;
-    padding: 0; } }
-
-@media all and (max-width: 900px) {
-  .mfp-arrow {
-    -webkit-transform: scale(0.75);
-    transform: scale(0.75); }
-  .mfp-arrow-left {
-    -webkit-transform-origin: 0;
-    transform-origin: 0; }
-  .mfp-arrow-right {
-    -webkit-transform-origin: 100%;
-    transform-origin: 100%; }
-  .mfp-container {
-    padding-left: 5%;
-    padding-right: 5%; } }
-
-//以下は追加
-
-.inline-popup {
-  position: fixed;
-  width: 100%;
-  height:100%;
+@keyframes slideFadeOut {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
 }

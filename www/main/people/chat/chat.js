@@ -1,68 +1,43 @@
-// Onsen UIのスタイル定義
-ons.forcePlatformStyling('ios');
- 
-// WebSocketサーバの定義
-var uri = "wss://ec2-54-199-182-226.ap-northeast-1.compute.amazonaws.com/";
-var ws = null;  // WebSocketオブジェクト
- 
-var username;   // ユーザー名
- 
-// ページが切り替わる度に呼ばれます。
-document.addEventListener('show', function(event) {
-  var page = event.target;
- 
-  if (page.matches('#first-page')) {  // 入室画面の処理
-    // 入室ボタンを押した時の処理
-    $('#push-button').on('click', function() {
-      // ユーザ名を設定
-      username = $('#username').val();
- 
-      // WebSocket接続
-      ws = new WebSocket(uri);
- 
-      // チャット画面に遷移
-      document.querySelector('#navigator').pushPage('page2.html');
-    });
-  } else if (page.matches('#second-page')) {  // チャット画面の処理
-    // WebSocketでメッセージを受け取った時の処理
-    ws.onmessage = function(message) {
-      var data = JSON.parse(message.data);
- 
-      // 送信元が自分か他人かで画面のデザインを変更
-      if (data.handle == username) {
-        $('#chats').append(`
-          <ons-list-item modifier="nodivider">
-            <div class="right">
-              <ons-button style="background-color: green">${data.text}</ons-button>
-            </div>
-          </ons-list-item>`);
-      }else{
-        $('#chats').append(`
-          <ons-list-item modifier="nodivider">
-            <ons-button>${data.text}</ons-button>
-            <span class="list-item__subtitle">${data.handle}</span>
-          </ons-list-item>`);
-      }
-    };
- 
-    // 送信ボタンを押した時の処理
-    $('#send').on('click', function(e) {
-      // WebSocketで送信
-      ws.send(JSON.stringify({ handle: username, text: $('#message').val() }));
- 
-      // 元の入力内容は削除
-      $('#message').val('')
-    });
- 
-  }
-}); 
- 
-// Onsen UIロード完了時の処理
-ons.ready(function() {
-  // 入室画面に戻るときの処理
-  $('#navigator').on('prepop', function() {
-    // WebSocket切断
-    ws.close();
-    ws = null;
-  });
+// メッセージ送信
+        function sendMessage() {
+            var input = document.getElementById("message-input");
+            var messageText = input.value.trim();
+            if (messageText === "") return; // 空のメッセージを送信しない
+
+            // メッセージを送信した側（ユーザー）
+            var messagesContainer = document.getElementById("messages");
+            var userMessage = document.createElement("div");
+            userMessage.classList.add("message", "user");
+            var userBubble = document.createElement("div");
+            userBubble.classList.add("bubble");
+            userBubble.textContent = messageText;
+            userMessage.appendChild(userBubble);
+            messagesContainer.appendChild(userMessage);
+
+            // メッセージ入力欄をクリア
+            input.value = "";
+
+            // メッセージを表示した後にスクロール位置を最下部に
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // 自動応答（仮の応答）
+            setTimeout(function() {
+                var botMessage = document.createElement("div");
+                botMessage.classList.add("message");
+                var botBubble = document.createElement("div");
+                botBubble.classList.add("bubble");
+                botBubble.textContent = "こちらはボットの応答です。";
+                botMessage.appendChild(botBubble);
+                messagesContainer.appendChild(botMessage);
+
+                // 自動応答後にスクロール位置を最下部に
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1000);
+        }
+
+$('#backbutton').on('click', function () {
+    $('body').animate({'marginLeft': '100%'}, 400); // 左方向にスクロール
+    setTimeout(function () {
+        location.href = '../people1.html';
+    }, 200); // アニメーション完了後に画面遷移
 });

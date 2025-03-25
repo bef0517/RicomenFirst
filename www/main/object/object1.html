@@ -2,95 +2,406 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <meta name="Apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#d6eeff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-    <script src="../../components/loader.js"> </script>
-    <link rel="stylesheet" href="../../css/object_style.css">
+    <script src="../../components/loader.js"></script>
 </head>
 
+<style>
+    header {
+        background-color: #d6eeff;
+        display: flex;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 15%;
+        margin: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding-top: env(safe-area-inset-top);
+        box-sizing: border-box;
+    }
+
+    .option2 button {
+        background-color: #d6eeff;
+        color: #006DD9;
+        border: 2px solid #006DD9;
+        border-radius: 8px;
+        padding: 8px 8px;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        text-transform: uppercase;
+        cursor: pointer;
+        position: absolute;
+        top: 70%;
+        transform: translateY(-50%);
+        left: 3%;
+    }
+
+    .option2 button:hover {
+        background-color: #bcd9f3;
+        color: #004c9a;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transform: translateY(-50%) scale(1.05);
+    }
+
+    body {
+        top:15%;
+        padding: 0;
+        position: absolute;
+        font-family: 'Helvetica';
+        text-align: left;
+        width: 100%; 
+        background-color: #e0efff;
+    }
+
+.tab-container {
+    position: fixed;
+    width: 100%;
+    top:15%;
+    height:10%;
+    display: flex;
+    justify-content: space-around;
+    background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+    border-bottom: 2px solid #7abaff;
+    box-sizing: border-box;
+}
+
+.tab-content {
+    width: 100%;
+    padding-top:25%;
+}
+
+.tab-button {
+    flex-grow: 1;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+    color: #003d80;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-right: 1px solid rgba(255, 255, 255, 0.5); /* ← 境界線追加 */
+}
+
+.tab-button:last-child {
+    border-right: none; /* 最後のタブだけ右ボーダーを消す */
+}
+
+
+.tab-button:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+.tab-button.active {
+    border-bottom: 4px solid #004ecb;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #004ecb;
+}
+
+
+.Sub-Cate1 {
+    padding: 10px; /* 全体の余白 */
+    width: 100%;
+    font-size: 100%;
+    border: 1px solid white;
+    box-sizing: border-box;
+    background: rgba(253, 251, 251, 0.411);
+    display: flex;
+    flex-direction: column; /* 縦方向に配置 */
+    justify-content: space-between; /* 上下要素を適切に配置 */
+}
+
+.text-container {
+    text-align: left; /* 左寄せ */
+    font-size: 100%; /* フォントサイズ */
+    font-weight: bold; /* 強調表示 */
+    color: #333333; /* メインテキスト色 */
+    padding: 5px; /* 区切り線と文字間の余白 */
+}
+
+.score-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 100%;
+    font-weight: bold;
+    color: #006DD9;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #f5faff;
+    border-radius: 8px;
+    gap: 10px;
+}
+
+.score-text {
+    flex: 1;
+    text-align: left;
+}
+
+.score-action {
+    flex-shrink: 0;
+}
+
+.check-button {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #006DD9;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease;
+}
+
+.check-button:hover {
+    background-color: #004c9a;
+}
+</style>
+
 <header>
-<div class= 'option'><input type="image" src="../../picture/Ricomen_Bear.png" alt="back" style="height:100%" id='backbutton';></div>
+    <div class="option2">
+        <button id="backbutton">初期画面に戻る</button>
+    </div>
 </header>
 
 <body>
-<div class="Scroll">
-<div id="sample-fold1" class="Big-Cate1">
-<span id="ARW" class="arrow1">▶︎</span>
-<span class="CateName">サンプル１</span></div>
-<a id="a01"class="Sub-Cate1">
-  <script>
-  var object1A = localStorage.getItem('Object1-1');
-  document.getElementById('a01').innerHTML = object1A;
-  </script> 
-<span>
-<button type="button" name="a01S" class="Sub-Cate-Google" href="#" onclick="openMonaca();">
-<font size="5" color="#333399">調べる</font>
-</button>
-</span>
-</a>
-<div id="a02"class="Sub-Cate1">
-  サンプルA-2
-</div>
-<div id="a03"class="Sub-Cate1">
-  サンプルA-3
-</div>
-<div id="a04"class="Sub-Cate1">
-  サンプルA-4
-</div>
-<div id="a05"class="Sub-Cate1">
-  サンプルA-5
-</div>
-<div id="a06"class="Sub-Cate1">
-  サンプルA-6
-</div>
-<div id="a07"class="Sub-Cate1">
-  サンプルA-7
-</div>
-<div id="a08"class="Sub-Cate1">
-  サンプルA-8
-</div>
-<div id="a09"class="Sub-Cate1">
-  サンプルA-9
-</div>
-<div id="a10"class="Sub-Cate1">
-  サンプルA-10
+<div class="tab-container">
+  <button class="tab-button active" data-target="tab1">映画<br>　</button>
+  <button class="tab-button" data-target="tab2">ドラマ<br>アニメ</button>
+  <button class="tab-button" data-target="tab3">音楽<br>　</button>
+  <button class="tab-button" data-target="tab4">趣味<br>　</button>
 </div>
 
-<div id="sample-fold2" class="Big-Cate1">▷ サンプル２</div>
-<div id="b01" class="Sub-Cate1"> 
-  サンプルB-1
-</div>
-<div id="b02"class="Sub-Cate1">
-  サンプルB-2
-</div>
-<div id="b03"class="Sub-Cate1">
-  サンプルB-3
-</div>
-<div id="b04"class="Sub-Cate1">
-  サンプルB-4
-</div>
-<div id="b05"class="Sub-Cate1">
-  サンプルB-5
-</div>
-<div id="b06"class="Sub-Cate1">
-  サンプルB-6
-</div>
-<div id="b07"class="Sub-Cate1">
-  サンプルB-7
-</div>
-<div id="b08"class="Sub-Cate1">
-  サンプルB-8
-</div>
-<div id="b09"class="Sub-Cate1">
-  サンプルB-9
-</div>
-<div id="b10"class="Sub-Cate1">
-  サンプルB-10
-</div>
+<div id="tab1" class="tab-content">
+
+        <div id="a01" class="Sub-Cate1">
+        <div class="text-container" id="user-id-text"></div>
+        <div class="score-container">
+        <div class="score-text">マッチスコア88％</div>
+        <div class="score-action">
+        <a href="#" id="search-link" target="_blank" class="check-button">作品をチェック</a>
+        </div>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const userId = localStorage.getItem("UserID");const textElement = document.getElementById("user-id-text");if (userId && textElement) {textElement.textContent = userId;}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const userId = localStorage.getItem("UserID");const link = document.getElementById("search-link");if (userId && link) {const query = encodeURIComponent(userId + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+        <div id="a02" class="Sub-Cate1">
+        <div class="text-container">サンプルA-2</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="a03" class="Sub-Cate1">
+        <div class="text-container">サンプルA-3</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="a04" class="Sub-Cate1">
+        <div class="text-container">サンプルA-4</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="a05" class="Sub-Cate1">
+        <div class="text-container">サンプルA-5</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="a06" class="Sub-Cate1">
+        <div class="text-container">サンプルA-6</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="a07" class="Sub-Cate1">
+        <div class="text-container">サンプルA-7</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="a08" class="Sub-Cate1">
+        <div class="text-container">サンプルA-8</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="a09" class="Sub-Cate1">
+        <div class="text-container">サンプルA-9</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="a10" class="Sub-Cate1">
+        <div class="text-container">サンプルA-10</div>
+        <div class="score-container">マッチスコアXX％</div>
+    </div>
 </div>
 
-<script type="text/javascript" src="../jquery-3.4.1.js"></script>
-<script type="text/javascript" src="object.js"></script>
+<div id="tab2" class="tab-content" style="display: none;">
+<div id="b01" class="Sub-Cate1">
+        <div class="text-container">サンプルB-1</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="b02" class="Sub-Cate1">
+        <div class="text-container">サンプルB-2</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="b03" class="Sub-Cate1">
+        <div class="text-container">サンプルB-3</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="b04" class="Sub-Cate1">
+        <div class="text-container">サンプルB-4</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="b05" class="Sub-Cate1">
+        <div class="text-container">サンプルB-5</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="b06" class="Sub-Cate1">
+        <div class="text-container">サンプルB-6</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="b07" class="Sub-Cate1">
+        <div class="text-container">サンプルB-7</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="b08" class="Sub-Cate1">
+        <div class="text-container">サンプルB-8</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="b09" class="Sub-Cate1">
+        <div class="text-container">サンプルB-9</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="b10" class="Sub-Cate1">
+        <div class="text-container">サンプルB-10</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+</div>
+
+<div id="tab3" class="tab-content" style="display: none;">
+        <div id="c01" class="Sub-Cate1">
+        <div class="text-container">サンプルC-1</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="c02" class="Sub-Cate1">
+        <div class="text-container">サンプルC-2</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="c03" class="Sub-Cate1">
+        <div class="text-container">サンプルC-3</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="c04" class="Sub-Cate1">
+        <div class="text-container">サンプルC-4</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="c05" class="Sub-Cate1">
+        <div class="text-container">サンプルC-5</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="c06" class="Sub-Cate1">
+        <div class="text-container">サンプルC-6</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="c07" class="Sub-Cate1">
+        <div class="text-container">サンプルC-7</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="c08" class="Sub-Cate1">
+        <div class="text-container">サンプルC-8</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="c09" class="Sub-Cate1">
+        <div class="text-container">サンプルC-9</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="c10" class="Sub-Cate1">
+        <div class="text-container">サンプルC-10</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+</div>
+
+<div id="tab4" class="tab-content" style="display: none;">
+        <div id="d01" class="Sub-Cate1">
+        <div class="text-container">サンプルD-1</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="d02" class="Sub-Cate1">
+        <div class="text-container">サンプルD-2</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="d03" class="Sub-Cate1">
+        <div class="text-container">サンプルD-3</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="d04" class="Sub-Cate1">
+        <div class="text-container">サンプルD-4</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="d05" class="Sub-Cate1">
+        <div class="text-container">サンプルD-5</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="d06" class="Sub-Cate1">
+        <div class="text-container">サンプルD-6</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="d07" class="Sub-Cate1">
+        <div class="text-container">サンプルD-7</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="d08" class="Sub-Cate1">
+        <div class="text-container">サンプルD-8</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="d09" class="Sub-Cate1">
+        <div class="text-container">サンプルD-9</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+
+        <div id="d10" class="Sub-Cate1">
+        <div class="text-container">サンプルD-10</div>
+        <div class="score-container">マッチスコアXX％</div>
+        </div>
+</div>
+
+    <script type="text/javascript" src="../jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="object.js"></script>
 </body>
 </html>

@@ -2,26 +2,162 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#d6eeff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
     <script src="../components/loader.js"> </script>
     <link rel="stylesheet" href="../css/main_style.css">
+
+    <style>
+        header {
+        background-color: #d6eeff;
+        display: flex;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 15%;
+        margin: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding-top: env(safe-area-inset-top);
+        box-sizing: border-box;
+    }
+
+        body {
+            top:15%;
+            padding-top: 6%; /* 上部から5%の位置に配置 */
+            margin: 0;
+            background-color: #f5faff; /* 背景色を柔らかく設定 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .option2 button {
+            background-color: #d6eeff;
+            color: #006DD9;
+            border: 2px solid #006DD9;
+            border-radius: 8px;
+            padding: 8px 8px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: absolute;
+            top: 70%;
+            transform: translateY(-50%);
+            left: 3%;
+        }
+
+        .option2 button:hover {
+            background-color: #bcd9f3;
+            color: #004c9a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between; /* NewOrder と Update を左右に配置 */
+            width: 90%;
+            margin-bottom: 6%;
+        }
+
+        .NewOrder, .Update {
+            position: relative;
+            width: 49%; /* 横幅を調整 */
+            height: 23vh; /* 縦幅を画面の30%に設定 */
+            border: 2px solid #aaa;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            background-color: #d6eeff;
+        }
+
+        .People, .Object {
+            position: relative;
+            width: 90%; /* 横幅を広げる */
+            height: 23%; /* 縦幅を維持 */
+            border: 2px solid #aaa;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            background-color: #d6eeff;
+            margin-bottom: 6%;
+        }
+
+        .NewOrder .label, .Update .label {
+            position: absolute;
+            bottom: 0;
+            left: 50%; /* 左端を中央に合わせる */
+            transform: translateX(-50%); /* 中央揃え */
+            width: 100%; /* ラベルの幅を調整 */
+            color: #003d80;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            padding: 10px 0;
+            border-radius: 0 0 10px 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .People .label, .Object .label {
+            position: absolute;
+            bottom: 0;
+            left: 50%; /* 左端を中央に合わせる */
+            transform: translateX(-50%); /* 中央揃え */
+            width: 100%; /* ラベルの幅を調整 */
+            color: #003d80;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            padding: 10px 0;
+            border-radius: 0 0 10px 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+    </style>   
 </head>
+
+<header>
+    <div class='option2'>
+        <button id='backbutton'>利用ガイド</button>
+    </div>
+</header>
+
 <body>
+<div class="container">
+    <div class='NewOrder'>
+        <input type="image" src="../picture/NewEntry4.png" alt="shinki" style="width:100%; height:100%" id='button3';>
+        <div class="label">新規登録【30分】</div>
+    </div>
 
+    <div class='Update'>
+        <input type="image" src="../picture/Update3.png" alt="koushin" style="width:100%; height:100%" id='buttonX';>
+        <div class="label">おすすめ更新</div>
+    </div>
+</div>
 
-<div class= 'NewOrder'><input type="image" src="../picture/NewEntry2.png" alt="shinki" style="width:100%; height:100%; background-color:#1285ffa8" id='button3';></div>
+<div class='Object'>
+    <input type="image" src="../picture/Hobby2.png" alt="monomono" style="width:100%; height:100%" id='buttonZ';>
+    <div class="label">映画・ドラマ・音楽・趣味</div>
+</div>
 
-<div class= 'Update'><input type="image" src="../picture/Update.png" alt="koushin" style="width:100%; height:100%;background-color:#1285ffa8" id='buttonX';></div>
-
-<div class= 'People'><input type="image" src="../picture/Friends.png" alt="zinbutu" style="width:100%; height:100%;background-color:#1285ffa8" id='buttonY';></div>
-
-<div class= 'Object'><input type="image" src="../picture/Hobby.png" alt="monomono" style="width:100%; height:100%;background-color:#1285ffa8" id='buttonZ';></div>
+<div class='People'>
+    <input type="image" src="../picture/Friends2.png" alt="zinbutu" style="width:100%; height:100%" id='buttonY';>
+    <div class="label">気の合う仲間</div>
+</div>
 
 <script type="text/javascript" src="jquery-3.4.1.js"></script>
 <script type="text/javascript" src="jquery.magnific-popup.js"></script>
 <script type="text/javascript" src="main.js"></script>
 
-
 </body>
+
 </html>

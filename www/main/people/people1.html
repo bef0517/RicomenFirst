@@ -2,17 +2,275 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#d6eeff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-    <script src="../../components/loader.js"> </script>
-    <link rel="stylesheet" href="../../css/people_style.css">
+    <script src="../../components/loader.js"></script>
 </head>
-<header>
-<div class= 'option'><input type="image" src="../../picture/Ricomen_Bear.png" alt="back" style="height:100%" id='backbutton';></div>
-</header>
-<body>
 
-<script type="text/javascript" src="../jquery-3.4.1.js"></script>
-<script type="text/javascript" src="people.js"></script>
+<style>
+    header {
+        background-color: #d6eeff;
+        display: flex;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 15%;
+        margin: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding-top: env(safe-area-inset-top);
+        box-sizing: border-box;
+    }
+
+    .option2 button {
+        background-color: #d6eeff;
+        color: #006DD9;
+        border: 2px solid #006DD9;
+        border-radius: 8px;
+        padding: 8px 8px;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        text-transform: uppercase;
+        cursor: pointer;
+        position: absolute;
+        top: 70%;
+        transform: translateY(-50%);
+        left: 3%;
+    }
+
+    .option2 button:hover {
+        background-color: #bcd9f3;
+        color: #004c9a;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transform: translateY(-50%) scale(1.05);
+    }
+
+    body {
+        top:15%;
+        padding: 0;
+        position: absolute;
+        font-family: 'Helvetica';
+        text-align: left;
+        width: 100%; 
+        background-color: #e0efff;
+    }
+
+
+.tab-container {
+    position: fixed;
+    width: 100%;
+    top:15%;
+    height:8%;
+    display: flex;
+    justify-content: space-around;
+    background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+    border-bottom: 2px solid #7abaff;
+    box-sizing: border-box;
+}
+
+.tab-content {
+    width: 100%;
+    padding-top:21%;
+}
+
+.tab-button {
+    flex-grow: 1;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+    color: #003d80;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-right: 1px solid rgba(255, 255, 255, 0.5); /* ← 境界線追加 */
+}
+
+.tab-button:last-child {
+    border-right: none; /* 最後のタブだけ右ボーダーを消す */
+}
+
+
+.tab-button:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+.tab-button.active {
+    border-bottom: 4px solid #004ecb;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #004ecb;
+}
+
+.Sub-Cate1 {
+    padding: 100x; /* 全体の余白 */
+    width: 100%;
+    font-size: 100%;
+    border: 1px solid white;
+    box-sizing: border-box;
+    background: rgba(253, 251, 251, 0.411);
+    display: flex;
+    flex-direction: column; /* 縦方向に配置 */
+    justify-content: space-between; /* 上下要素を適切に配置 */
+}
+
+.text-container {
+    text-align: left; /* 左寄せ */
+    font-size: 100%; /* フォントサイズ */
+    font-weight: bold; /* 強調表示 */
+    color: #333333; /* メインテキスト色 */
+    padding: 5px; /* 区切り線と文字間の余白 */
+}
+
+.score-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 100%;
+    font-weight: bold;
+    color: #006DD9;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #f5faff;
+    border-radius: 8px;
+    gap: 10px;
+}
+
+.score-text {
+    flex: 1;
+    text-align: left;
+}
+
+.score-action {
+    flex-shrink: 0;
+}
+
+.check-button {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #006DD9;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease;
+}
+
+.check-button:hover {
+    background-color: #004c9a;
+}
+
+</style>
+
+<header>
+    <div class="option2">
+        <button id="backbutton">初期画面に戻る</button>
+    </div>
+</header>
+
+<body>
+<div class="tab-container">
+  <button class="tab-button active" data-target="tab1">人物（おすすめ）</button>
+</div>
+<div id="tab1" class="tab-content">
+        <div id="a01" class="Sub-Cate1">
+            
+             <div class="text-container">サンプルA-1</div>
+             <div class="score-container">
+             <div class="score-text">マッチスコア88％</div>
+             <div class="score-action">
+        <a href="chat/chat1.html" class="check-button">連絡を取る</a>
+        </div>
+        </div> </div>
+
+        <div id="a02" class="Sub-Cate1">
+        <div class="text-container">サンプルA-2</div>
+             <div class="score-container">
+             <div class="score-text">マッチスコア88％</div>
+             <div class="score-action">
+        <a href="chat/chat2.html" class="check-button">連絡を取る</a>
+        </div>
+        </div> </div>
+
+        <div id="a03" class="Sub-Cate1">
+        <div class="text-container">サンプルA-3</div>
+             <div class="score-container">
+             <div class="score-text">マッチスコア88％</div>
+             <div class="score-action">
+        <a href="chat/chat3.html" class="check-button">連絡を取る</a>
+        </div>
+        </div> </div>
+
+        <div id="a04" class="Sub-Cate1">
+        <div class="text-container">サンプルA-4</div>
+             <div class="score-container">
+             <div class="score-text">マッチスコア88％</div>
+             <div class="score-action">
+        <a href="chat/chat4.html" class="check-button">連絡を取る</a>
+        </div>
+        </div> </div>
+
+        <div id="a05" class="Sub-Cate1">
+        <div class="text-container">サンプルA-5</div>
+             <div class="score-container">
+             <div class="score-text">マッチスコア88％</div>
+             <div class="score-action">
+        <a href="chat/chat5.html" class="check-button">連絡を取る</a>
+        </div>
+        </div> </div>
+
+        <div id="a06" class="Sub-Cate1">
+        <div class="text-container">サンプルA-6</div>
+             <div class="score-container">
+             <div class="score-text">マッチスコア88％</div>
+             <div class="score-action">
+        <a href="chat/chat6.html" class="check-button">連絡を取る</a>
+        </div>
+        </div> </div>
+
+        <div id="a07" class="Sub-Cate1">
+        <div class="text-container">サンプルA-7</div>
+             <div class="score-container">
+             <div class="score-text">マッチスコア88％</div>
+             <div class="score-action">
+        <a href="chat/chat7.html" class="check-button">連絡を取る</a>
+        </div>
+        </div> </div>
+
+        <div id="a08" class="Sub-Cate1">
+        <div class="text-container">サンプルA-8</div>
+             <div class="score-container">
+             <div class="score-text">マッチスコア88％</div>
+             <div class="score-action">
+        <a href="chat/chat8.html" class="check-button">連絡を取る</a>
+        </div>
+        </div> </div>
+
+        <div id="a09" class="Sub-Cate1">
+        <div class="text-container">サンプルA-9</div>
+             <div class="score-container">
+             <div class="score-text">マッチスコア88％</div>
+             <div class="score-action">
+        <a href="chat/chat9.html" class="check-button">連絡を取る</a>
+        </div>
+        </div> </div>
+
+        <div id="a10" class="Sub-Cate1">
+        <div class="text-container">サンプルA-10</div>
+             <div class="score-container">
+             <div class="score-text">マッチスコア88％</div>
+             <div class="score-action">
+        <a href="chat/chat10.html" class="check-button">連絡を取る</a>
+        </div>
+        </div> </div>
+
+    <script type="text/javascript" src="../jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="people.js"></script>
 </body>
 </html>

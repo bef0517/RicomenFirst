@@ -2,98 +2,286 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#d6eeff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-    <script src="../../components/loader.js"> </script>
-    <link rel="stylesheet" href="../../css/entry_style.css">
+    <script src="../../components/loader.js"></script>
+    <link rel="stylesheet">
 
-  <style>
-    input[type=radio] {
-    display: none; /* ラジオボタンを非表示にする */
-    -webkit-appearance: none;
-    }
-    input[type="radio"]:checked + label {
-    background: #31A9EE;/* マウス選択時の背景色を指定する */
-    color: #ffffff; /* マウス選択時のフォント色を指定する */
-    -webkit-appearance: none;
-    }
-    button[type=button] {
-    background: #31A9EE;/* マウス選択時の背景色を指定する */
-    color: #ffffff; /* マウス選択時のフォント色を指定する */
-    -webkit-appearance: none;
-    border-radius: 0;
-    }
-    .label:hover {
-    background-color: #E2EDF9; /* マウスオーバー時の背景色を指定する */
-    -webkit-appearance: none;
-    }
-    .label {
-    display: block; /* ブロックレベル要素化する */
-    text-align: center; /* テキストのセンタリングを指定する */
-    margin: 5%; /* ボックス外側の余白を指定する */
-    width: 60%; /* ボックスの横幅を指定する */
-    height: 5%; /* ボックスの高さを指定する */
-    padding-left: 5px; /* ボックス内左側の余白を指定する */
-    padding-right: 5px; /* ボックス内御右側の余白を指定する */
-    color: #b20000; /* フォントの色を指定 */
-    line-height: 45px; /* 行の高さを指定する */
-    cursor: pointer; /* マウスカーソルの形（リンクカーソル）を指定する */
-    border: 2px solid #006DD9;/* ボックスの境界線を実線で指定する */
-    border-radius: 5px; /* 角丸を指定する */ 
-    -webkit-appearance: none;
-    }
+    <style>
+        body {
+            position: fixed;
+            width: 200%;
+            height: 93%;
+            top: 15%;
+            margin: 0;
+            padding: 0px;
+            background-color: #e0efff;
+            font-family: 'Helvetica';
+            text-align: center;
+            transition: all 0.5s;
+            -webkit-appearance: none;
+        }
 
-    .toriaezu{
-     width:60%;
-     height:10%;
-     background-color:#1285ffa8";
-     -webkit-appearance: none;}
-</style>
+        header {
+            background-color: #d6eeff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 15%;
+            margin: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding-top: env(safe-area-inset-top);
+            box-sizing: border-box;
+        }
 
+        .option button {
+            background-color: #d6eeff;
+            color: #006DD9;
+            border: 2px solid #006DD9;
+            border-radius: 8px;
+            padding: 8px 8px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: absolute;
+            top: 70%;
+            transform: translateY(-50%);
+            left: 3%;
+        }
+
+        .option button:hover {
+            background-color: #bcd9f3;
+            color: #004c9a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .option2 button {
+            background-color: #d6eeff;
+            color: #006DD9;
+            border: 2px solid #006DD9;
+            border-radius: 8px;
+            padding: 8px 8px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: absolute;
+            top: 70%;
+            transform: translateY(-50%);
+            right: 3%;
+        }
+
+        .option2 button:hover {
+            background-color: #bcd9f3;
+            color: #004c9a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .slideA, .slideB {
+            height: 100%;
+            width: 50%;
+            position: absolute;
+            text-align: center;
+            overflow: hidden;
+            -webkit-appearance: none;
+            display: flex;
+            justify-content: center;
+        }
+
+
+        .slideA { left: 0%; }
+        .slideB { left: 50%; }
+
+        .message-box {
+            width: 80%;
+            height: 40%;
+            position: absolute;
+            background-color: #ffffff;
+            border: 2px solid #006DD9;
+            border-radius: 10px;
+            padding: 20px 20px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+            color: #2b2929;
+            text-align: left;
+            margin-top: 10%;
+            flex: 6; 
+            line-height: 1.5;
+        }
+
+        .NewOrder {
+            top: 75%;
+            width: 70%;
+            position: absolute;
+            height: 100%;
+            -webkit-appearance: none;
+        }
+
+        .NewOrder button {
+            width: 100%;
+            margin: auto;
+            text-align: center;
+            background-color: #A4DDED;
+            color: #ffffff;
+            border: 2px solid #6BB4D6;
+            border-radius: 50px;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            text-transform: none;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .NewOrder button:hover {
+            background-color: #89C7E6;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .page1 {
+            height: 100%;
+            width: 100%;
+            -webkit-appearance: none;
+        }
+
+        input[type=radio] {
+            display: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="radio"]:checked + label {
+            background: #31A9EE;
+            color: #ffffff;
+            -webkit-appearance: none;
+        }
+
+        button[type=button] {
+            background: #31A9EE;
+            color: #ffffff;
+            -webkit-appearance: none;
+            border-radius: 0;
+        }
+
+        .label:hover {
+            background-color: #E2EDF9;
+            -webkit-appearance: none;
+        }
+
+        .label {
+            display: block;
+            text-align: center;
+            margin: 5%;
+            width: 60%;
+            height: 5%;
+            padding-left: 5px;
+            padding-right: 5px;
+            color: #b20000;
+            line-height: 45px;
+            cursor: pointer;
+            border: 2px solid #006DD9;
+            border-radius: 5px;
+            -webkit-appearance: none;
+        }
+
+        .toriaezu {
+            width: 60%;
+            height: 10%;
+            background-color: #1285ffa8;
+            -webkit-appearance: none;
+        }
+
+        input#toriaezu {
+            display: block;
+            text-align: center;
+            margin: 5%;
+            width: 60%;
+            height: 5%;
+            padding-left: 5px;
+            padding-right: 5px;
+            color: #b20000;
+            font-size: 15px;
+            line-height: 45px;
+            cursor: pointer;
+            border: 2px solid #006DD9;
+            border-radius: 2px;
+            background-color: #43ec3da8;
+            -webkit-appearance: none;
+        }
+    </style>
 </head>
+
 <header>
-<div class= 'option'><input type="image" src="../../picture/Ricomen_Bear.png" alt="back" style="height:100%" id='backbutton';></div>
-<div class= 'option2'><input type="image" src="../../picture/Ricomen_Bear.png" alt="back2" style="height:100%" id='backbutton2';></div>
+    <div class='option'>
+        <button id='backbutton'>初期画面に戻る</button>
+    </div>
+    <div class='option2'>
+        <button id='backbutton2'>前スライドに戻る</button>
+    </div>
 </header>
 
-
 <body>
-<div class='NewOrder'><button type="button" id='slideL';>
-<font size="4" color="black">次はこちら</font></button></div>
+    <div class='slideA'>
+        <div class="message-box">あなたに合った良いオススメ提案を行うため、<span style="font-weight: bold;">あなた自身に関する属性情報、性格や趣味・嗜好に関するあらゆる質問をさせて頂きます</span><br><br>※登録時間の目安は30分程度</div>
+        <div class='NewOrder'>
+            <button type="button" id='slideL'>次へ</button>
+        </div>
+    </div>
 
+    <div class='slideB'>
+        <div class="message-box"><span style="font-weight: bold;">回答いただく情報には氏名、電話番号、メールアドレス、住所詳細などのあなた個人を特定（識別）する情報は含んでおりません</span><br><br>ですので、安心して質問にご回答ください</div>
+        <div class='NewOrder'>
+            <button type="button" id='slideX'>登録へ進む</button>
+        </div>
+    </div>
 
-<div class='slideX'>
-<div class='page1'>
-<center>
-<div>
-<font size="4" color="#b20000">今日のご飯はなんだろうな</font></div>
-<form>
-<input type="radio" name="fruits" value="1" id="apple">
-<label for="apple" class="label">アップル</label>
-<input type="radio" name="fruits" value="2" id="pineapple">
-<label for="pineapple" class="label">パイナップル</label>
-<input type="radio" name="fruits" value="3" id="orange">
-<label for="orange" class="label">オレンジ</label>
+   
+    <!--
+        <div class='slideX'>
+        <div class='page1'>
+            <center>
+                <div>
+                    <font size="4" color="#b20000">今日のご飯はなんだろうな</font>
+                </div>
+                <form>
+                    <input type="radio" name="fruits" value="1" id="apple">
+                    <label for="apple" class="label">アップル</label>
+                    <input type="radio" name="fruits" value="2" id="pineapple">
+                    <label for="pineapple" class="label">パイナップル</label>
+                    <input type="radio" name="fruits" value="3" id="orange">
+                    <label for="orange" class="label">オレンジ</label>
 
- <label>
- <input type="checkbox" name="knownby" value="web" id="web">Web
-</label>
-<label>
-<input type="checkbox" name="knownby" value="magazine" id="magazine">雑誌
-</label>
+                    <label>
+                        <input type="checkbox" name="knownby" value="web" id="web">Web
+                    </label>
+                    <label>
+                        <input type="checkbox" name="knownby" value="magazine" id="magazine">雑誌
+                    </label>
 
-<input type="submit" value="送る" id='toriaezu'>
+                    <input type="submit" value="送る" id='toriaezu'>
+                </form>
+            </center>
+        </div>
+    </div>
+    -->
 
-</form>
-</center>
-</div>
-</div>
-
-
-<script type="text/javascript" src="../jquery-3.4.1.js"></script>
-<script type="text/javascript" src="entry.js"> </script>
-
+    <script type="text/javascript" src="../jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="entry.js"></script>
 </body>
+
 <footer></footer>
 </html>
-

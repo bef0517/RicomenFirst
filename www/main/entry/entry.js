@@ -1,7 +1,52 @@
-$('#slideL').on('click',function(){
-    $('body').animate({'marginLeft':'-100%'},100);
-    $('header').animate({'marginLeft':'0.01%'},100);}); //0だと動かない
+//戻る処理1
+$('#backbutton').on('click', function () {
+    // ポップアップを表示
+    const userConfirmation = confirm("本当に初期画面に戻りますか？");
+    
+    if (userConfirmation) {
+        // ユーザーが「はい」を選択した場合
+        location.href = '../main.html';
+    } else {
+        // ユーザーが「いいえ」を選択した場合
+        // 処理を中断 (何もしない)
+    }
+});
 
+
+//戻る処理2
+
+$(document).on('click', '#backbutton2', function() {
+    if (currentMarginLeft < 0) {
+        currentMarginLeft -= -100;
+        $('body').animate({'marginLeft': currentMarginLeft + '%'}, 0);
+    }
+});
+
+
+//進む処理
+// 現在の margin-left を管理する変数
+let currentMarginLeft = 0;
+
+// #slideL が呼び出されたときの処理
+$(document).on('click', '#slideL', function() {
+    // -100% ずつ移動
+    currentMarginLeft -= 100;
+
+    // アニメーションで適用
+    $('body').animate({'marginLeft': currentMarginLeft + '%'}, 0);
+});
+
+//遷移ボタン
+document.addEventListener('DOMContentLoaded', function () {
+    const button = document.getElementById('slideX');
+    if (button) {
+        button.addEventListener('click', function () {
+            location.href = 'jp-pq-000001.html';
+        });
+    }
+});
+
+//とりあえず処理
 $('#toriaezu').on('click', function validateForm() {
   var radios = document.getElementsByName("fruits");
   var formValid = false;
@@ -15,25 +60,15 @@ $('#toriaezu').on('click', function validateForm() {
   });
 
 $('form').submit(function( event ) {
-    event.preventDefault();{$.post( 'http://ec2-54-250-212-211.ap-northeast-1.compute.amazonaws.com/Ricomen/server.py', $('form').serializeArray())
+    event.preventDefault();{$.post( 'http://ec2-35-75-21-245.ap-northeast-1.compute.amazonaws.com/online.php', $('form').serializeArray())
  
 //通信が成功した場合
-.done( function(data) {alert('登録を完了しました');localStorage.setItem('UserID', data); location.href = "../main.html";} )
+.done( function(data) {alert('登録を完了しました');localStorage.setItem('UserID', data.userID); location.href = "../main.html";} )
  
 //通信エラーの場合
-.fail( function(data) {alert('通信エラーですよ');} )
+.fail( function(data) {alert('通信エラーですよ');localStorage.clear();
+localStorage.setItem('UserID', '1000');
+} )
 }});
 
-
-//戻る処理1
-$('#backbutton').on('click',function(){
-    $('body').animate({'marginLeft':'100%'},100);
-    function linkUrlback() {location.href = '../main.html'};
-    setTimeout(linkUrlback, 400);});
-
-//戻る処理2
-
-$('#backbutton2').on('click',function(){
-    $('body').animate({'marginLeft':'0%'},100);
-    $('header').animate({'marginLeft':'0%'},100);});
 
