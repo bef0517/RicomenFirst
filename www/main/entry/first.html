@@ -221,7 +221,24 @@
             border-radius: 2px;
             background-color: #43ec3da8;
             -webkit-appearance: none;
+            
         }
+
+        .anime-slide-fade {
+            animation: slideOutLeft 1.0s ease-out forwards;
+        }
+
+        @keyframes slideOutLeft {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+        }
+
     </style>
 </head>
 
@@ -238,14 +255,14 @@
     <div class='slideA'>
         <div class="message-box">あなたに合った良いオススメ提案を行うため、<span style="font-weight: bold;">あなた自身に関する属性情報、性格や趣味・嗜好に関するあらゆる質問をさせて頂きます</span><br><br>※登録時間の目安は30分程度</div>
         <div class='NewOrder'>
-            <button type="button" id='slideL'>次へ</button>
+            <button type="button" id='slideA'>次へ</button>
         </div>
     </div>
 
     <div class='slideB'>
         <div class="message-box"><span style="font-weight: bold;">回答いただく情報には氏名、電話番号、メールアドレス、住所詳細などのあなた個人を特定（識別）する情報は含んでおりません</span><br><br>ですので、安心して質問にご回答ください</div>
         <div class='NewOrder'>
-            <button type="button" id='slideX'>登録へ進む</button>
+            <button type="button" id='slideB'>登録へ進む</button>
         </div>
     </div>
 
@@ -283,5 +300,4 @@
     <script type="text/javascript" src="entry.js"></script>
 </body>
 
-<footer></footer>
 </html>
