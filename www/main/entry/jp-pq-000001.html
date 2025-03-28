@@ -20,7 +20,7 @@
             background-color: #e0efff;
             font-family: 'Helvetica';
             text-align: center;
-            transition: all 0.5s;
+            transition: transform 0.4s ease, opacity 0.4s ease;
             -webkit-appearance: none;
         }
 
@@ -194,18 +194,13 @@
         }
 
         .anime-slide-fade {
-            animation: slideOutLeft 1.0s ease-out forwards;
+               transform: translateX(-50%);
+               opacity: 0;
         }
 
-        @keyframes slideOutLeft {
-            from {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateX(-100%);
-            }
+        .anime-slide-fade2 {
+               transform: translateX(50%);
+               opacity: 0;
         }
 
     </style>
@@ -226,8 +221,8 @@
     <div class="question-select">
         <select id="questionSelect">
             <option value="">選択してください</option>
-            <option value="male">男性</option>
-            <option value="female">女性</option>
+            <option value="000001">男性</option>
+            <option value="000002">女性</option>
         </select>
     </div>
 
@@ -240,6 +235,11 @@
 
     <script>
     // #slide000001 が呼び出されたときの処理
+
+        function linkToNextPage() {
+        window.location.href = "jp-pq-000003.html";
+        }
+
         document.getElementById("slide000001").addEventListener("click", function () {
             const answer = document.getElementById("questionSelect").value;
 
@@ -248,13 +248,27 @@
                 return;
             }
 
-            if (answer === "male") {
-                localStorage.setItem("neworder000001", "000001");
-            } else if (answer === "female") {
-                localStorage.setItem("neworder000001", "000002");
-            }
+            localStorage.setItem("neworder000001", answer);
 
-            window.location.href = "jp-pq-000003.html";
+                // アニメーションクラスを追加
+                document.body.classList.add("anime-slide-fade");
+
+                // アニメ完了後に遷移（200ms）
+                setTimeout(linkToNextPage, 200);
+        });
+
+        //前ページに戻る
+
+        function linkToBackPage() {
+        window.location.href = "first.html";
+        }
+
+        $('#backbutton4').on('click', function () {
+        // アニメーションクラスを追加
+        document.body.classList.add("anime-slide-fade2");
+
+        // アニメ完了後に遷移（200ms）
+        setTimeout(linkToBackPage, 200);
         });
     </script>
 

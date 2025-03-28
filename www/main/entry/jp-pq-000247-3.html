@@ -215,84 +215,59 @@
 </header>
 
 <body>
-    <div class="message-box">あなたが現在お住まいの都道府県はどこですか？</div>
+    <div class="message-box">あなたの専攻を教えてください</div>
 
     <div class="question-select">
         <select id="questionSelect">
             <option value="">選択してください</option>
-            <option value="000090">北海道</option>
-            <option value="000091">青森県</option>
-            <option value="000092">岩手県</option>
-            <option value="000093">宮城県</option>
-            <option value="000094">秋田県</option>
-            <option value="000095">山形県</option>
-            <option value="000096">福島県</option>
-            <option value="000097">茨城県</option>
-            <option value="000098">栃木県</option>
-            <option value="000099">群馬県</option>
-            <option value="000100">埼玉県</option>
-            <option value="000101">千葉県</option>
-            <option value="000102">東京都</option>
-            <option value="000103">神奈川県</option>
-            <option value="000104">新潟県</option>
-            <option value="000105">富山県</option>
-            <option value="000106">石川県</option>
-            <option value="000107">福井県</option>
-            <option value="000108">山梨県</option>
-            <option value="000109">長野県</option>
-            <option value="000110">岐阜県</option>
-            <option value="000111">静岡県</option>
-            <option value="000112">愛知県</option>
-            <option value="000113">三重県</option>
-            <option value="000114">滋賀県</option>
-            <option value="000115">京都府</option>
-            <option value="000116">大阪府</option>
-            <option value="000117">兵庫県</option>
-            <option value="000118">奈良県</option>
-            <option value="000119">和歌山県</option>
-            <option value="000120">鳥取県</option>
-            <option value="000121">島根県</option>
-            <option value="000122">岡山県</option>
-            <option value="000123">広島県</option>
-            <option value="000124">山口県</option>
-            <option value="000125">徳島県</option>
-            <option value="000126">香川県</option>
-            <option value="000127">愛媛県</option>
-            <option value="000128">高知県</option>
-            <option value="000129">福岡県</option>
-            <option value="000130">佐賀県</option>
-            <option value="000131">長崎県</option>
-            <option value="000132">熊本県</option>
-            <option value="000133">大分県</option>
-            <option value="000134">宮崎県</option>
-            <option value="000135">鹿児島県</option>
-            <option value="000136">沖縄県</option>
+            <option value="000247">公務員・法律・政治系</option>
+            <option value="000248">ビジネス系</option>
+            <option value="000249">語学・国際系</option>
+            <option value="000250">旅行・観光・エアライン系</option>
+            <option value="000251">ホテル・ブライダル系</option>
+            <option value="000252">マスコミ・芸能・声優系</option>
+            <option value="000253">音楽・イベント系</option>
+            <option value="000254">デザイン・写真・芸術・工芸系</option>
+            <option value="000255">ファッション・きもの系</option>
+            <option value="000256">コンピュータ・ゲーム系</option>
+            <option value="000257">自動車・航空技術系</option>
+            <option value="000258">機械・電気・電子系</option>
+            <option value="000259">建築・土木・インテリア系</option>
+            <option value="000260">動物・植物・フラワー系</option>
+            <option value="000261">環境・バイオ系</option>
+            <option value="000262">理容・美容・メイク・ エステ・ネイル系</option>
+            <option value="000263">保育・教育系</option>
+            <option value="000264">福祉系</option>
+            <option value="000265">健康・スポーツ系</option>
+            <option value="000266">医療・看護・医療事務系</option>
+            <option value="000267">調理・製菓系</option>
+            <option value="000268">栄養系</option>
         </select>
     </div>
 
     <div class='NewOrder'>
-        <button type="button" id='slide000090'>次の質問へ進む</button>
+        <button type="button" id='slide000247-3'>次の質問へ進む</button>
     </div>
 
     <script type="text/javascript" src="../jquery-3.4.1.js"></script>
     <script type="text/javascript" src="entry.js"></script>
 
     <script>
-    // #slide000090 が呼び出されたときの処理
+    // #slide000247-3 が呼び出されたときの処理
+
+        document.getElementById("slide000247-3").addEventListener("click", function () {
+            const answer = document.getElementById("questionSelect").value;
 
         function linkToNextPage() {
-        window.location.href = "jp-pq-000137.html";
+        window.location.href = "jp-pq-000654.html";
         }
-
-        document.getElementById("slide000090").addEventListener("click", function () {
-            const answer = document.getElementById("questionSelect").value;
 
             if (!answer) {
                 alert("回答が未登録です");
                 return;
             }
 
-            localStorage.setItem("neworder000090", answer);
+            localStorage.setItem("neworder000247", answer);
 
                 // アニメーションクラスを追加
                 document.body.classList.add("anime-slide-fade");
@@ -304,7 +279,7 @@
         //前ページに戻る
 
         function linkToBackPage() {
-        window.location.href = "jp-pq-000003.html";
+        window.location.href = "jp-pq-000218-2.html";
         }
 
         $('#backbutton4').on('click', function () {

@@ -20,7 +20,7 @@
             background-color: #e0efff;
             font-family: 'Helvetica';
             text-align: center;
-            transition: all 0.5s;
+            transition: transform 0.4s ease, opacity 0.4s ease;
             -webkit-appearance: none;
         }
 
@@ -194,18 +194,12 @@
         }
 
         .anime-slide-fade {
-            animation: slideOutLeft 1.0s ease-out forwards;
+               transform: translateX(-50%);
+               opacity: 0;
         }
-
-        @keyframes slideOutLeft {
-            from {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateX(-100%);
-            }
+        .anime-slide-fade2 {
+               transform: translateX(50%);
+               opacity: 0;
         }
 
     </style>
@@ -226,93 +220,93 @@
     <div class="question-select">
         <select id="questionSelect">
             <option value="">選択してください</option>
-            <option value="13">13歳</option>
-            <option value="14">14歳</option>
-            <option value="15">15歳</option>
-            <option value="16">16歳</option>
-            <option value="17">17歳</option>
-            <option value="18">18歳</option>
-            <option value="19">19歳</option>
-            <option value="20">20歳</option>
-            <option value="21">21歳</option>
-            <option value="22">22歳</option>
-            <option value="23">23歳</option>
-            <option value="24">24歳</option>
-            <option value="25">25歳</option>
-            <option value="26">26歳</option>
-            <option value="27">27歳</option>
-            <option value="28">28歳</option>
-            <option value="29">29歳</option>
-            <option value="30">30歳</option>
-            <option value="31">31歳</option>
-            <option value="32">32歳</option>
-            <option value="33">33歳</option>
-            <option value="34">34歳</option>
-            <option value="35">35歳</option>
-            <option value="36">36歳</option>
-            <option value="37">37歳</option>
-            <option value="38">38歳</option>
-            <option value="39">39歳</option>
-            <option value="40">40歳</option>
-            <option value="41">41歳</option>
-            <option value="42">42歳</option>
-            <option value="43">43歳</option>
-            <option value="44">44歳</option>
-            <option value="45">45歳</option>
-            <option value="46">46歳</option>
-            <option value="47">47歳</option>
-            <option value="48">48歳</option>
-            <option value="49">49歳</option>
-            <option value="50">50歳</option>
-            <option value="51">51歳</option>
-            <option value="52">52歳</option>
-            <option value="53">53歳</option>
-            <option value="54">54歳</option>
-            <option value="55">55歳</option>
-            <option value="56">56歳</option>
-            <option value="57">57歳</option>
-            <option value="58">58歳</option>
-            <option value="59">59歳</option>
-            <option value="60">60歳</option>
-            <option value="61">61歳</option>
-            <option value="62">62歳</option>
-            <option value="63">63歳</option>
-            <option value="64">64歳</option>
-            <option value="65">65歳</option>
-            <option value="66">66歳</option>
-            <option value="67">67歳</option>
-            <option value="68">68歳</option>
-            <option value="69">69歳</option>
-            <option value="70">70歳</option>
-            <option value="71">71歳</option>
-            <option value="72">72歳</option>
-            <option value="73">73歳</option>
-            <option value="74">74歳</option>
-            <option value="75">75歳</option>
-            <option value="76">76歳</option>
-            <option value="77">77歳</option>
-            <option value="78">78歳</option>
-            <option value="79">79歳</option>
-            <option value="80">80歳</option>
-            <option value="81">81歳</option>
-            <option value="82">82歳</option>
-            <option value="83">83歳</option>
-            <option value="84">84歳</option>
-            <option value="85">85歳</option>
-            <option value="86">86歳</option>
-            <option value="87">87歳</option>
-            <option value="88">88歳</option>
-            <option value="89">89歳</option>
-            <option value="90">90歳</option>
-            <option value="91">91歳</option>
-            <option value="92">92歳</option>
-            <option value="93">93歳</option>
-            <option value="94">94歳</option>
-            <option value="95">95歳</option>
-            <option value="96">96歳</option>
-            <option value="97">97歳</option>
-            <option value="98">98歳</option>
-            <option value="99">99歳</option>
+            <option value="000003">13歳</option>
+            <option value="000004">14歳</option>
+            <option value="000005">15歳</option>
+            <option value="000006">16歳</option>
+            <option value="000007">17歳</option>
+            <option value="000008">18歳</option>
+            <option value="000009">19歳</option>
+            <option value="000010">20歳</option>
+            <option value="000011">21歳</option>
+            <option value="000012">22歳</option>
+            <option value="000013">23歳</option>
+            <option value="000014">24歳</option>
+            <option value="000015">25歳</option>
+            <option value="000016">26歳</option>
+            <option value="000017">27歳</option>
+            <option value="000018">28歳</option>
+            <option value="000019">29歳</option>
+            <option value="000020">30歳</option>
+            <option value="000021">31歳</option>
+            <option value="000022">32歳</option>
+            <option value="000023">33歳</option>
+            <option value="000024">34歳</option>
+            <option value="000025">35歳</option>
+            <option value="000026">36歳</option>
+            <option value="000027">37歳</option>
+            <option value="000028">38歳</option>
+            <option value="000029">39歳</option>
+            <option value="000030">40歳</option>
+            <option value="000031">41歳</option>
+            <option value="000032">42歳</option>
+            <option value="000033">43歳</option>
+            <option value="000034">44歳</option>
+            <option value="000035">45歳</option>
+            <option value="000036">46歳</option>
+            <option value="000037">47歳</option>
+            <option value="000038">48歳</option>
+            <option value="000039">49歳</option>
+            <option value="000040">50歳</option>
+            <option value="000041">51歳</option>
+            <option value="000042">52歳</option>
+            <option value="000043">53歳</option>
+            <option value="000044">54歳</option>
+            <option value="000045">55歳</option>
+            <option value="000046">56歳</option>
+            <option value="000047">57歳</option>
+            <option value="000048">58歳</option>
+            <option value="000049">59歳</option>
+            <option value="000050">60歳</option>
+            <option value="000051">61歳</option>
+            <option value="000052">62歳</option>
+            <option value="000053">63歳</option>
+            <option value="000054">64歳</option>
+            <option value="000055">65歳</option>
+            <option value="000056">66歳</option>
+            <option value="000057">67歳</option>
+            <option value="000058">68歳</option>
+            <option value="000059">69歳</option>
+            <option value="000060">70歳</option>
+            <option value="000061">71歳</option>
+            <option value="000062">72歳</option>
+            <option value="000063">73歳</option>
+            <option value="000064">74歳</option>
+            <option value="000065">75歳</option>
+            <option value="000066">76歳</option>
+            <option value="000067">77歳</option>
+            <option value="000068">78歳</option>
+            <option value="000069">79歳</option>
+            <option value="000070">80歳</option>
+            <option value="000071">81歳</option>
+            <option value="000072">82歳</option>
+            <option value="000073">83歳</option>
+            <option value="000074">84歳</option>
+            <option value="000075">85歳</option>
+            <option value="000076">86歳</option>
+            <option value="000077">87歳</option>
+            <option value="000078">88歳</option>
+            <option value="000079">89歳</option>
+            <option value="000080">90歳</option>
+            <option value="000081">91歳</option>
+            <option value="000082">92歳</option>
+            <option value="000083">93歳</option>
+            <option value="000084">94歳</option>
+            <option value="000085">95歳</option>
+            <option value="000086">96歳</option>
+            <option value="000087">97歳</option>
+            <option value="000088">98歳</option>
+            <option value="000089">99歳</option>
         </select>
     </div>
 
@@ -325,6 +319,11 @@
 
     <script>
     // #slide000003 が呼び出されたときの処理
+
+        function linkToNextPage() {
+        window.location.href = "jp-pq-000090.html";
+        }
+
         document.getElementById("slide000003").addEventListener("click", function () {
             const answer = document.getElementById("questionSelect").value;
 
@@ -333,14 +332,29 @@
                 return;
             }
 
-            const baseValue = 3 + (parseInt(answer) - 13); // 13歳で000003、14歳で000004 ...
-            const paddedValue = baseValue.toString().padStart(6, "0"); // "000003" のようにゼロ埋め
+            localStorage.setItem("neworder000003", answer);
 
-            localStorage.setItem("neworder000003", paddedValue);
+                // アニメーションクラスを追加
+                document.body.classList.add("anime-slide-fade");
 
-            // 次画面へ遷移
-            window.location.href = "jp-pq-000090.html";
+                // アニメ完了後に遷移（200ms）
+                setTimeout(linkToNextPage, 200);
         });
+
+        //前ページに戻る
+
+        function linkToBackPage() {
+        window.location.href = "jp-pq-000001.html";
+        }
+
+        $('#backbutton4').on('click', function () {
+        // アニメーションクラスを追加
+        document.body.classList.add("anime-slide-fade2");
+
+        // アニメ完了後に遷移（200ms）
+        setTimeout(linkToBackPage, 200);
+        });
+
     </script>
 
 </body>

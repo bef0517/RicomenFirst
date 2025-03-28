@@ -72,8 +72,8 @@ window.onload = function() {
             confirmButton.style.boxShadow = '0 4px 8px rgba(107, 179, 255, 0.4)';
         });
     
-    
-confirmButton.addEventListener('click', function() {
+    document.body.style.overflow = "hidden";  // ポップアップ削除時の変な挙動を制御
+    confirmButton.addEventListener('click', function() {
     
     // ２番目のポップアップ
     document.body.removeChild(popup);
@@ -150,6 +150,7 @@ confirmButton.addEventListener('click', function() {
     finalBtn.addEventListener('click', function () {
         document.body.removeChild(secondPopup);
         document.body.removeChild(secondOverlay);
+        document.body.style.overflow = "auto"; // ポップアップ削除時の変な挙動を制御
     });
 });
 

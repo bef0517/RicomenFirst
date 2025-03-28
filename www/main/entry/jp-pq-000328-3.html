@@ -215,96 +215,121 @@
 </header>
 
 <body>
-    <div class="message-box">あなたが現在お住まいの都道府県はどこですか？</div>
+    <div class="message-box">あなたの職業区分（②）を教えてください</div>
 
     <div class="question-select">
         <select id="questionSelect">
             <option value="">選択してください</option>
-            <option value="000090">北海道</option>
-            <option value="000091">青森県</option>
-            <option value="000092">岩手県</option>
-            <option value="000093">宮城県</option>
-            <option value="000094">秋田県</option>
-            <option value="000095">山形県</option>
-            <option value="000096">福島県</option>
-            <option value="000097">茨城県</option>
-            <option value="000098">栃木県</option>
-            <option value="000099">群馬県</option>
-            <option value="000100">埼玉県</option>
-            <option value="000101">千葉県</option>
-            <option value="000102">東京都</option>
-            <option value="000103">神奈川県</option>
-            <option value="000104">新潟県</option>
-            <option value="000105">富山県</option>
-            <option value="000106">石川県</option>
-            <option value="000107">福井県</option>
-            <option value="000108">山梨県</option>
-            <option value="000109">長野県</option>
-            <option value="000110">岐阜県</option>
-            <option value="000111">静岡県</option>
-            <option value="000112">愛知県</option>
-            <option value="000113">三重県</option>
-            <option value="000114">滋賀県</option>
-            <option value="000115">京都府</option>
-            <option value="000116">大阪府</option>
-            <option value="000117">兵庫県</option>
-            <option value="000118">奈良県</option>
-            <option value="000119">和歌山県</option>
-            <option value="000120">鳥取県</option>
-            <option value="000121">島根県</option>
-            <option value="000122">岡山県</option>
-            <option value="000123">広島県</option>
-            <option value="000124">山口県</option>
-            <option value="000125">徳島県</option>
-            <option value="000126">香川県</option>
-            <option value="000127">愛媛県</option>
-            <option value="000128">高知県</option>
-            <option value="000129">福岡県</option>
-            <option value="000130">佐賀県</option>
-            <option value="000131">長崎県</option>
-            <option value="000132">熊本県</option>
-            <option value="000133">大分県</option>
-            <option value="000134">宮崎県</option>
-            <option value="000135">鹿児島県</option>
-            <option value="000136">沖縄県</option>
+            <option value="000328">研究者</option>
+            <option value="000330">農林水産技術者</option>
+            <option value="000331">製造技術者（開発）</option>
+            <option value="000339">製造技術者（開発を除く）</option>
+            <option value="000347">建築・土木・測量技術者 </option>
+            <option value="000350">情報処理・通信技術者</option>
+            <option value="000357">その他の技術者 </option>
+            <option value="000358">医師，歯科医師，獣医師，薬剤師</option>
+            <option value="000362">保健師，助産師，看護師</option>
+            <option value="000365">医療技術者</option>
+            <option value="000372">その他の保健医療従事者</option>
+            <option value="000375">社会福祉専門職業従事者</option>
+            <option value="000379">法務従事者</option>
+            <option value="000385">経営・金融・保険専門職業従事者</option>
+            <option value="000390">教員</option>
+            <option value="000399">宗教家</option>
+            <option value="000400">著述家，記者，編集者</option>
+            <option value="000402">美術家，デザイナー，写真家，映像撮影者</option>
+            <option value="000407">音楽家，舞台芸術家</option>
+            <option value="000412">その他の専門的職業従事者</option>
         </select>
     </div>
 
     <div class='NewOrder'>
-        <button type="button" id='slide000090'>次の質問へ進む</button>
+        <button type="button" id='slide000328-3'>次の質問へ進む</button>
     </div>
 
     <script type="text/javascript" src="../jquery-3.4.1.js"></script>
     <script type="text/javascript" src="entry.js"></script>
 
     <script>
-    // #slide000090 が呼び出されたときの処理
+    // #slide000328-3 が呼び出されたときの処理
 
-        function linkToNextPage() {
-        window.location.href = "jp-pq-000137.html";
-        }
-
-        document.getElementById("slide000090").addEventListener("click", function () {
+        document.getElementById("slide000328-3").addEventListener("click", function () {
             const answer = document.getElementById("questionSelect").value;
+
+            function linkToNextPage(answer) {
+                let nextPage = "";
+
+                if (answer === "000328") {
+                    nextPage = "jp-pq-000328-4.html";
+                } else if (answer === "000331") {
+                    nextPage = "jp-pq-000331-4.html";
+                } else if (answer === "000339") {
+                    nextPage = "jp-pq-000339-4.html";
+                } else if (answer === "000347") {
+                    nextPage = "jp-pq-000347-4.html";
+                } else if (answer === "000350") {
+                    nextPage = "jp-pq-000350-4.html";
+                } else if (answer === "000358") {
+                    nextPage = "jp-pq-000358-4.html";
+                } else if (answer === "000362") {
+                    nextPage = "jp-pq-000362-4.html";
+                } else if (answer === "000365") {
+                    nextPage = "jp-pq-000365-4.html";
+                } else if (answer === "000372") {
+                    nextPage = "jp-pq-000372-4.html";
+                } else if (answer === "000375") {
+                    nextPage = "jp-pq-000375-4.html";
+                } else if (answer === "000379") {
+                    nextPage = "jp-pq-000379-4.html";
+                } else if (answer === "000385") {
+                    nextPage = "jp-pq-000385-4.html";
+                } else if (answer === "000390") {
+                    nextPage = "jp-pq-000390-4.html";
+                } else if (answer === "000400") {
+                    nextPage = "jp-pq-000400-4.html";
+                } else if (answer === "000402") {
+                    nextPage = "jp-pq-000402-4.html";
+                } else if (answer === "000407") {
+                    nextPage = "jp-pq-000407-4.html";
+                } else if (answer === "000412") {
+                    nextPage = "jp-pq-000412-4.html";
+                } else {
+                    nextPage = "jp-pq-000654.html";
+                }
+
+                window.location.href = nextPage;
+            }
 
             if (!answer) {
                 alert("回答が未登録です");
                 return;
             }
 
-            localStorage.setItem("neworder000090", answer);
+        if (answer === "000330") {
+            localStorage.setItem("neworder000328", "000330");
+        } 
+
+        if (answer === "000357") {
+            localStorage.setItem("neworder000328", "000357");
+        } 
+
+        if (answer === "000399") {
+            localStorage.setItem("neworder000328", "000399");
+        } 
 
                 // アニメーションクラスを追加
                 document.body.classList.add("anime-slide-fade");
 
                 // アニメ完了後に遷移（200ms）
-                setTimeout(linkToNextPage, 200);
+                setTimeout(function () {
+                linkToNextPage(answer);
+                }, 200);
         });
 
         //前ページに戻る
 
         function linkToBackPage() {
-        window.location.href = "jp-pq-000003.html";
+        window.location.href = "jp-pq-000318-2.html";
         }
 
         $('#backbutton4').on('click', function () {

@@ -36,13 +36,6 @@ $('#backbutton3').on('click', function () {
     }
 });
 
-//戻る処理4
-
-$('#backbutton4').on('click', function () {
-history.back();
-});
-
-
 //進む処理
 // 現在の margin-left を管理する変数
 let currentMarginLeft = 0;
@@ -68,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (bt3) {
         bt3.addEventListener('click', function () {
             document.body.classList.add('anime-slide-fade');
-            setTimeout(linkUrl000001, 300);
+            setTimeout(linkUrl000001, 200);
         });
     }
 });
