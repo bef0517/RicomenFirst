@@ -1,0 +1,1253 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#d6eeff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="../../components/loader.js"></script>
+    <link rel="stylesheet">
+
+    <style>
+        body {
+            position: fixed;
+            width: 100%;
+            height: 93%;
+            top: 15%;
+            margin: 0;
+            padding: 0px;
+            background-color: #e0efff;
+            font-family: 'Helvetica';
+            text-align: center;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            -webkit-appearance: none;
+        }
+
+        header {
+            background-color: #d6eeff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 15%;
+            margin: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding-top: env(safe-area-inset-top);
+            box-sizing: border-box;
+        }
+
+        .option button {
+            background-color: #d6eeff;
+            color: #006DD9;
+            border: 2px solid #006DD9;
+            border-radius: 8px;
+            padding: 8px 8px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: absolute;
+            top: 70%;
+            transform: translateY(-50%);
+            left: 3%;
+        }
+
+        .option button:hover {
+            background-color: #bcd9f3;
+            color: #004c9a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .option2 button {
+            background-color: #d6eeff;
+            color: #006DD9;
+            border: 2px solid #006DD9;
+            border-radius: 8px;
+            padding: 8px 8px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: absolute;
+            top: 70%;
+            transform: translateY(-50%);
+            right: 3%;
+        }
+
+        .option2 button:hover {
+            background-color: #bcd9f3;
+            color: #004c9a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .message-box {
+            width: 80%;
+            height: 15%;
+            position: fixed;
+            background-color: #ffffff;
+            border: 2px solid #006DD9;
+            border-radius: 10px;
+            padding: 20px 20px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+            color: #2b2929;
+            text-align: left;
+            margin-top: 10%;
+            left: 5%;
+            flex: 6; 
+            line-height: 1.5;
+        }
+
+         .question-select {
+            top: 30%;
+            width: 80%;
+            height: 10%;
+            position: absolute;
+            left: 5%;
+            padding: 20px 20px; 
+            font-size: 20px;
+            color: #2b2929;
+             }
+
+        select#questionSelect {
+            width: 100%;
+            padding: 20px;
+            font-size: 20px;
+            padding: 20px 20px; 
+            border: 5px solid #ace;
+            border-radius: 8px;
+            background-color: white;
+            box-sizing: border-box;
+            appearance: none;          /* ブラウザのデフォルトスタイルを抑制 */
+            -webkit-appearance: none;  /* SafariやiOS用 */
+            -moz-appearance: none;     /* Firefox用 */
+         }
+
+         .sub-question-select {
+            top: 45%;
+            width: 80%;
+            height: 10%;
+            position: absolute;
+            left: 5%;
+            padding: 20px 20px; 
+            font-size: 20px;
+            color: #2b2929;
+             }
+
+        select#subquestionSelect {
+            width: 100%;
+            padding: 20px;
+            font-size: 20px;
+            padding: 20px 20px; 
+            border: 5px solid #ace;
+            border-radius: 8px;
+            background-color: white;
+            box-sizing: border-box;
+            appearance: none;          /* ブラウザのデフォルトスタイルを抑制 */
+            -webkit-appearance: none;  /* SafariやiOS用 */
+            -moz-appearance: none;     /* Firefox用 */
+         }
+
+        .NewOrder {
+            top: 75%;
+            width: 70%;
+            position: absolute;
+            height: 100%;
+            left: 15%;
+            -webkit-appearance: none;
+        }
+
+        .NewOrder button {
+            width: 100%;
+            margin: auto;
+            text-align: center;
+            background-color: #A4DDED;
+            color: #ffffff;
+            border: 2px solid #6BB4D6;
+            border-radius: 50px;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            text-transform: none;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .NewOrder button:hover {
+            background-color: #89C7E6;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        button[type=button] {
+            background: #31A9EE;
+            color: #ffffff;
+            -webkit-appearance: none;
+            border-radius: 0;
+        }
+
+        .label:hover {
+            background-color: #E2EDF9;
+            -webkit-appearance: none;
+        }
+
+        .label {
+            display: block;
+            text-align: center;
+            margin: 5%;
+            width: 60%;
+            height: 5%;
+            padding-left: 5px;
+            padding-right: 5px;
+            color: #b20000;
+            line-height: 45px;
+            cursor: pointer;
+            border: 2px solid #006DD9;
+            border-radius: 5px;
+            -webkit-appearance: none;
+        }
+
+        .anime-slide-fade {
+               transform: translateX(-50%);
+               opacity: 0;
+        }
+        .anime-slide-fade2 {
+               transform: translateX(50%);
+               opacity: 0;
+        }
+
+    </style>
+</head>
+
+<header>
+    <div class='option'>
+        <button id='backbutton3'>初期画面に戻る</button>
+    </div>
+    <div class='option2'>
+        <button id='backbutton4'>前ページに戻る</button>
+    </div>
+</header>
+
+<body>
+    <div class="message-box">あなたの趣味（1つ目）を選んでください（日常的に楽しいと感じているものごと）</div>
+
+    <div class="question-select">
+        <select id="questionSelect">
+            <option value="">-趣味ジャンル-</option>
+            <option value="000967">スポーツ</option>
+            <option value="001033">見る（観戦・観賞）</option>
+            <option value="001059">集める</option>
+            <option value="001119">旅行・お出かけ</option>
+            <option value="001201">グルメ・料理</option>
+            <option value="001249">アウトドア</option>
+            <option value="001330">作る</option>
+            <option value="001449">育てる</option>
+            <option value="001499">美容・ライフ</option>
+            <option value="001578">音楽</option>
+            <option value="001626">芸術・鑑賞</option>
+            <option value="001677">踊る・ダンス</option>
+            <option value="001693">考える・ゲーム</option>
+            <option value="001728">学ぶ</option>
+            <option value="001779">稼ぐ</option>
+            <option value="001803">その他</option>
+         </select>
+    </div>
+
+    <div class="sub-question-select">
+        <select id="subquestionSelect">
+            <option value="">-趣味詳細を選んでください-</option>
+        </select>
+    </div>
+    
+
+    <div class='NewOrder'>
+        <button type="button" id='slide000967'>次の質問へ進む</button>
+    </div>
+
+    <script type="text/javascript" src="../jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="entry.js"></script>
+
+    <script>
+        // ジャンルごとのサブカテゴリデータ
+        const subCategories = {
+        "000967": [
+            { value: "000967", label: "テニス" },
+            { value: "000968", label: "ソフトテニス" },
+            { value: "000969", label: "バドミントン" },
+            { value: "000970", label: "バスケットボール" },
+            { value: "000971", label: "スカッシュ" },
+            { value: "000972", label: "野球・草野球" },
+            { value: "000973", label: "ソフトボール" },
+            { value: "000974", label: "サッカー・草サッカー" },
+            { value: "000975", label: "フットサル" },
+            { value: "000976", label: "バブルサッカー" },
+            { value: "000977", label: "フリースタイルフットボール" },
+            { value: "000978", label: "スケートボード" },
+            { value: "000979", label: "スノーボード" },
+            { value: "000980", label: "スキー" },
+            { value: "000981", label: "フィギュアスケート" },
+            { value: "000982", label: "サーフィン" },
+            { value: "000983", label: "ゴルフ" },
+            { value: "000984", label: "ロードバイク" },
+            { value: "000985", label: "バレーボール" },
+            { value: "000986", label: "フロアバレーボール" },
+            { value: "000987", label: "ビーチバレー" },
+            { value: "000988", label: "ハンドボール" },
+            { value: "000989", label: "卓球" },
+            { value: "000990", label: "トランポリン" },
+            { value: "000991", label: "トレイルランニング" },
+            { value: "000992", label: "なわとび" },
+            { value: "000993", label: "スラックライン" },
+            { value: "000994", label: "水泳" },
+            { value: "000995", label: "カヌー" },
+            { value: "000996", label: "空手" },
+            { value: "000997", label: "ボクシング" },
+            { value: "000998", label: "キックボクシング" },
+            { value: "000999", label: "レスリング" },
+            { value: "001000", label: "柔道" },
+            { value: "001001", label: "日本拳法" },
+            { value: "001002", label: "空手" },
+            { value: "001003", label: "気功" },
+            { value: "001004", label: "合気道" },
+            { value: "001005", label: "格闘技習得" },
+            { value: "001006", label: "テコンドー" },
+            { value: "001007", label: "カポエイラ・カポエラ" },
+            { value: "001008", label: "剣道" },
+            { value: "001009", label: "太極拳" },
+            { value: "001010", label: "少林寺拳法" },
+            { value: "001011", label: "キンボール" },
+            { value: "001012", label: "古武術・古武道" },
+            { value: "001013", label: "ヌンチャク" },
+            { value: "001014", label: "薙刀・なぎなた" },
+            { value: "001015", label: "ボルダリング" },
+            { value: "001016", label: "トライアスロン" },
+            { value: "001017", label: "カーリング" },
+            { value: "001018", label: "カローリング" },
+            { value: "001019", label: "ボーリング" },
+            { value: "001020", label: "アーチェリー" },
+            { value: "001021", label: "弓道" },
+            { value: "001022", label: "クリケット" },
+            { value: "001023", label: "ラクロス" },
+            { value: "001024", label: "乗馬" },
+            { value: "001025", label: "BMX" },
+            { value: "001026", label: "ボディビルディング" },
+            { value: "001027", label: "ボッチャ" },
+            { value: "001028", label: "ペタンク" },
+            { value: "001029", label: "カバディ" },
+            { value: "001030", label: "セパタクロー・籐球" },
+            { value: "001031", label: "雪合戦・スポーツ雪合戦" },
+            { value: "001032", label: "スポーツカイト" }
+        ],
+        "001033": [
+            { value: "001033", label: "花火観賞" },
+            { value: "001034", label: "天体観測" },
+            { value: "001035", label: "プラネタリウム" },
+            { value: "001036", label: "スポーツ観戦" },
+            { value: "001037", label: "プロ野球観戦" },
+            { value: "001038", label: "高校野球観戦" },
+            { value: "001039", label: "サッカー観戦" },
+            { value: "001040", label: "ラグビー観戦" },
+            { value: "001041", label: "格闘技観戦" },
+            { value: "001042", label: "プロレス観戦" },
+            { value: "001043", label: "相撲観戦" },
+            { value: "001044", label: "アイスホッケー観戦" },
+            { value: "001045", label: "フィギュアスケート観戦" },
+            { value: "001046", label: "観劇観賞" },
+            { value: "001047", label: "スーパー戦隊" },
+            { value: "001048", label: "モータースポーツ・ラリー観戦" },
+            { value: "001049", label: "エアレース観賞" },
+            { value: "001050", label: "ドラマ観賞" },
+            { value: "001051", label: "洋画ドラマ観賞" },
+            { value: "001052", label: "韓流（音楽・ドラマ）" },
+            { value: "001053", label: "ネット動画観賞" },
+            { value: "001054", label: "アニメ観賞" },
+            { value: "001055", label: "まんが観賞" },
+            { value: "001056", label: "Q&Aコミュニティ" },
+            { value: "001057", label: "ネットサーフィン" },
+            { value: "001058", label: "ウェブアーカイブ・ウェブ魚拓" }
+        ],
+        "001059": [
+            { value: "001059", label: "骨董品集め" },
+            { value: "001060", label: "御朱印集め" },
+            { value: "001061", label: "切手収集" },
+            { value: "001062", label: "食器集め" },
+            { value: "001063", label: "箸置き集め" },
+            { value: "001064", label: "人形集め（ドール集め）" },
+            { value: "001065", label: "ブローチ集め" },
+            { value: "001066", label: "キーホルダー収集" },
+            { value: "001067", label: "北欧雑貨集め" },
+            { value: "001068", label: "アジアン家具集め" },
+            { value: "001069", label: "ハンドバッグ集め" },
+            { value: "001070", label: "リップクリーム集め" },
+            { value: "001071", label: "耳かき集め" },
+            { value: "001072", label: "万華鏡集め" },
+            { value: "001073", label: "文房具集め" },
+            { value: "001074", label: "ワッペン集め" },
+            { value: "001075", label: "マスキングテープ集め" },
+            { value: "001076", label: "とんぼ玉集め" },
+            { value: "001077", label: "ビーチコーミング" },
+            { value: "001078", label: "ガラス細工集め" },
+            { value: "001079", label: "ボトルディギング" },
+            { value: "001080", label: "ボトルラベル集め" },
+            { value: "001081", label: "マグネット集め" },
+            { value: "001082", label: "埴輪集め" },
+            { value: "001083", label: "羽根集め" },
+            { value: "001084", label: "グラブコレクション" },
+            { value: "001085", label: "ガチャガチャ集め" },
+            { value: "001086", label: "1000円ガチャ・高級ガチャ" },
+            { value: "001087", label: "消しゴム集め" },
+            { value: "001088", label: "フィギュア集め" },
+            { value: "001089", label: "おもちゃ集め" },
+            { value: "001090", label: "おまけ集め" },
+            { value: "001091", label: "記念メダル・コイン集め" },
+            { value: "001092", label: "古銭集め" },
+            { value: "001093", label: "化石集め" },
+            { value: "001094", label: "ミニカー集め" },
+            { value: "001095", label: "鉱石集め" },
+            { value: "001096", label: "アジアのお金収集" },
+            { value: "001097", label: "腕時計コレクション" },
+            { value: "001098", label: "スニーカー集め" },
+            { value: "001099", label: "サンダル集め" },
+            { value: "001100", label: "帽子集め" },
+            { value: "001101", label: "トレーディングカード集め" },
+            { value: "001102", label: "モデルガン集め" },
+            { value: "001103", label: "エアガン集め" },
+            { value: "001104", label: "ジッポー・Zippo集め" },
+            { value: "001105", label: "ガジェット・ガジェオタ" },
+            { value: "001106", label: "オーディオ・ステレオ集め" },
+            { value: "001107", label: "レトロゲーム収集" },
+            { value: "001108", label: "サイン収集" },
+            { value: "001109", label: "ポスター収集" },
+            { value: "001110", label: "CD集め" },
+            { value: "001111", label: "レコード集め" },
+            { value: "001112", label: "クラシックカー" },
+            { value: "001113", label: "カメラ集め" },
+            { value: "001114", label: "ナイフ集め" },
+            { value: "001115", label: "映画のチラシ集め" },
+            { value: "001116", label: "看板集め" },
+            { value: "001117", label: "マッチ箱集め" },
+            { value: "001118", label: "切符集め" }
+        ],
+        "001119": [
+            { value: "001119", label: "神社仏閣巡り" },
+            { value: "001120", label: "博物館めぐり" },
+            { value: "001121", label: "動物園めぐり" },
+            { value: "001122", label: "水族館めぐり" },
+            { value: "001123", label: "パワースポット巡り" },
+            { value: "001124", label: "聖地巡礼" },
+            { value: "001125", label: "秘境駅めぐり" },
+            { value: "001126", label: "離島めぐり" },
+            { value: "001127", label: "サービスエリアめぐり" },
+            { value: "001128", label: "御朱印集め" },
+            { value: "001129", label: "食べ歩き" },
+            { value: "001130", label: "スイーツ食べ歩き" },
+            { value: "001131", label: "百名城めぐり" },
+            { value: "001132", label: "古民家カフェ巡り" },
+            { value: "001133", label: "地元めぐり" },
+            { value: "001134", label: "古本屋巡り" },
+            { value: "001135", label: "百名山めぐり" },
+            { value: "001136", label: "公園めぐり" },
+            { value: "001137", label: "田舎めぐり" },
+            { value: "001138", label: "フルーツ（くだもの）狩り" },
+            { value: "001139", label: "カフェめぐり" },
+            { value: "001140", label: "カフェごはん" },
+            { value: "001141", label: "パン屋めぐり" },
+            { value: "001142", label: "雑貨屋めぐり" },
+            { value: "001143", label: "駄菓子屋めぐり" },
+            { value: "001144", label: "街道めぐり" },
+            { value: "001145", label: "古地図めぐり" },
+            { value: "001146", label: "廃墟めぐり" },
+            { value: "001147", label: "お遍路めぐり" },
+            { value: "001148", label: "お城参り" },
+            { value: "001149", label: "酒蔵巡り" },
+            { value: "001150", label: "デパ地下巡り" },
+            { value: "001151", label: "ホテル・旅館めぐり" },
+            { value: "001152", label: "スーパー銭湯めぐり" },
+            { value: "001153", label: "ダムめぐり" },
+            { value: "001154", label: "祭りめぐり" },
+            { value: "001155", label: "昆虫館めぐり" },
+            { value: "001156", label: "地方伝統芸能めぐり" },
+            { value: "001157", label: "国内旅行" },
+            { value: "001158", label: "海外旅行" },
+            { value: "001159", label: "ヨーロッパ旅行" },
+            { value: "001160", label: "世界遺産めぐり" },
+            { value: "001161", label: "家族旅行" },
+            { value: "001162", label: "車内泊旅行" },
+            { value: "001163", label: "女子旅" },
+            { value: "001164", label: "一人旅" },
+            { value: "001165", label: "ハッシュタグ旅" },
+            { value: "001166", label: "青春18きっぷ" },
+            { value: "001167", label: "京都寺社巡り" },
+            { value: "001168", label: "ヨーロッパお城巡り" },
+            { value: "001169", label: "バスの旅" },
+            { value: "001170", label: "鉄道旅行" },
+            { value: "001171", label: "豪華列車の旅" },
+            { value: "001172", label: "時刻表" },
+            { value: "001173", label: "客船旅行" },
+            { value: "001174", label: "温泉" },
+            { value: "001175", label: "ドライブ" },
+            { value: "001176", label: "キャンピングカー" },
+            { value: "001177", label: "ツーリング" },
+            { value: "001178", label: "ヒッチハイク" },
+            { value: "001179", label: "飛行機" },
+            { value: "001180", label: "バッティングセンター" },
+            { value: "001181", label: "バックパッカー" },
+            { value: "001182", label: "自分探し" },
+            { value: "001183", label: "おひとりさま" },
+            { value: "001184", label: "子連れ旅" },
+            { value: "001185", label: "観光ヘリコプター" },
+            { value: "001186", label: "夜景観賞" },
+            { value: "001187", label: "工場見学" },
+            { value: "001188", label: "工場夜景" },
+            { value: "001189", label: "サーカス観賞" },
+            { value: "001190", label: "スタンプラリー" },
+            { value: "001191", label: "立体画・トリックアート" },
+            { value: "001192", label: "ウィンドウショッピング" },
+            { value: "001193", label: "アウトレットモールめぐり" },
+            { value: "001194", label: "絶叫マシーン" },
+            { value: "001195", label: "テーマパークめぐり" },
+            { value: "001196", label: "飲み会" },
+            { value: "001197", label: "コミックマーケット・コミケ" },
+            { value: "001198", label: "オフ会・オフミ" },
+            { value: "001199", label: "自衛隊航空祭" },
+            { value: "001200", label: "犬の散歩" }
+        ],
+        "001201": [
+            { value: "001201", label: "和食" },
+            { value: "001202", label: "激辛料理" },
+            { value: "001203", label: "沖縄料理" },
+            { value: "001204", label: "ジビエ・ジビエ料理" },
+            { value: "001205", label: "鍋料理" },
+            { value: "001206", label: "中華まん作り" },
+            { value: "001207", label: "紅茶" },
+            { value: "001208", label: "コーヒー" },
+            { value: "001209", label: "日本茶" },
+            { value: "001210", label: "ブランデー" },
+            { value: "001211", label: "日本酒" },
+            { value: "001212", label: "ビール" },
+            { value: "001213", label: "ウイスキー" },
+            { value: "001214", label: "中国茶" },
+            { value: "001215", label: "ワイン" },
+            { value: "001216", label: "米麹・甘酒" },
+            { value: "001217", label: "焼酎" },
+            { value: "001218", label: "駅弁" },
+            { value: "001219", label: "燻製作り" },
+            { value: "001220", label: "ピクルス作り" },
+            { value: "001221", label: "漬物作り" },
+            { value: "001222", label: "お菓子作り" },
+            { value: "001223", label: "野草茶作り" },
+            { value: "001224", label: "カクテル作り" },
+            { value: "001225", label: "ラーメン作り" },
+            { value: "001226", label: "パン作り" },
+            { value: "001227", label: "手打ちそば" },
+            { value: "001228", label: "手打ちうどん" },
+            { value: "001229", label: "手作りジャム" },
+            { value: "001230", label: "豆腐作り" },
+            { value: "001231", label: "チーズ作り" },
+            { value: "001232", label: "自家製ヨーグルト" },
+            { value: "001233", label: "麺打ち・製麺機" },
+            { value: "001234", label: "ラテアート" },
+            { value: "001235", label: "テイスティング" },
+            { value: "001236", label: "キャラ弁" },
+            { value: "001237", label: "料理教室" },
+            { value: "001238", label: "居酒屋めぐり" },
+            { value: "001239", label: "カフェめぐり" },
+            { value: "001240", label: "バーめぐり" },
+            { value: "001241", label: "古民家カフェ巡り" },
+            { value: "001242", label: "ラーメンめぐり" },
+            { value: "001243", label: "デパ地下巡り" },
+            { value: "001244", label: "食べ歩き" },
+            { value: "001245", label: "スイーツ食べ歩き" },
+            { value: "001246", label: "お取り寄せグルメ" },
+            { value: "001247", label: "宅飲み・ホームパーティ" },
+            { value: "001248", label: "たこ焼きパーティー" }
+        ],
+        "001249": [
+            { value: "001249", label: "キャンプ" },
+            { value: "001250", label: "グランピング" },
+            { value: "001251", label: "バンジージャンプ" },
+            { value: "001252", label: "登山" },
+            { value: "001253", label: "トレッキング" },
+            { value: "001254", label: "天体観測" },
+            { value: "001255", label: "バーベキュー" },
+            { value: "001256", label: "カートレース" },
+            { value: "001257", label: "カート（ゴーカート）" },
+            { value: "001258", label: "ジップライン" },
+            { value: "001259", label: "ナイトハイク" },
+            { value: "001260", label: "スノーハイク" },
+            { value: "001261", label: "マラソン" },
+            { value: "001262", label: "サイクリング" },
+            { value: "001263", label: "BMX" },
+            { value: "001264", label: "トレイルランニング" },
+            { value: "001265", label: "アスレチック" },
+            { value: "001266", label: "フリスビー" },
+            { value: "001267", label: "ドッグスポーツ" },
+            { value: "001268", label: "ディスクドッグ・フリスビードッグ" },
+            { value: "001269", label: "スノーボード" },
+            { value: "001270", label: "スキー" },
+            { value: "001271", label: "ゲートボール" },
+            { value: "001272", label: "グランドゴルフ" },
+            { value: "001273", label: "サーフィン" },
+            { value: "001274", label: "ボディボード" },
+            { value: "001275", label: "ジェットスキー" },
+            { value: "001276", label: "ウインドサーフィン" },
+            { value: "001277", label: "ウェイクボード" },
+            { value: "001278", label: "フライボード" },
+            { value: "001279", label: "キックボード・キックスケーター" },
+            { value: "001280", label: "シュノーケリング" },
+            { value: "001281", label: "イルカウォッチング" },
+            { value: "001282", label: "バナナボード" },
+            { value: "001283", label: "パラセーリング" },
+            { value: "001284", label: "パラグライダー" },
+            { value: "001285", label: "ハンググライダー" },
+            { value: "001286", label: "ロッククライミング" },
+            { value: "001287", label: "スカイダイビング" },
+            { value: "001288", label: "スキューバダイビング" },
+            { value: "001289", label: "ラフティング" },
+            { value: "001290", label: "カヌー" },
+            { value: "001291", label: "カヤック" },
+            { value: "001292", label: "射撃" },
+            { value: "001293", label: "海釣り" },
+            { value: "001294", label: "川釣り" },
+            { value: "001295", label: "渓流釣り" },
+            { value: "001296", label: "ワカサギ釣り" },
+            { value: "001297", label: "バスフィッシング" },
+            { value: "001298", label: "釣り堀" },
+            { value: "001299", label: "乗馬" },
+            { value: "001300", label: "植物採集" },
+            { value: "001301", label: "山菜採り" },
+            { value: "001302", label: "キノコ狩り" },
+            { value: "001303", label: "イチゴ狩り" },
+            { value: "001304", label: "ぶどう狩り" },
+            { value: "001305", label: "昆虫採集" },
+            { value: "001306", label: "犬の散歩" },
+            { value: "001307", label: "ドローン" },
+            { value: "001308", label: "ラジコン" },
+            { value: "001309", label: "ラジコンヘリコプター" },
+            { value: "001310", label: "ラジコン飛行機" },
+            { value: "001311", label: "バードウォッチング" },
+            { value: "001312", label: "サバイバルゲーム" },
+            { value: "001313", label: "狩猟・ハンティング" },
+            { value: "001314", label: "ファストドロウ" },
+            { value: "001315", label: "ローラースケート" },
+            { value: "001316", label: "潮干狩り" },
+            { value: "001317", label: "ビーチコーミング" },
+            { value: "001318", label: "屋形船" },
+            { value: "001319", label: "凧揚げ" },
+            { value: "001320", label: "海水浴" },
+            { value: "001321", label: "ドリフト" },
+            { value: "001322", label: "バギー" },
+            { value: "001323", label: "パルクール" },
+            { value: "001324", label: "洞窟探検" },
+            { value: "001325", label: "キャニオニング" },
+            { value: "001326", label: "熱気球" },
+            { value: "001327", label: "一輪車" },
+            { value: "001328", label: "雪合戦・スポーツ雪合戦" },
+            { value: "001329", label: "スポーツカイト" }
+        ],
+        "001330": [
+            { value: "001330", label: "ハンドメイド" },
+            { value: "001331", label: "編み物" },
+            { value: "001332", label: "エコクラフト・クラフトバンド" },
+            { value: "001333", label: "ペーパークラフト" },
+            { value: "001334", label: "ペーパーグライダー" },
+            { value: "001335", label: "ペーパークイリング" },
+            { value: "001336", label: "紙飛行機" },
+            { value: "001337", label: "ライトエアプレーン" },
+            { value: "001338", label: "ウルトラライトプレーン" },
+            { value: "001339", label: "スイーツデコ" },
+            { value: "001340", label: "レジンアクセサリー" },
+            { value: "001341", label: "ワイヤーアクセサリー" },
+            { value: "001342", label: "ドライフラワー" },
+            { value: "001343", label: "フラワーアレンジメント" },
+            { value: "001344", label: "ビーズアクセサリー" },
+            { value: "001345", label: "つまみ細工" },
+            { value: "001346", label: "クロスステッチ" },
+            { value: "001347", label: "リボンレイ" },
+            { value: "001348", label: "ちりめん細工" },
+            { value: "001349", label: "リップクリーム作り" },
+            { value: "001350", label: "バスボム・入浴剤作り" },
+            { value: "001351", label: "ブローチ作り" },
+            { value: "001352", label: "万華鏡作り" },
+            { value: "001353", label: "吹きガラス" },
+            { value: "001354", label: "ステンドグラス" },
+            { value: "001355", label: "カルトナージュ" },
+            { value: "001356", label: "プリザーブドフラワー" },
+            { value: "001357", label: "ピアス作り" },
+            { value: "001358", label: "マグネットリボン" },
+            { value: "001359", label: "マグカップセーター作り" },
+            { value: "001360", label: "フェルト小物作り" },
+            { value: "001361", label: "キャンドル作り" },
+            { value: "001362", label: "人形作り（ドール作り）" },
+            { value: "001363", label: "ドールハウス" },
+            { value: "001364", label: "石けん作り" },
+            { value: "001365", label: "ロウ引き加工" },
+            { value: "001366", label: "デコパージュ" },
+            { value: "001367", label: "ミサンガ" },
+            { value: "001368", label: "パッチワーク" },
+            { value: "001369", label: "クレイアート" },
+            { value: "001370", label: "アートクレイシルバー・銀粘土" },
+            { value: "001371", label: "陶芸" },
+            { value: "001372", label: "オーブン陶芸" },
+            { value: "001373", label: "七宝焼き" },
+            { value: "001374", label: "砥石・砥ぎ" },
+            { value: "001375", label: "木工" },
+            { value: "001376", label: "レザークラフト" },
+            { value: "001377", label: "折り紙" },
+            { value: "001378", label: "折り紙ブロック" },
+            { value: "001379", label: "とんぼ玉" },
+            { value: "001380", label: "組紐" },
+            { value: "001381", label: "刺繍" },
+            { value: "001382", label: "タティングレース（シャトルレース）" },
+            { value: "001383", label: "金継ぎ" },
+            { value: "001384", label: "トールペイント" },
+            { value: "001385", label: "Tシャツヤーン" },
+            { value: "001386", label: "着物リメイク" },
+            { value: "001387", label: "子ども服作り" },
+            { value: "001388", label: "ハワイアンキルト" },
+            { value: "001389", label: "シャドーボックス（シャドーアート）" },
+            { value: "001390", label: "ルームバンド作り（ファンルーム）" },
+            { value: "001391", label: "ぬり絵（塗り絵）" },
+            { value: "001392", label: "砂絵" },
+            { value: "001393", label: "ちぎり絵" },
+            { value: "001394", label: "アイロンビーズ" },
+            { value: "001395", label: "マスキングテープ" },
+            { value: "001396", label: "ラッピング" },
+            { value: "001397", label: "DIY" },
+            { value: "001398", label: "住宅白模型作り" },
+            { value: "001399", label: "和裁" },
+            { value: "001400", label: "切子・江戸切子" },
+            { value: "001401", label: "切り絵" },
+            { value: "001402", label: "押し花" },
+            { value: "001403", label: "布ぞうり作り" },
+            { value: "001404", label: "球体関節人形" },
+            { value: "001405", label: "旗（フラッグ）作り" },
+            { value: "001406", label: "コマ作り（独楽作り）" },
+            { value: "001407", label: "ボトルシップ" },
+            { value: "001408", label: "ボトルアクアリウム" },
+            { value: "001409", label: "サンドアート" },
+            { value: "001410", label: "ロックバランシング" },
+            { value: "001411", label: "アルバム作り" },
+            { value: "001412", label: "スクラップブック" },
+            { value: "001413", label: "自作PC" },
+            { value: "001414", label: "中古パソコン" },
+            { value: "001415", label: "プラモデル" },
+            { value: "001416", label: "船舶模型" },
+            { value: "001417", label: "飛行機模型" },
+            { value: "001418", label: "ジオラマ" },
+            { value: "001419", label: "城ジオラマ" },
+            { value: "001420", label: "ゲーム制作" },
+            { value: "001421", label: "3DCG制作" },
+            { value: "001422", label: "ジオラマ" },
+            { value: "001423", label: "アプリ開発" },
+            { value: "001424", label: "スマホアプリ開発" },
+            { value: "001425", label: "プログラミング" },
+            { value: "001426", label: "ウェブデザイン" },
+            { value: "001427", label: "グラフィックデザイン" },
+            { value: "001428", label: "ホームページ作成" },
+            { value: "001429", label: "発明" },
+            { value: "001430", label: "電子書籍出版" },
+            { value: "001431", label: "映画製作" },
+            { value: "001432", label: "3Dプリンタ" },
+            { value: "001433", label: "電子工作" },
+            { value: "001434", label: "小説執筆" },
+            { value: "001435", label: "マンガ描き（漫画）" },
+            { value: "001436", label: "パラパラ漫画" },
+            { value: "001437", label: "エッセイ" },
+            { value: "001438", label: "キャラ弁" },
+            { value: "001439", label: "消しゴムはんこ" },
+            { value: "001440", label: "シュガークラフト" },
+            { value: "001441", label: "ドレスアップカー" },
+            { value: "001442", label: "大人のレゴ" },
+            { value: "001443", label: "トランプタワー" },
+            { value: "001444", label: "マッチ棒アート" },
+            { value: "001445", label: "バルーンアート" },
+            { value: "001446", label: "トーストアート・食パンアート" },
+            { value: "001447", label: "つまようじアート" },
+            { value: "001448", label: "おしぼりアート" }
+        ],
+        "001449": [
+            { value: "001449", label: "犬飼育" },
+            { value: "001450", label: "ネコ飼育" },
+            { value: "001451", label: "ハムスター飼育" },
+            { value: "001452", label: "うさぎ飼育" },
+            { value: "001453", label: "リス飼育" },
+            { value: "001454", label: "チンチラ飼育" },
+            { value: "001455", label: "フェレット飼育" },
+            { value: "001456", label: "ハリネズミ飼育" },
+            { value: "001457", label: "かわうそ飼育" },
+            { value: "001458", label: "小鳥飼育" },
+            { value: "001459", label: "インコ飼育" },
+            { value: "001460", label: "フクロウ飼育" },
+            { value: "001461", label: "鳩レース" },
+            { value: "001462", label: "エキゾチックアニマル" },
+            { value: "001463", label: "金魚飼育" },
+            { value: "001464", label: "熱帯魚飼育" },
+            { value: "001465", label: "錦鯉（にしきごい）" },
+            { value: "001466", label: "ヤドカリ飼育" },
+            { value: "001467", label: "メダカ飼育" },
+            { value: "001468", label: "カメ飼育" },
+            { value: "001469", label: "カエル飼育" },
+            { value: "001470", label: "爬虫類・両生類" },
+            { value: "001471", label: "クラゲ鑑賞" },
+            { value: "001472", label: "ウーパールーパー" },
+            { value: "001473", label: "ザリガニ飼育" },
+            { value: "001474", label: "レッドビーシュリンプ飼育" },
+            { value: "001475", label: "昆虫飼育" },
+            { value: "001476", label: "アゲハ蝶飼育" },
+            { value: "001477", label: "苔盆栽・観賞" },
+            { value: "001478", label: "観葉植物" },
+            { value: "001479", label: "シダ植物観賞" },
+            { value: "001480", label: "スプラウト栽培" },
+            { value: "001481", label: "ペチュニア栽培" },
+            { value: "001482", label: "家庭菜園" },
+            { value: "001483", label: "芝生育て・管理" },
+            { value: "001484", label: "スイカ栽培" },
+            { value: "001485", label: "とうがらし栽培" },
+            { value: "001486", label: "盆栽" },
+            { value: "001487", label: "家庭イチゴ栽培" },
+            { value: "001488", label: "果樹・フルーツ栽培" },
+            { value: "001489", label: "バラ園芸" },
+            { value: "001490", label: "アサガオ（朝顔）栽培" },
+            { value: "001491", label: "バラ栽培" },
+            { value: "001492", label: "サボテン" },
+            { value: "001493", label: "多肉植物" },
+            { value: "001494", label: "ガーデニング" },
+            { value: "001495", label: "グリーンカーテン" },
+            { value: "001496", label: "寄せ植え" },
+            { value: "001497", label: "ビオトープ" },
+            { value: "001498", label: "テラリウム・アクアテラリウム" }
+        ],
+        "001499": [
+            { value: "001499", label: "ヨガ" },
+            { value: "001500", label: "空中ヨガ" },
+            { value: "001501", label: "エアロビクス" },
+            { value: "001502", label: "アクアビクス" },
+            { value: "001503", label: "シバム" },
+            { value: "001504", label: "ジャザサイズ" },
+            { value: "001505", label: "ピラティス" },
+            { value: "001506", label: "ストレッチ" },
+            { value: "001507", label: "ジョギング" },
+            { value: "001508", label: "体幹トレーニング" },
+            { value: "001509", label: "筋トレ" },
+            { value: "001510", label: "ボディビルディング" },
+            { value: "001511", label: "ボクササイズ" },
+            { value: "001512", label: "ウォーキング" },
+            { value: "001513", label: "水中ウォーキング" },
+            { value: "001514", label: "スポーツジム・フィットネスクラブ" },
+            { value: "001515", label: "ラジオ体操" },
+            { value: "001516", label: "フラフープ" },
+            { value: "001517", label: "セルフマッサージ" },
+            { value: "001518", label: "カイロプラクティック" },
+            { value: "001519", label: "明晰夢（めいせきむ）" },
+            { value: "001520", label: "瞑想（めいそう）" },
+            { value: "001521", label: "座禅（坐禅）・阿字観" },
+            { value: "001522", label: "アファメーション" },
+            { value: "001523", label: "ネイル" },
+            { value: "001524", label: "カラーセラピー" },
+            { value: "001525", label: "アロマテラピー" },
+            { value: "001526", label: "オーラソーマ" },
+            { value: "001527", label: "お香" },
+            { value: "001528", label: "ダイエット" },
+            { value: "001529", label: "ダイエット茶" },
+            { value: "001530", label: "薬膳茶（やくぜんちゃ）" },
+            { value: "001531", label: "薬膳料理（やくぜんりょうり）" },
+            { value: "001532", label: "中華粥" },
+            { value: "001533", label: "スムージー生活" },
+            { value: "001534", label: "香水・フレグランス" },
+            { value: "001535", label: "お灸" },
+            { value: "001536", label: "メディカルハーブ" },
+            { value: "001537", label: "家のリフォーム・修繕" },
+            { value: "001538", label: "引越し" },
+            { value: "001539", label: "片付け" },
+            { value: "001540", label: "インテリア" },
+            { value: "001541", label: "外構工事・エクステリア" },
+            { value: "001542", label: "バスタイム" },
+            { value: "001543", label: "サウナ" },
+            { value: "001544", label: "水風呂" },
+            { value: "001545", label: "ロウリュウ・熱風風呂" },
+            { value: "001546", label: "入浴剤" },
+            { value: "001547", label: "プリン石鹸" },
+            { value: "001548", label: "岩盤浴" },
+            { value: "001549", label: "銭湯" },
+            { value: "001550", label: "ファッション・お洒落" },
+            { value: "001551", label: "ボディジュエリー" },
+            { value: "001552", label: "日焼け・日サロ" },
+            { value: "001553", label: "ヘアアレンジ" },
+            { value: "001554", label: "ヘナタトゥ（メヘンディ）" },
+            { value: "001555", label: "貯金" },
+            { value: "001556", label: "節約" },
+            { value: "001557", label: "スローライフ" },
+            { value: "001558", label: "サバイバル生活" },
+            { value: "001559", label: "親切・人助け" },
+            { value: "001560", label: "睡眠" },
+            { value: "001561", label: "献血" },
+            { value: "001562", label: "募金" },
+            { value: "001563", label: "断捨離" },
+            { value: "001564", label: "フリーマーケット" },
+            { value: "001565", label: "ブログ" },
+            { value: "001566", label: "日記" },
+            { value: "001567", label: "ネットショッピング" },
+            { value: "001568", label: "洗濯" },
+            { value: "001569", label: "洗車" },
+            { value: "001570", label: "婚活・結婚活動" },
+            { value: "001571", label: "占い" },
+            { value: "001572", label: "風水（風水学）" },
+            { value: "001573", label: "毛玉取り" },
+            { value: "001574", label: "自転車通勤" },
+            { value: "001575", label: "家電研究・電化製品" },
+            { value: "001576", label: "スマートスピーカー（AIスピーカー）" },
+            { value: "001577", label: "シガー・葉巻タバコ" }
+        ],
+        "001578": [
+            { value: "001578", label: "ピアノ" },
+            { value: "001579", label: "電子ピアノ" },
+            { value: "001580", label: "フルート" },
+            { value: "001581", label: "ウクレレ" },
+            { value: "001582", label: "ライブハウス" },
+            { value: "001583", label: "マンドリン" },
+            { value: "001584", label: "バイオリン" },
+            { value: "001585", label: "ドラム" },
+            { value: "001586", label: "ギター" },
+            { value: "001587", label: "サックス" },
+            { value: "001588", label: "ジャズサックス" },
+            { value: "001589", label: "トロンボーン" },
+            { value: "001590", label: "ホルン" },
+            { value: "001591", label: "ハーモニカ" },
+            { value: "001592", label: "チェロ" },
+            { value: "001593", label: "ユーフォニアム" },
+            { value: "001594", label: "ハンドベル" },
+            { value: "001595", label: "ミュージックベル" },
+            { value: "001596", label: "クラリネット" },
+            { value: "001597", label: "ピアニカ・鍵盤ハーモニカ" },
+            { value: "001598", label: "ブルースハープ" },
+            { value: "001599", label: "オカリナ" },
+            { value: "001600", label: "リコーダー" },
+            { value: "001601", label: "篠笛・横笛" },
+            { value: "001602", label: "お琴" },
+            { value: "001603", label: "大正琴" },
+            { value: "001604", label: "和太鼓" },
+            { value: "001605", label: "エイサー・琉球太鼓" },
+            { value: "001606", label: "二胡" },
+            { value: "001607", label: "三線" },
+            { value: "001608", label: "三味線" },
+            { value: "001609", label: "日本民謡" },
+            { value: "001610", label: "カラオケ" },
+            { value: "001611", label: "ボイストレーニング" },
+            { value: "001612", label: "ボイスパーカッション" },
+            { value: "001613", label: "ヒューマンビートボックス" },
+            { value: "001614", label: "ゴスペル" },
+            { value: "001615", label: "オペラ" },
+            { value: "001616", label: "シャンソン" },
+            { value: "001617", label: "コンピュータミュージック" },
+            { value: "001618", label: "オンラインミュージック" },
+            { value: "001619", label: "ライブ観戦" },
+            { value: "001620", label: "クラシック演奏会" },
+            { value: "001621", label: "バンド活動" },
+            { value: "001622", label: "夏フェス" },
+            { value: "001623", label: "合唱" },
+            { value: "001624", label: "採譜（さいふ）・耳コピ" },
+            { value: "001625", label: "作詞・作曲" }
+        ],
+        "001626": [
+            { value: "001626", label: "俳句" },
+            { value: "001627", label: "川柳" },
+            { value: "001628", label: "生け花" },
+            { value: "001629", label: "詩吟" },
+            { value: "001630", label: "柳琴" },
+            { value: "001631", label: "歌舞伎鑑賞" },
+            { value: "001632", label: "落語鑑賞（寄席）" },
+            { value: "001633", label: "寄席文字・橘流" },
+            { value: "001634", label: "狂言（きょうげん）" },
+            { value: "001635", label: "人形浄瑠璃・文楽（ぶんらく）" },
+            { value: "001636", label: "お琴" },
+            { value: "001637", label: "日本舞踊" },
+            { value: "001638", label: "煎茶道" },
+            { value: "001639", label: "茶道" },
+            { value: "001640", label: "三味線" },
+            { value: "001641", label: "短歌" },
+            { value: "001642", label: "詩" },
+            { value: "001643", label: "写経" },
+            { value: "001644", label: "観劇観賞" },
+            { value: "001645", label: "絵画観賞" },
+            { value: "001646", label: "宝塚歌劇鑑賞" },
+            { value: "001647", label: "クラシック演奏会" },
+            { value: "001648", label: "バレエ観賞" },
+            { value: "001649", label: "ギャラリー巡り" },
+            { value: "001650", label: "美術館巡り" },
+            { value: "001651", label: "オペラ" },
+            { value: "001652", label: "ミュージカル" },
+            { value: "001653", label: "劇団員（演劇）" },
+            { value: "001654", label: "色鉛筆画" },
+            { value: "001655", label: "イラスト" },
+            { value: "001656", label: "人物画" },
+            { value: "001657", label: "写仏（しゃふつ）" },
+            { value: "001658", label: "油絵" },
+            { value: "001659", label: "デッサン" },
+            { value: "001660", label: "カリグラフィー" },
+            { value: "001661", label: "芝居文字（歌舞伎文字・勘亭流）" },
+            { value: "001662", label: "スケッチ" },
+            { value: "001663", label: "パステルアート" },
+            { value: "001664", label: "水墨画" },
+            { value: "001665", label: "水彩画" },
+            { value: "001666", label: "銅版画" },
+            { value: "001667", label: "日本画" },
+            { value: "001668", label: "切り絵" },
+            { value: "001669", label: "ボタニカルアート" },
+            { value: "001670", label: "オブアート" },
+            { value: "001671", label: "金継ぎ" },
+            { value: "001672", label: "日本刀" },
+            { value: "001673", label: "百人一首" },
+            { value: "001674", label: "写真撮影" },
+            { value: "001675", label: "映画撮影" },
+            { value: "001676", label: "ステディカム" }
+        ],
+        "001677": [
+            { value: "001677", label: "クラシックバレエ" },
+            { value: "001678", label: "ポールダンス" },
+            { value: "001679", label: "フラダンス" },
+            { value: "001680", label: "アフリカンダンス" },
+            { value: "001681", label: "ブレイクダンス" },
+            { value: "001682", label: "ベリーダンス" },
+            { value: "001683", label: "フラメンコ" },
+            { value: "001684", label: "ヒップホップダンス" },
+            { value: "001685", label: "タヒチアンダンス" },
+            { value: "001686", label: "サンバ" },
+            { value: "001687", label: "社交ダンス" },
+            { value: "001688", label: "ズンバ" },
+            { value: "001689", label: "タップダンス" },
+            { value: "001690", label: "阿波踊り" },
+            { value: "001691", label: "よさこい" },
+            { value: "001692", label: "インド舞踊" }
+        ],
+        "001693": [
+            { value: "001693", label: "将棋" },
+            { value: "001694", label: "囲碁" },
+            { value: "001695", label: "麻雀" },
+            { value: "001696", label: "オセロ" },
+            { value: "001697", label: "人狼ゲーム" },
+            { value: "001698", label: "バックギャモン" },
+            { value: "001699", label: "チェス" },
+            { value: "001700", label: "ジグソーパズル" },
+            { value: "001701", label: "知恵の輪・パズルリング" },
+            { value: "001702", label: "クロスワードパズル" },
+            { value: "001703", label: "数独・ナンプレ" },
+            { value: "001704", label: "タングラム" },
+            { value: "001705", label: "クイズ" },
+            { value: "001706", label: "花札" },
+            { value: "001707", label: "トランプ" },
+            { value: "001708", label: "かるた" },
+            { value: "001709", label: "ダーツ" },
+            { value: "001710", label: "ポーカー" },
+            { value: "001711", label: "フラリッシュ" },
+            { value: "001712", label: "手品" },
+            { value: "001713", label: "ルービックキューブ" },
+            { value: "001714", label: "迷路" },
+            { value: "001715", label: "脱出ゲーム" },
+            { value: "001716", label: "ボードゲーム" },
+            { value: "001717", label: "テーブルトークRPG" },
+            { value: "001718", label: "フライトシミュレーター" },
+            { value: "001719", label: "テレビゲーム" },
+            { value: "001720", label: "スマホゲーム" },
+            { value: "001721", label: "オンラインゲーム・ネトゲ" },
+            { value: "001722", label: "ゲームセンター" },
+            { value: "001723", label: "メダルゲーム" },
+            { value: "001724", label: "ジオキャッシング" },
+            { value: "001725", label: "UFOキャッチャー" },
+            { value: "001726", label: "ビリヤード" },
+            { value: "001727", label: "ベーゴマ" }
+        ],
+        "001728": [
+            { value: "001728", label: "資格取得" },
+            { value: "001729", label: "読書" },
+            { value: "001730", label: "TOEIC" },
+            { value: "001731", label: "英語" },
+            { value: "001732", label: "ポルトガル語" },
+            { value: "001733", label: "フランス語" },
+            { value: "001734", label: "ドイツ語" },
+            { value: "001735", label: "中国語" },
+            { value: "001736", label: "スペイン語" },
+            { value: "001737", label: "アラビア語" },
+            { value: "001738", label: "ヒンドゥー語" },
+            { value: "001739", label: "ロシア語" },
+            { value: "001740", label: "イタリア語" },
+            { value: "001741", label: "韓国語" },
+            { value: "001742", label: "翻訳" },
+            { value: "001743", label: "歴史（史学）" },
+            { value: "001744", label: "郷土史研究" },
+            { value: "001745", label: "新撰組研究" },
+            { value: "001746", label: "考古学" },
+            { value: "001747", label: "古事記研究" },
+            { value: "001748", label: "ギリシャ神話研究" },
+            { value: "001749", label: "習字" },
+            { value: "001750", label: "百人一首" },
+            { value: "001751", label: "行政書士" },
+            { value: "001752", label: "ファイナンシャルプランナー" },
+            { value: "001753", label: "日本史" },
+            { value: "001754", label: "心理学" },
+            { value: "001755", label: "気象学" },
+            { value: "001756", label: "恐竜" },
+            { value: "001757", label: "図鑑" },
+            { value: "001758", label: "珠算（そろばん）" },
+            { value: "001759", label: "ワインエキスパート" },
+            { value: "001760", label: "フードコーディネート" },
+            { value: "001761", label: "かるた研究" },
+            { value: "001762", label: "マナーの習得" },
+            { value: "001763", label: "速読（速読法・速読術）" },
+            { value: "001764", label: "軍事・ミリタリー" },
+            { value: "001765", label: "兵法・戦術研究" },
+            { value: "001766", label: "UFO研究" },
+            { value: "001767", label: "UMA（未確認動物研究）" },
+            { value: "001768", label: "オーパーツ研究" },
+            { value: "001769", label: "自己啓発" },
+            { value: "001770", label: "点字" },
+            { value: "001771", label: "モルタロウ・分子模型" },
+            { value: "001772", label: "ミョウバンの結晶" },
+            { value: "001773", label: "格安SIM・MVNO研究" },
+            { value: "001774", label: "SIMフリースマホ研究" },
+            { value: "001775", label: "サメの歯研究" },
+            { value: "001776", label: "カップラーメン研究・インスタント麺" },
+            { value: "001777", label: "雑学研究" },
+            { value: "001778", label: "ハワイ研究" }
+        ],
+        "001779": [
+            { value: "001779", label: "資産運用" },
+            { value: "001780", label: "株式投資" },
+            { value: "001781", label: "FX投資" },
+            { value: "001782", label: "仮想通貨" },
+            { value: "001783", label: "不動産投資" },
+            { value: "001784", label: "クラウドソーシング" },
+            { value: "001785", label: "ネットショップ運営" },
+            { value: "001786", label: "ハンドメイド" },
+            { value: "001787", label: "競馬・KEIBA" },
+            { value: "001788", label: "競輪・KEIRIN" },
+            { value: "001789", label: "競艇・ボートレース" },
+            { value: "001790", label: "オートレース" },
+            { value: "001791", label: "宝くじ" },
+            { value: "001792", label: "toto（サッカーくじ）" },
+            { value: "001793", label: "パチスロ（スロット）" },
+            { value: "001794", label: "ポイントサイト" },
+            { value: "001795", label: "ブログ" },
+            { value: "001796", label: "フリーマーケット" },
+            { value: "001797", label: "YouTuber（ユーチューバー）" },
+            { value: "001798", label: "懸賞" },
+            { value: "001799", label: "アンケートモニター" },
+            { value: "001800", label: "せどり" },
+            { value: "001801", label: "ネットフリマ" },
+            { value: "001802", label: "アフィリエイト" }
+        ],
+        "001803": [
+            { value: "001803", label: "ボランティア活動" },
+            { value: "001804", label: "地元サポーター" },
+            { value: "001805", label: "ワーキングホリデー" },
+            { value: "001806", label: "日記" },
+            { value: "001807", label: "献血" },
+            { value: "001808", label: "裁判傍聴" },
+            { value: "001809", label: "手話" },
+            { value: "001810", label: "滝行" },
+            { value: "001811", label: "アイドル追っかけ" },
+            { value: "001812", label: "ジャニーズ応援" },
+            { value: "001813", label: "ジャニーズジュニア応援" },
+            { value: "001814", label: "声優の応援" },
+            { value: "001815", label: "口笛・くちぶえ" },
+            { value: "001816", label: "指笛" },
+            { value: "001817", label: "ハンドフルート・手笛" },
+            { value: "001818", label: "ジャグリング" },
+            { value: "001819", label: "アマチュア無線" },
+            { value: "001820", label: "デジタル簡易無線（デジ簡）" },
+            { value: "001821", label: "コスプレ" },
+            { value: "001822", label: "パントマイム" },
+            { value: "001823", label: "タイピング" },
+            { value: "001824", label: "化学実験" },
+            { value: "001825", label: "ものまね・形態模写" },
+            { value: "001826", label: "お笑い" },
+            { value: "001827", label: "あやとり" },
+            { value: "001828", label: "落語を演じる" },
+            { value: "001829", label: "お笑いを演じる" },
+            { value: "001830", label: "モールス通信（モールス符号）" },
+            { value: "001831", label: "アフレコ・アテレコ" },
+            { value: "001832", label: "ペン回し" },
+            { value: "001833", label: "ハンドスピナー" },
+            { value: "001834", label: "ヨーヨー" },
+            { value: "001835", label: "皿回し・スピニングプレート" },
+            { value: "001836", label: "ディアボロ・中国ゴマ" },
+            { value: "001837", label: "水風船" },
+            { value: "001838", label: "ドミノ倒し" },
+            { value: "001839", label: "プリクラ" },
+            { value: "001840", label: "講談" },
+            { value: "001841", label: "滑舌練習" },
+            { value: "001842", label: "社会人サークル" }
+        ]
+        };
+
+            const mainSelect = document.getElementById("questionSelect");
+            const subSelect = document.getElementById("subquestionSelect"); // こっちは下のセレクトボックス
+
+        mainSelect.addEventListener("change", function () {
+            const selectedValue = this.value;
+            subSelect.innerHTML = '<option value="">-趣味詳細を選んでください-</option>';
+
+            if (subCategories[selectedValue]) {
+                subCategories[selectedValue].forEach(function (subItem) {
+                    const option = document.createElement("option");
+                    option.value = subItem.value;        // 内部で使う値
+                    option.textContent = subItem.label;  // 表示される名前
+                    subSelect.appendChild(option);
+                });
+            }
+        });
+        
+
+    // #slide000967 が呼び出されたときの処理
+
+        document.getElementById("slide000967").addEventListener("click", function () {
+            const answer = document.getElementById("subquestionSelect").value;
+
+        function linkToNextPage() {
+        window.location.href = "jp-pq-000967-2.html";
+        }
+
+            if (!answer) {
+                alert("回答が未登録です");
+                return;
+            }
+
+            localStorage.setItem("neworder000967", answer);
+
+                // アニメーションクラスを追加
+                document.body.classList.add("anime-slide-fade");
+
+                // アニメ完了後に遷移（200ms）
+                setTimeout(linkToNextPage, 200);
+        });
+
+        //前ページに戻る
+
+        function linkToBackPage() {
+        window.location.href = "jp-pq-000963.html";
+        }
+
+        $('#backbutton4').on('click', function () {
+        // アニメーションクラスを追加
+        document.body.classList.add("anime-slide-fade2");
+
+        // アニメ完了後に遷移（200ms）
+        setTimeout(linkToBackPage, 200);
+        });
+
+    </script>
+
+</body>
+
+</html>

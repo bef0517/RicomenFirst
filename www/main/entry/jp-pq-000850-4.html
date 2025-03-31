@@ -215,81 +215,69 @@
 </header>
 
 <body>
-    <div class="message-box">あなたの最終学歴を教えてください</div>
+    <div class="message-box">あなたの最終学歴（大学詳細③）を教えてください</div>
 
     <div class="question-select">
         <select id="questionSelect">
             <option value="">選択してください</option>
-            <option value="000794">現在学生</option>
-            <option value="000795">中学校卒</option>
-            <option value="000800">高校卒</option>
-            <option value="000808">短大卒</option>
-            <option value="000824">専門学校卒</option>
-            <option value="000846">大学卒</option>
-            <option value="000870">大学院卒</option>
-            <option value="000894">通信制学校卒</option>
+            <option value="000850">文学・文化・歴史系統</option>
+            <option value="000851">心理学・人間科学系統</option>
+            <option value="000852">語学・コミュニケーション系統</option>
+            <option value="000853">学校教員・幼稚園教諭・保育士養成系統</option>
+            <option value="000854">体育・スポーツ・健康系統</option>
+            <option value="000855">法律・政治・行政系統</option>
+            <option value="000856">経済・経営・商学・観光系統</option>
+            <option value="000857">社会学・国際・マスコミ系統</option>
+            <option value="000858">情報・メディア系統</option>
+            <option value="000859">理学系統</option>
+            <option value="000860">工学系統</option>
+            <option value="000861">理工系統</option>
+            <option value="000862">地球・環境・生命系統</option>
+            <option value="000863">農林水産・獣医畜産系統</option>
+            <option value="000864">医療・保健系統</option>
+            <option value="000865">薬学系統</option>
+            <option value="000866">福祉系統</option>
+            <option value="000867">芸術系統</option>
+            <option value="000868">家政・生活科学系統</option>
+            <option value="000869">食物・栄養系統</option>
         </select>
     </div>
 
     <div class='NewOrder'>
-        <button type="button" id='slide000794'>次の質問へ進む</button>
+        <button type="button" id='slide000850-4'>次の質問へ進む</button>
     </div>
 
     <script type="text/javascript" src="../jquery-3.4.1.js"></script>
     <script type="text/javascript" src="entry.js"></script>
 
     <script>
-    // #slide000794 が呼び出されたときの処理
+    // #slide000850-4 が呼び出されたときの処理
 
-        document.getElementById("slide000794").addEventListener("click", function () {
+        document.getElementById("slide000850-4").addEventListener("click", function () {
             const answer = document.getElementById("questionSelect").value;
 
-            function linkToNextPage(answer) {
-                let nextPage = "";
-
-                if (answer === "000795") {
-                    nextPage = "jp-pq-000795-2.html";
-                } else if (answer === "000800") {
-                    nextPage = "jp-pq-000800-2.html";
-                } else if (answer === "000808") {
-                    nextPage = "jp-pq-000808-2.html";
-                } else if (answer === "000824") {
-                    nextPage = "jp-pq-000824-2.html";
-                } else if (answer === "000846") {
-                    nextPage = "jp-pq-000846-2.html";
-                } else if (answer === "000870") {
-                    nextPage = "jp-pq-000870-2.html";
-                } else {
-                    nextPage = "jp-pq-000895.html";
-                }
-
-                window.location.href = nextPage;
-            }
+        function linkToNextPage() {
+        window.location.href = "jp-pq-000895.html";
+        }
 
             if (!answer) {
                 alert("回答が未登録です");
                 return;
             }
 
-        if (answer === "000794") {
-            localStorage.setItem("neworder000794", "000794");
-        } 
-        if (answer === "000894") {
-            localStorage.setItem("neworder000794", "000894");
-        } 
+            localStorage.setItem("neworder000850", answer);
+
                 // アニメーションクラスを追加
                 document.body.classList.add("anime-slide-fade");
 
                 // アニメ完了後に遷移（200ms）
-                setTimeout(function () {
-                linkToNextPage(answer);
-                }, 200);
+                setTimeout(linkToNextPage, 200);
         });
 
         //前ページに戻る
 
         function linkToBackPage() {
-        window.location.href = "jp-pq-000779.html";
+        window.location.href = "jp-pq-000848-3.html";
         }
 
         $('#backbutton4').on('click', function () {

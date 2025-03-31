@@ -91,7 +91,7 @@
 
         .message-box {
             width: 80%;
-            height: 10%;
+            height: 15%;
             position: fixed;
             background-color: #ffffff;
             border: 2px solid #006DD9;
@@ -108,7 +108,7 @@
         }
 
          .question-select {
-            top: 25%;
+            top: 30%;
             width: 80%;
             height: 10%;
             position: absolute;
@@ -215,81 +215,53 @@
 </header>
 
 <body>
-    <div class="message-box">あなたの最終学歴を教えてください</div>
+    <div class="message-box">あなたの自己認識を教えてください。一般的観点で「知力（アイディア発想）」はどうですか？</div>
 
     <div class="question-select">
         <select id="questionSelect">
             <option value="">選択してください</option>
-            <option value="000794">現在学生</option>
-            <option value="000795">中学校卒</option>
-            <option value="000800">高校卒</option>
-            <option value="000808">短大卒</option>
-            <option value="000824">専門学校卒</option>
-            <option value="000846">大学卒</option>
-            <option value="000870">大学院卒</option>
-            <option value="000894">通信制学校卒</option>
-        </select>
+            <option value="000919">非常に高い</option>
+            <option value="000920">どちらかと言えば高い</option>
+            <option value="000921">どちらかと言えば低い</option>
+            <option value="000922">非常に低い</option>
+         </select>
     </div>
 
     <div class='NewOrder'>
-        <button type="button" id='slide000794'>次の質問へ進む</button>
+        <button type="button" id='slide000919'>次の質問へ進む</button>
     </div>
 
     <script type="text/javascript" src="../jquery-3.4.1.js"></script>
     <script type="text/javascript" src="entry.js"></script>
 
     <script>
-    // #slide000794 が呼び出されたときの処理
+    // #slide000919 が呼び出されたときの処理
 
-        document.getElementById("slide000794").addEventListener("click", function () {
+        document.getElementById("slide000919").addEventListener("click", function () {
             const answer = document.getElementById("questionSelect").value;
 
-            function linkToNextPage(answer) {
-                let nextPage = "";
-
-                if (answer === "000795") {
-                    nextPage = "jp-pq-000795-2.html";
-                } else if (answer === "000800") {
-                    nextPage = "jp-pq-000800-2.html";
-                } else if (answer === "000808") {
-                    nextPage = "jp-pq-000808-2.html";
-                } else if (answer === "000824") {
-                    nextPage = "jp-pq-000824-2.html";
-                } else if (answer === "000846") {
-                    nextPage = "jp-pq-000846-2.html";
-                } else if (answer === "000870") {
-                    nextPage = "jp-pq-000870-2.html";
-                } else {
-                    nextPage = "jp-pq-000895.html";
-                }
-
-                window.location.href = nextPage;
-            }
+        function linkToNextPage() {
+        window.location.href = "jp-pq-000923.html";
+        }
 
             if (!answer) {
                 alert("回答が未登録です");
                 return;
             }
 
-        if (answer === "000794") {
-            localStorage.setItem("neworder000794", "000794");
-        } 
-        if (answer === "000894") {
-            localStorage.setItem("neworder000794", "000894");
-        } 
+            localStorage.setItem("neworder000919", answer);
+
                 // アニメーションクラスを追加
                 document.body.classList.add("anime-slide-fade");
 
                 // アニメ完了後に遷移（200ms）
-                setTimeout(function () {
-                linkToNextPage(answer);
-                }, 200);
+                setTimeout(linkToNextPage, 200);
         });
 
         //前ページに戻る
 
         function linkToBackPage() {
-        window.location.href = "jp-pq-000779.html";
+        window.location.href = "jp-pq-000915.html";
         }
 
         $('#backbutton4').on('click', function () {
