@@ -1,0 +1,288 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#d6eeff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="../../components/loader.js"></script>
+    <link rel="stylesheet">
+
+    <style>
+        body {
+            position: fixed;
+            width: 100%;
+            height: 93%;
+            top: 15%;
+            margin: 0;
+            padding: 0px;
+            background-color: #e0efff;
+            font-family: 'Helvetica';
+            text-align: center;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            -webkit-appearance: none;
+        }
+
+        header {
+            background-color: #d6eeff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 15%;
+            margin: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding-top: env(safe-area-inset-top);
+            box-sizing: border-box;
+        }
+
+        .option button {
+            background-color: #d6eeff;
+            color: #006DD9;
+            border: 2px solid #006DD9;
+            border-radius: 8px;
+            padding: 8px 8px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: absolute;
+            top: 70%;
+            transform: translateY(-50%);
+            left: 3%;
+        }
+
+        .option button:hover {
+            background-color: #bcd9f3;
+            color: #004c9a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .option2 button {
+            background-color: #d6eeff;
+            color: #006DD9;
+            border: 2px solid #006DD9;
+            border-radius: 8px;
+            padding: 8px 8px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: absolute;
+            top: 70%;
+            transform: translateY(-50%);
+            right: 3%;
+        }
+
+        .option2 button:hover {
+            background-color: #bcd9f3;
+            color: #004c9a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .message-box {
+            width: 80%;
+            height: 10%;
+            position: fixed;
+            background-color: #ffffff;
+            border: 2px solid #006DD9;
+            border-radius: 10px;
+            padding: 20px 20px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+            color: #2b2929;
+            text-align: left;
+            margin-top: 10%;
+            left: 5%;
+            flex: 6; 
+            line-height: 1.5;
+        }
+
+         .question-select {
+            top: 25%;
+            width: 80%;
+            height: 10%;
+            position: absolute;
+            left: 5%;
+            padding: 20px 20px; 
+            font-size: 20px;
+            color: #2b2929;
+             }
+
+        select#questionSelect {
+            width: 100%;
+            padding: 20px;
+            font-size: 20px;
+            padding: 20px 20px; 
+            border: 5px solid #ace;
+            border-radius: 8px;
+            background-color: white;
+            box-sizing: border-box;
+            appearance: none;          /* ブラウザのデフォルトスタイルを抑制 */
+            -webkit-appearance: none;  /* SafariやiOS用 */
+            -moz-appearance: none;     /* Firefox用 */
+         }
+
+        .NewOrder {
+            top: 75%;
+            width: 70%;
+            position: absolute;
+            height: 100%;
+            left: 15%;
+            -webkit-appearance: none;
+        }
+
+        .NewOrder button {
+            width: 100%;
+            margin: auto;
+            text-align: center;
+            background-color: #A4DDED;
+            color: #ffffff;
+            border: 2px solid #6BB4D6;
+            border-radius: 50px;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            text-transform: none;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .NewOrder button:hover {
+            background-color: #89C7E6;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        button[type=button] {
+            background: #31A9EE;
+            color: #ffffff;
+            -webkit-appearance: none;
+            border-radius: 0;
+        }
+
+        .label:hover {
+            background-color: #E2EDF9;
+            -webkit-appearance: none;
+        }
+
+        .label {
+            display: block;
+            text-align: center;
+            margin: 5%;
+            width: 60%;
+            height: 5%;
+            padding-left: 5px;
+            padding-right: 5px;
+            color: #b20000;
+            line-height: 45px;
+            cursor: pointer;
+            border: 2px solid #006DD9;
+            border-radius: 5px;
+            -webkit-appearance: none;
+        }
+
+        .anime-slide-fade {
+               transform: translateX(-50%);
+               opacity: 0;
+        }
+        .anime-slide-fade2 {
+               transform: translateX(50%);
+               opacity: 0;
+        }
+
+    </style>
+</head>
+
+<header>
+    <div class='option'>
+        <button id='backbutton3'>初期画面に戻る</button>
+    </div>
+    <div class='option2'>
+        <button id='backbutton4'>前ページに戻る</button>
+    </div>
+</header>
+
+<body>
+    <div class="message-box">現在あなたの「友達」と言える人数を教えてください</div>
+
+    <div class="question-select">
+        <select id="questionSelect">
+            <option value="">選択してください</option>
+            <option value="000684">0人</option>
+            <option value="000685">1人</option>
+            <option value="000686">2人</option>
+            <option value="000687">3人</option>
+            <option value="000688">4人</option>
+            <option value="000689">5人</option>
+            <option value="000690">10人未満</option>
+            <option value="000691">15人未満</option>
+            <option value="000692">20人未満</option>
+            <option value="000693">30人未満</option>
+            <option value="000694">50人未満</option>
+            <option value="000695">100人未満</option>
+            <option value="000696">100人以上</option>
+         </select>
+    </div>
+
+    <div class='NewOrder'>
+        <button type="button" id='slide000684'>次の質問へ進む</button>
+    </div>
+
+    <script type="text/javascript" src="../jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="entry.js"></script>
+
+    <script>
+    // #slide000684 が呼び出されたときの処理
+
+        document.getElementById("slide000684").addEventListener("click", function () {
+            const answer = document.getElementById("questionSelect").value;
+
+        function linkToNextPage() {
+        window.location.href = "jp-pq-000697.html";
+        }
+
+            if (!answer) {
+                alert("回答が未登録です");
+                return;
+            }
+
+            localStorage.setItem("neworder000684", answer);
+
+                // アニメーションクラスを追加
+                document.body.classList.add("anime-slide-fade");
+
+                // アニメ完了後に遷移（200ms）
+                setTimeout(linkToNextPage, 200);
+        });
+
+        //前ページに戻る
+
+        function linkToBackPage() {
+        window.location.href = "jp-pq-000670.html";
+        }
+
+        $('#backbutton4').on('click', function () {
+        // アニメーションクラスを追加
+        document.body.classList.add("anime-slide-fade2");
+
+        // アニメ完了後に遷移（200ms）
+        setTimeout(linkToBackPage, 200);
+        });
+
+    </script>
+
+</body>
+
+</html>
