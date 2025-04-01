@@ -240,7 +240,7 @@
 </header>
 
 <body>
-    <div class="message-box">あなたの趣味（2つ目）を選んでください（日常的に楽しいと感じているものごと）</div>
+    <div class="message-box">あなたの趣味（3つ目）を選んでください（日常的に楽しいと感じているものごと）</div>
 
     <div class="question-select">
         <select id="questionSelect">
@@ -272,7 +272,7 @@
     
 
     <div class='NewOrder'>
-        <button type="button" id='slide000967-2'>次の質問へ進む</button>
+        <button type="button" id='slide000967-3'>次の質問へ進む</button>
     </div>
 
     <script type="text/javascript" src="../jquery-3.4.1.js"></script>
@@ -1209,13 +1209,13 @@
         });
         
 
-    // #slide000967-2 が呼び出されたときの処理
+    // #slide000967-3 が呼び出されたときの処理
 
-        document.getElementById("slide000967-2").addEventListener("click", function () {
+        document.getElementById("slide000967-3").addEventListener("click", function () {
             const answer = document.getElementById("subquestionSelect").value;
 
         function linkToNextPage() {
-        window.location.href = "jp-pq-000967-3.html";
+        window.location.href = "jp-pq-001887.html";
         }
 
             if (!answer) {
@@ -1223,7 +1223,7 @@
                 return;
             }
 
-            localStorage.setItem("neworder000967-2", answer);
+            localStorage.setItem("neworder000967-3", answer);
 
                 // アニメーションクラスを追加
                 document.body.classList.add("anime-slide-fade");
@@ -1235,7 +1235,7 @@
         //前ページに戻る
 
         function linkToBackPage() {
-        window.location.href = "jp-pq-000967.html";
+        window.location.href = "jp-pq-000967-2.html";
         }
 
         $('#backbutton4').on('click', function () {

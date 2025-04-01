@@ -12,7 +12,7 @@
     <style>
         body {
             position: fixed;
-            width: 200%;
+            width: 100%;
             height: 93%;
             top: 15%;
             margin: 0;
@@ -20,7 +20,7 @@
             background-color: #e0efff;
             font-family: 'Helvetica';
             text-align: center;
-            transition: all 0.5s;
+            transition: transform 0.4s ease, opacity 0.4s ease;
             -webkit-appearance: none;
         }
 
@@ -89,25 +89,10 @@
             transform: translateY(-50%) scale(1.05);
         }
 
-        .slideA, .slideB {
-            height: 100%;
-            width: 50%;
-            position: absolute;
-            text-align: center;
-            overflow: hidden;
-            -webkit-appearance: none;
-            display: flex;
-            justify-content: center;
-        }
-
-
-        .slideA { left: 0%; }
-        .slideB { left: 50%; }
-
         .message-box {
             width: 80%;
-            height: 40%;
-            position: absolute;
+            height: 15%;
+            position: fixed;
             background-color: #ffffff;
             border: 2px solid #006DD9;
             border-radius: 10px;
@@ -117,15 +102,42 @@
             color: #2b2929;
             text-align: left;
             margin-top: 10%;
+            left: 5%;
             flex: 6; 
             line-height: 1.5;
         }
+
+         .question-select {
+            top: 30%;
+            width: 80%;
+            height: 10%;
+            position: absolute;
+            left: 5%;
+            padding: 20px 20px; 
+            font-size: 20px;
+            color: #2b2929;
+             }
+
+        select#questionSelect {
+            width: 100%;
+            padding: 20px;
+            font-size: 20px;
+            padding: 20px 20px; 
+            border: 5px solid #ace;
+            border-radius: 8px;
+            background-color: white;
+            box-sizing: border-box;
+            appearance: none;          /* ブラウザのデフォルトスタイルを抑制 */
+            -webkit-appearance: none;  /* SafariやiOS用 */
+            -moz-appearance: none;     /* Firefox用 */
+         }
 
         .NewOrder {
             top: 75%;
             width: 70%;
             position: absolute;
             height: 100%;
+            left: 15%;
             -webkit-appearance: none;
         }
 
@@ -151,23 +163,6 @@
             background-color: #89C7E6;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             transform: translateY(-3px);
-        }
-
-        .page1 {
-            height: 100%;
-            width: 100%;
-            -webkit-appearance: none;
-        }
-
-        input[type=radio] {
-            display: none;
-            -webkit-appearance: none;
-        }
-
-        input[type="radio"]:checked + label {
-            background: #31A9EE;
-            color: #ffffff;
-            -webkit-appearance: none;
         }
 
         button[type=button] {
@@ -198,45 +193,13 @@
             -webkit-appearance: none;
         }
 
-        .toriaezu {
-            width: 60%;
-            height: 10%;
-            background-color: #1285ffa8;
-            -webkit-appearance: none;
-        }
-
-        input#toriaezu {
-            display: block;
-            text-align: center;
-            margin: 5%;
-            width: 60%;
-            height: 5%;
-            padding-left: 5px;
-            padding-right: 5px;
-            color: #b20000;
-            font-size: 15px;
-            line-height: 45px;
-            cursor: pointer;
-            border: 2px solid #006DD9;
-            border-radius: 2px;
-            background-color: #43ec3da8;
-            -webkit-appearance: none;
-            
-        }
-
         .anime-slide-fade {
-            animation: slideOutLeft 1.0s ease-out forwards;
+               transform: translateX(-50%);
+               opacity: 0;
         }
-
-        @keyframes slideOutLeft {
-            from {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateX(-100%);
-            }
+        .anime-slide-fade2 {
+               transform: translateX(50%);
+               opacity: 0;
         }
 
     </style>
@@ -244,30 +207,73 @@
 
 <header>
     <div class='option'>
-        <button id='backbutton'>初期画面に戻る</button>
+        <button id='backbutton3'>初期画面に戻る</button>
     </div>
     <div class='option2'>
-        <button id='backbutton2'>前スライドに戻る</button>
+        <button id='backbutton4'>前ページに戻る</button>
     </div>
 </header>
 
 <body>
-    <div class='slideA'>
-        <div class="message-box">あなたに合った良いオススメ提案を行うため、<span style="font-weight: bold;">あなた自身に関する属性情報、性格や趣味・嗜好に関するあらゆる質問をさせて頂きます</span><br><br>※登録時間の目安は30分程度</div>
-        <div class='NewOrder'>
-            <button type="button" id='slideA'>次へ</button>
-        </div>
+    <div class="message-box">【性格診断】大きなプレッシャーがあっても通常、冷静でいられる</div>
+
+    <div class="question-select">
+        <select id="questionSelect">
+            <option value="">選択してください</option>
+            <option value="002019">その通り</option>
+            <option value="002020">どちらかと言えばその通り</option>
+            <option value="002021">どちらかと言えば違う</option>
+            <option value="002022">違う</option>
+         </select>
     </div>
 
-    <div class='slideB'>
-        <div class="message-box"><span style="font-weight: bold;">回答いただく情報には氏名、電話番号、メールアドレス、住所詳細などのあなた個人を特定（識別）する情報は含んでおりません</span><br><br>ですので、安心して質問にご回答ください</div>
-        <div class='NewOrder'>
-            <button type="button" id='slideB'>登録へ進む</button>
-        </div>
+    <div class='NewOrder'>
+        <button type="button" id='slide002019'>次の質問へ進む</button>
     </div>
 
     <script type="text/javascript" src="../jquery-3.4.1.js"></script>
     <script type="text/javascript" src="entry.js"></script>
+
+    <script>
+    // #slide002019 が呼び出されたときの処理
+
+        document.getElementById("slide002019").addEventListener("click", function () {
+            const answer = document.getElementById("questionSelect").value;
+
+        function linkToNextPage() {
+        window.location.href = "jp-pq-002023.html";
+        }
+
+            if (!answer) {
+                alert("回答が未登録です");
+                return;
+            }
+
+            localStorage.setItem("neworder002019", answer);
+
+                // アニメーションクラスを追加
+                document.body.classList.add("anime-slide-fade");
+
+                // アニメ完了後に遷移（200ms）
+                setTimeout(linkToNextPage, 200);
+        });
+
+        //前ページに戻る
+
+        function linkToBackPage() {
+        window.location.href = "jp-pq-002015.html";
+        }
+
+        $('#backbutton4').on('click', function () {
+        // アニメーションクラスを追加
+        document.body.classList.add("anime-slide-fade2");
+
+        // アニメ完了後に遷移（200ms）
+        setTimeout(linkToBackPage, 200);
+        });
+
+    </script>
+
 </body>
 
 </html>

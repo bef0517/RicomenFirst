@@ -67,29 +67,3 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-//とりあえず処理
-$('#toriaezu').on('click', function validateForm() {
-  var radios = document.getElementsByName("fruits");
-  var formValid = false;
-  var i = 0;
-  while (!formValid && i < radios.length) {
-        if (radios[i].checked) formValid = true;
-        i++;        
-    }
-    if (!formValid) alert("必須入力項目です");
-    return formValid;
-  });
-
-$('form').submit(function( event ) {
-    event.preventDefault();{$.post( 'http://ec2-35-75-21-245.ap-northeast-1.compute.amazonaws.com/online.php', $('form').serializeArray())
- 
-//通信が成功した場合
-.done( function(data) {alert('登録を完了しました');localStorage.setItem('UserID', data.userID); location.href = "../main.html";} )
- 
-//通信エラーの場合
-.fail( function(data) {alert('通信エラーですよ');localStorage.clear();
-localStorage.setItem('UserID', '1000');
-} )
-}});
-
-
