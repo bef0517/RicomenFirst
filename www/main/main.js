@@ -309,7 +309,7 @@ btX.addEventListener('click', function () {
 
     // 新規登録画面遷移
     function linkUrlA() {
-        location.href = 'entry/first.html';
+        location.href = 'entry/movie.html';
     }
 
     var bt3 = document.getElementById('button3');
