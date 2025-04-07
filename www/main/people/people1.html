@@ -50,6 +50,30 @@
         transform: translateY(-50%) scale(1.05);
     }
 
+    .evaluation button {
+        background-color: #EFF6FF;
+        color: #006DD9;
+        border: 2px solid #006DD9;
+        border-radius: 8px;
+        padding: 8px 8px;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        text-transform: uppercase;
+        cursor: pointer;
+        position: absolute;
+        top: 70%;
+        transform: translateY(-50%);
+        right: 3%;
+    }
+
+    .evaluation button:hover {
+        background-color: #bcd9f3;
+        color: #004c9a;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transform: translateY(-50%) scale(1.05);
+    }
+
     body {
         top:15%;
         padding: 0;
@@ -107,7 +131,7 @@
 }
 
 .Sub-Cate1 {
-    padding: 100x; /* 全体の余白 */
+    padding: 10px; /* 全体の余白 */
     width: 100%;
     font-size: 100%;
     border: 1px solid white;
@@ -120,7 +144,7 @@
 
 .text-container {
     text-align: left; /* 左寄せ */
-    font-size: 100%; /* フォントサイズ */
+    font-size: 20px; /* フォントサイズ */
     font-weight: bold; /* 強調表示 */
     color: #333333; /* メインテキスト色 */
     padding: 5px; /* 区切り線と文字間の余白 */
@@ -128,21 +152,20 @@
 
 .score-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    align-items: left;
     padding: 10px;
-    font-size: 100%;
+    font-size: 18px;
     font-weight: bold;
     color: #006DD9;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     background-color: #f5faff;
     border-radius: 8px;
-    gap: 10px;
+    gap: 1px;
+    flex-direction: row;
 }
 
 .score-text {
     flex: 1;
-    text-align: left;
 }
 
 .score-action {
@@ -170,7 +193,11 @@
 
 <header>
     <div class="option2">
-        <button id="backbutton">初期画面に戻る</button>
+    <button id="backbutton">初期画面に戻る</button>
+    </div>
+
+    <div class='evaluation'>
+    <button id='updatebutton'>おすすめ評価・更新</button>
     </div>
 </header>
 
@@ -180,95 +207,344 @@
 </div>
 <div id="tab1" class="tab-content">
         <div id="a01" class="Sub-Cate1">
-            
-             <div class="text-container">サンプルA-1</div>
-             <div class="score-container">
-             <div class="score-text">マッチスコア88％</div>
-             <div class="score-action">
+        <div class="text-container">マッチ率１位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user1-weight"></div>
+        <div class="score-action">
         <a href="chat/chat1.html" class="check-button">連絡を取る</a>
-        </div>
         </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user1w = localStorage.getItem("r-userweight1");
+                const scoreElement = document.getElementById("user1-weight");
+                if (user1w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user1w + "％";}
+        });</script>
+        </div>
 
         <div id="a02" class="Sub-Cate1">
-        <div class="text-container">サンプルA-2</div>
-             <div class="score-container">
-             <div class="score-text">マッチスコア88％</div>
-             <div class="score-action">
+        <div class="text-container">マッチ率２位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user2-weight"></div>
+        <div class="score-action">
         <a href="chat/chat2.html" class="check-button">連絡を取る</a>
-        </div>
         </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user2w = localStorage.getItem("r-userweight2");
+                const scoreElement = document.getElementById("user2-weight");
+                if (user2w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user2w + "％";}
+        });</script>
+        </div>
 
         <div id="a03" class="Sub-Cate1">
-        <div class="text-container">サンプルA-3</div>
-             <div class="score-container">
-             <div class="score-text">マッチスコア88％</div>
-             <div class="score-action">
+        <div class="text-container">マッチ率３位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user3-weight"></div>
+        <div class="score-action">
         <a href="chat/chat3.html" class="check-button">連絡を取る</a>
-        </div>
         </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user3w = localStorage.getItem("r-userweight3");
+                const scoreElement = document.getElementById("user3-weight");
+                if (user3w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user3w + "％";}
+        });</script>
+        </div>
 
         <div id="a04" class="Sub-Cate1">
-        <div class="text-container">サンプルA-4</div>
-             <div class="score-container">
-             <div class="score-text">マッチスコア88％</div>
-             <div class="score-action">
+        <div class="text-container">マッチ率４位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user4-weight"></div>
+        <div class="score-action">
         <a href="chat/chat4.html" class="check-button">連絡を取る</a>
-        </div>
         </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user4w = localStorage.getItem("r-userweight4");
+                const scoreElement = document.getElementById("user4-weight");
+                if (user4w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user4w + "％";}
+        });</script>
+        </div>
 
         <div id="a05" class="Sub-Cate1">
-        <div class="text-container">サンプルA-5</div>
-             <div class="score-container">
-             <div class="score-text">マッチスコア88％</div>
-             <div class="score-action">
+        <div class="text-container">マッチ率５位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user5-weight"></div>
+        <div class="score-action">
         <a href="chat/chat5.html" class="check-button">連絡を取る</a>
-        </div>
         </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user5w = localStorage.getItem("r-userweight5");
+                const scoreElement = document.getElementById("user5-weight");
+                if (user5w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user5w + "％";}
+        });</script>
+        </div>
 
         <div id="a06" class="Sub-Cate1">
-        <div class="text-container">サンプルA-6</div>
-             <div class="score-container">
-             <div class="score-text">マッチスコア88％</div>
-             <div class="score-action">
+        <div class="text-container">マッチ率６位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user6-weight"></div>
+        <div class="score-action">
         <a href="chat/chat6.html" class="check-button">連絡を取る</a>
-        </div>
         </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user6w = localStorage.getItem("r-userweight6");
+                const scoreElement = document.getElementById("user6-weight");
+                if (user6w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user6w + "％";}
+        });</script>
+        </div>
 
         <div id="a07" class="Sub-Cate1">
-        <div class="text-container">サンプルA-7</div>
-             <div class="score-container">
-             <div class="score-text">マッチスコア88％</div>
-             <div class="score-action">
+        <div class="text-container">マッチ率７位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user7-weight"></div>
+        <div class="score-action">
         <a href="chat/chat7.html" class="check-button">連絡を取る</a>
-        </div>
         </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user7w = localStorage.getItem("r-userweight7");
+                const scoreElement = document.getElementById("user7-weight");
+                if (user7w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user7w + "％";}
+        });</script>
+        </div>
 
         <div id="a08" class="Sub-Cate1">
-        <div class="text-container">サンプルA-8</div>
-             <div class="score-container">
-             <div class="score-text">マッチスコア88％</div>
-             <div class="score-action">
+        <div class="text-container">マッチ率８位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user8-weight"></div>
+        <div class="score-action">
         <a href="chat/chat8.html" class="check-button">連絡を取る</a>
-        </div>
         </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user8w = localStorage.getItem("r-userweight8");
+                const scoreElement = document.getElementById("user8-weight");
+                if (user8w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user8w + "％";}
+        });</script>
+        </div>
 
         <div id="a09" class="Sub-Cate1">
-        <div class="text-container">サンプルA-9</div>
-             <div class="score-container">
-             <div class="score-text">マッチスコア88％</div>
-             <div class="score-action">
+        <div class="text-container">マッチ率９位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user9-weight"></div>
+        <div class="score-action">
         <a href="chat/chat9.html" class="check-button">連絡を取る</a>
-        </div>
         </div> </div>
 
-        <div id="a10" class="Sub-Cate1">
-        <div class="text-container">サンプルA-10</div>
-             <div class="score-container">
-             <div class="score-text">マッチスコア88％</div>
-             <div class="score-action">
-        <a href="chat/chat10.html" class="check-button">連絡を取る</a>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user9w = localStorage.getItem("r-userweight9");
+                const scoreElement = document.getElementById("user9-weight");
+                if (user9w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user9w + "％";}
+        });</script>
         </div>
+
+        <div id="a10" class="Sub-Cate1">
+        <div class="text-container">マッチ率１０位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user10-weight"></div>
+        <div class="score-action">
+        <a href="chat/chat10.html" class="check-button">連絡を取る</a>
         </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user10w = localStorage.getItem("r-userweight10");
+                const scoreElement = document.getElementById("user10-weight");
+                if (user10w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user10w + "％";}
+        });</script>
+        </div>
+
+        <div id="a11" class="Sub-Cate1">
+        <div class="text-container">マッチ率１１位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user11-weight"></div>
+        <div class="score-action">
+        <a href="chat/chat11.html" class="check-button">連絡を取る</a>
+        </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user11w = localStorage.getItem("r-userweight11");
+                const scoreElement = document.getElementById("user11-weight");
+                if (user11w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user11w + "％";}
+        });</script>
+        </div>
+
+        <div id="a12" class="Sub-Cate1">
+        <div class="text-container">マッチ率１２位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user12-weight"></div>
+        <div class="score-action">
+        <a href="chat/chat12.html" class="check-button">連絡を取る</a>
+        </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user12w = localStorage.getItem("r-userweight12");
+                const scoreElement = document.getElementById("user12-weight");
+                if (user12w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user12w + "％";}
+        });</script>
+        </div>
+
+        <div id="a13" class="Sub-Cate1">
+        <div class="text-container">マッチ率１３位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user13-weight"></div>
+        <div class="score-action">
+        <a href="chat/chat13.html" class="check-button">連絡を取る</a>
+        </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user13w = localStorage.getItem("r-userweight13");
+                const scoreElement = document.getElementById("user13-weight");
+                if (user13w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user13w + "％";}
+        });</script>
+        </div>
+
+        <div id="a14" class="Sub-Cate1">
+        <div class="text-container">マッチ率１４位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user14-weight"></div>
+        <div class="score-action">
+        <a href="chat/chat14.html" class="check-button">連絡を取る</a>
+        </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user14w = localStorage.getItem("r-userweight14");
+                const scoreElement = document.getElementById("user14-weight");
+                if (user14w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user14w + "％";}
+        });</script>
+        </div>
+
+        <div id="a15" class="Sub-Cate1">
+        <div class="text-container">マッチ率１５位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user15-weight"></div>
+        <div class="score-action">
+        <a href="chat/chat15.html" class="check-button">連絡を取る</a>
+        </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user15w = localStorage.getItem("r-userweight15");
+                const scoreElement = document.getElementById("user15-weight");
+                if (user15w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user15w + "％";}
+        });</script>
+        </div>
+
+        <div id="a16" class="Sub-Cate1">
+        <div class="text-container">マッチ率１６位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user16-weight"></div>
+        <div class="score-action">
+        <a href="chat/chat16.html" class="check-button">連絡を取る</a>
+        </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user16w = localStorage.getItem("r-userweight16");
+                const scoreElement = document.getElementById("user16-weight");
+                if (user16w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user16w + "％";}
+        });</script>
+        </div>
+
+        <div id="a17" class="Sub-Cate1">
+        <div class="text-container">マッチ率１７位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user17-weight"></div>
+        <div class="score-action">
+        <a href="chat/chat17.html" class="check-button">連絡を取る</a>
+        </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user17w = localStorage.getItem("r-userweight17");
+                const scoreElement = document.getElementById("user17-weight");
+                if (user17w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user17w + "％";}
+        });</script>
+        </div>
+
+        <div id="a18" class="Sub-Cate1">
+        <div class="text-container">マッチ率１８位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user18-weight"></div>
+        <div class="score-action">
+        <a href="chat/chat18.html" class="check-button">連絡を取る</a>
+        </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user18w = localStorage.getItem("r-userweight18");
+                const scoreElement = document.getElementById("user18-weight");
+                if (user18w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user18w + "％";}
+        });</script>
+        </div>
+
+        <div id="a19" class="Sub-Cate1">
+        <div class="text-container">マッチ率１９位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user19-weight"></div>
+        <div class="score-action">
+        <a href="chat/chat19.html" class="check-button">連絡を取る</a>
+        </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user19w = localStorage.getItem("r-userweight19");
+                const scoreElement = document.getElementById("user19-weight");
+                if (user19w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user19w + "％";}
+        });</script>
+        </div>
+
+        <div id="a20" class="Sub-Cate1">
+        <div class="text-container">マッチ率２０位のユーザ</div>
+        <div class="score-container">
+        <div class="score-text" id="user20-weight"></div>
+        <div class="score-action">
+        <a href="chat/chat20.html" class="check-button">連絡を取る</a>
+        </div> </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const user20w = localStorage.getItem("r-userweight20");
+                const scoreElement = document.getElementById("user20-weight");
+                if (user20w && scoreElement) {
+                    scoreElement.textContent = "マッチスコア：" + user20w + "％";}
+        });</script>
+        </div></div>
 
     <script type="text/javascript" src="../jquery-3.4.1.js"></script>
     <script type="text/javascript" src="people.js"></script>

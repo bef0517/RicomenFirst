@@ -247,42 +247,16 @@
         document.getElementById("slide000519-3").addEventListener("click", function () {
             const answer = document.getElementById("questionSelect").value;
 
-            function linkToNextPage(answer) {
-                let nextPage = "";
-
-                if (answer === "000519") {
-                    nextPage = "jp-pq-000519-4.html";
-                } else if (answer === "000528") {
-                    nextPage = "jp-pq-000528-4.html";
-                } else if (answer === "000537") {
-                    nextPage = "jp-pq-000537-4.html";
-                } else if (answer === "000542") {
-                    nextPage = "jp-pq-000542-4.html";
-                } else if (answer === "000551") {
-                    nextPage = "jp-pq-000551-4.html";
-                } else if (answer === "000560") {
-                    nextPage = "jp-pq-000560-4.html";
-                } else if (answer === "000565") {
-                    nextPage = "jp-pq-000565-4.html";
-                } else if (answer === "000570") {
-                    nextPage = "jp-pq-000570-4.html";
-                } else if (answer === "000572") {
-                    nextPage = "jp-pq-000572-4.html";
-                } else if (answer === "000581") {
-                    nextPage = "jp-pq-000581-4.html";
-                } else if (answer === "000586") {
-                    nextPage = "jp-pq-000586-4.html";
-                } else {
-                    nextPage = "jp-pq-000654.html";
-                }
-
-                window.location.href = nextPage;
-            }
+        function linkToNextPage() {
+        window.location.href = "jp-pq-000654.html";
+        }
 
             if (!answer) {
                 alert("回答が未登録です");
                 return;
             }
+
+            localStorage.setItem("neworder000519", answer);
 
                 // アニメーションクラスを追加
                 document.body.classList.add("anime-slide-fade");

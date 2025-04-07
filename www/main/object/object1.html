@@ -50,6 +50,30 @@
         transform: translateY(-50%) scale(1.05);
     }
 
+    .evaluation button {
+        background-color: #EFF6FF;
+        color: #006DD9;
+        border: 2px solid #006DD9;
+        border-radius: 8px;
+        padding: 8px 8px;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        text-transform: uppercase;
+        cursor: pointer;
+        position: absolute;
+        top: 70%;
+        transform: translateY(-50%);
+        right: 3%;
+    }
+
+    .evaluation button:hover {
+        background-color: #bcd9f3;
+        color: #004c9a;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transform: translateY(-50%) scale(1.05);
+    }
+
     body {
         top:15%;
         padding: 0;
@@ -120,29 +144,29 @@
 
 .text-container {
     text-align: left; /* 左寄せ */
-    font-size: 100%; /* フォントサイズ */
+    font-size: 20px; /* フォントサイズ */
     font-weight: bold; /* 強調表示 */
     color: #333333; /* メインテキスト色 */
     padding: 5px; /* 区切り線と文字間の余白 */
+    line-height:1;
 }
 
 .score-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    align-items: left;
     padding: 10px;
-    font-size: 100%;
+    font-size: 18px;
     font-weight: bold;
     color: #006DD9;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     background-color: #f5faff;
     border-radius: 8px;
-    gap: 10px;
+    gap: 1px;
+    flex-direction: row;
 }
 
 .score-text {
     flex: 1;
-    text-align: left;
 }
 
 .score-action {
@@ -152,24 +176,27 @@
 .check-button {
     display: inline-block;
     padding: 6px 12px;
-    background-color: #006DD9;
-    color: #fff;
+    background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+    color: #004ecb;
     text-decoration: none;
     border-radius: 6px;
-    font-size: 0.9em;
+    font-size: 14px;
     font-weight: bold;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: background-color 0.2s ease;
 }
 
 .check-button:hover {
-    background-color: #004c9a;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 </style>
 
 <header>
     <div class="option2">
         <button id="backbutton">初期画面に戻る</button>
+    </div>
+    <div class='evaluation'>
+        <button id='updatebutton'>おすすめ評価・更新</button>
     </div>
 </header>
 
@@ -184,222 +211,2137 @@
 <div id="tab1" class="tab-content">
 
         <div id="a01" class="Sub-Cate1">
-        <div class="text-container" id="user-id-text"></div>
+        <div class="text-container" id="movie1-text"></div>
         <div class="score-container">
-        <div class="score-text">マッチスコア88％</div>
+        <div class="score-text"  id="movie1-weight"></div>
         <div class="score-action">
-        <a href="#" id="search-link" target="_blank" class="check-button">作品をチェック</a>
-        </div>
+        <a href="#" id="search-link-movie1" target="_blank" class="check-button">チェック</a>
         </div> </div>
         
             <script>
-            document.addEventListener("DOMContentLoaded", function () {const userId = localStorage.getItem("UserID");const textElement = document.getElementById("user-id-text");if (userId && textElement) {textElement.textContent = userId;}
+            document.addEventListener("DOMContentLoaded", function () {const movie1 = localStorage.getItem("r-moviename1");const textElement = document.getElementById("movie1-text");if (movie1 && textElement) {textElement.textContent = movie1;}
             });</script>
 
             <script>
-            document.addEventListener("DOMContentLoaded", function () {const userId = localStorage.getItem("UserID");const link = document.getElementById("search-link");if (userId && link) {const query = encodeURIComponent(userId + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie1w = localStorage.getItem("r-movieweight1");
+                    const scoreElement = document.getElementById("movie1-weight");
+                    if (movie1w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie1w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie1 = localStorage.getItem("r-moviename1");const link = document.getElementById("search-link-movie1");if (movie1 && link) {const query = encodeURIComponent(movie1 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="a02" class="Sub-Cate1">
-        <div class="text-container">サンプルA-2</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="movie2-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie2-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie2" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie2 = localStorage.getItem("r-moviename2");const textElement = document.getElementById("movie2-text");if (movie2 && textElement) {textElement.textContent = movie2;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie2w = localStorage.getItem("r-movieweight2");
+                    const scoreElement = document.getElementById("movie2-weight");
+                    if (movie2w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie2w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie2 = localStorage.getItem("r-moviename2");const link = document.getElementById("search-link-movie2");if (movie2 && link) {const query = encodeURIComponent(movie2 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+            </div>
 
         <div id="a03" class="Sub-Cate1">
-        <div class="text-container">サンプルA-3</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="movie3-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie3-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie3" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie3 = localStorage.getItem("r-moviename3");const textElement = document.getElementById("movie3-text");if (movie3 && textElement) {textElement.textContent = movie3;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie3w = localStorage.getItem("r-movieweight3");
+                    const scoreElement = document.getElementById("movie3-weight");
+                    if (movie3w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie3w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie3 = localStorage.getItem("r-moviename3");const link = document.getElementById("search-link-movie3");if (movie3 && link) {const query = encodeURIComponent(movie3 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+            </div>
 
         <div id="a04" class="Sub-Cate1">
-        <div class="text-container">サンプルA-4</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="movie4-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie4-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie4" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie4 = localStorage.getItem("r-moviename4");const textElement = document.getElementById("movie4-text");if (movie4 && textElement) {textElement.textContent = movie4;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie4w = localStorage.getItem("r-movieweight4");
+                    const scoreElement = document.getElementById("movie4-weight");
+                    if (movie4w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie4w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie4 = localStorage.getItem("r-moviename4");const link = document.getElementById("search-link-movie4");if (movie4 && link) {const query = encodeURIComponent(movie4 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+            </div>
 
         <div id="a05" class="Sub-Cate1">
-        <div class="text-container">サンプルA-5</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="movie5-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie5-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie5" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie5 = localStorage.getItem("r-moviename5");const textElement = document.getElementById("movie5-text");if (movie5 && textElement) {textElement.textContent = movie5;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie5w = localStorage.getItem("r-movieweight5");
+                    const scoreElement = document.getElementById("movie5-weight");
+                    if (movie5w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie5w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie5 = localStorage.getItem("r-moviename5");const link = document.getElementById("search-link-movie5");if (movie5 && link) {const query = encodeURIComponent(movie5 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="a06" class="Sub-Cate1">
-        <div class="text-container">サンプルA-6</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="movie6-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie6-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie6" target="_blank" class="check-button">チェック</a>
+         </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie6 = localStorage.getItem("r-moviename6");const textElement = document.getElementById("movie6-text");if (movie6 && textElement) {textElement.textContent = movie6;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie6w = localStorage.getItem("r-movieweight6");
+                    const scoreElement = document.getElementById("movie6-weight");
+                    if (movie6w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie6w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie6 = localStorage.getItem("r-moviename6");const link = document.getElementById("search-link-movie6");if (movie6 && link) {const query = encodeURIComponent(movie6 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="a07" class="Sub-Cate1">
-        <div class="text-container">サンプルA-7</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="movie7-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie7-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie7" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie7 = localStorage.getItem("r-moviename7");const textElement = document.getElementById("movie7-text");if (movie7 && textElement) {textElement.textContent = movie7;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie7w = localStorage.getItem("r-movieweight7");
+                    const scoreElement = document.getElementById("movie7-weight");
+                    if (movie7w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie7w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie7 = localStorage.getItem("r-moviename7");const link = document.getElementById("search-link-movie7");if (movie7 && link) {const query = encodeURIComponent(movie7 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="a08" class="Sub-Cate1">
-        <div class="text-container">サンプルA-8</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="movie8-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie8-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie8" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie8 = localStorage.getItem("r-moviename8");const textElement = document.getElementById("movie8-text");if (movie8 && textElement) {textElement.textContent = movie8;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie8w = localStorage.getItem("r-movieweight8");
+                    const scoreElement = document.getElementById("movie8-weight");
+                    if (movie8w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie8w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie8 = localStorage.getItem("r-moviename8");const link = document.getElementById("search-link-movie8");if (movie8 && link) {const query = encodeURIComponent(movie8 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="a09" class="Sub-Cate1">
-        <div class="text-container">サンプルA-9</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="movie9-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie9-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie9" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie9 = localStorage.getItem("r-moviename9");const textElement = document.getElementById("movie9-text");if (movie9 && textElement) {textElement.textContent = movie9;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie9w = localStorage.getItem("r-movieweight9");
+                    const scoreElement = document.getElementById("movie9-weight");
+                    if (movie9w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie9w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie9 = localStorage.getItem("r-moviename9");const link = document.getElementById("search-link-movie9");if (movie9 && link) {const query = encodeURIComponent(movie9 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="a10" class="Sub-Cate1">
-        <div class="text-container">サンプルA-10</div>
-        <div class="score-container">マッチスコアXX％</div>
-    </div>
-</div>
+        <div class="text-container" id="movie10-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie10-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie10" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie10 = localStorage.getItem("r-moviename10");const textElement = document.getElementById("movie10-text");if (movie10 && textElement) {textElement.textContent = movie10;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie10w = localStorage.getItem("r-movieweight10");
+                    const scoreElement = document.getElementById("movie10-weight");
+                    if (movie10w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie10w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie10 = localStorage.getItem("r-moviename10");const link = document.getElementById("search-link-movie10");if (movie10 && link) {const query = encodeURIComponent(movie10 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="a11" class="Sub-Cate1">
+        <div class="text-container" id="movie11-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie11-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie11" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie11 = localStorage.getItem("r-moviename11");const textElement = document.getElementById("movie11-text");if (movie11 && textElement) {textElement.textContent = movie11;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie11w = localStorage.getItem("r-movieweight11");
+                    const scoreElement = document.getElementById("movie11-weight");
+                    if (movie11w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie11w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie11 = localStorage.getItem("r-moviename11");const link = document.getElementById("search-link-movie11");if (movie11 && link) {const query = encodeURIComponent(movie11 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="a12" class="Sub-Cate1">
+        <div class="text-container" id="movie12-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie12-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie12" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie12 = localStorage.getItem("r-moviename12");const textElement = document.getElementById("movie12-text");if (movie12 && textElement) {textElement.textContent = movie12;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie12w = localStorage.getItem("r-movieweight12");
+                    const scoreElement = document.getElementById("movie12-weight");
+                    if (movie12w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie12w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie12 = localStorage.getItem("r-moviename12");const link = document.getElementById("search-link-movie12");if (movie12 && link) {const query = encodeURIComponent(movie12 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="a13" class="Sub-Cate1">
+        <div class="text-container" id="movie13-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie13-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie13" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie13 = localStorage.getItem("r-moviename13");const textElement = document.getElementById("movie13-text");if (movie13 && textElement) {textElement.textContent = movie13;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie13w = localStorage.getItem("r-movieweight13");
+                    const scoreElement = document.getElementById("movie13-weight");
+                    if (movie13w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie13w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie13 = localStorage.getItem("r-moviename13");const link = document.getElementById("search-link-movie13");if (movie13 && link) {const query = encodeURIComponent(movie13 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="a14" class="Sub-Cate1">
+        <div class="text-container" id="movie14-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie14-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie14" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie14 = localStorage.getItem("r-moviename14");const textElement = document.getElementById("movie14-text");if (movie14 && textElement) {textElement.textContent = movie14;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie14w = localStorage.getItem("r-movieweight14");
+                    const scoreElement = document.getElementById("movie14-weight");
+                    if (movie14w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie14w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie14 = localStorage.getItem("r-moviename14");const link = document.getElementById("search-link-movie14");if (movie14 && link) {const query = encodeURIComponent(movie14 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="a15" class="Sub-Cate1">
+        <div class="text-container" id="movie15-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie15-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie15" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie15 = localStorage.getItem("r-moviename15");const textElement = document.getElementById("movie15-text");if (movie15 && textElement) {textElement.textContent = movie15;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie15w = localStorage.getItem("r-movieweight15");
+                    const scoreElement = document.getElementById("movie15-weight");
+                    if (movie15w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie15w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie15 = localStorage.getItem("r-moviename15");const link = document.getElementById("search-link-movie15");if (movie15 && link) {const query = encodeURIComponent(movie15 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="a16" class="Sub-Cate1">
+        <div class="text-container" id="movie16-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie16-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie16" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie16 = localStorage.getItem("r-moviename16");const textElement = document.getElementById("movie16-text");if (movie16 && textElement) {textElement.textContent = movie16;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie16w = localStorage.getItem("r-movieweight16");
+                    const scoreElement = document.getElementById("movie16-weight");
+                    if (movie16w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie16w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie16 = localStorage.getItem("r-moviename16");const link = document.getElementById("search-link-movie16");if (movie16 && link) {const query = encodeURIComponent(movie16 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="a17" class="Sub-Cate1">
+        <div class="text-container" id="movie17-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie17-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie17" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie17 = localStorage.getItem("r-moviename17");const textElement = document.getElementById("movie17-text");if (movie17 && textElement) {textElement.textContent = movie17;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie17w = localStorage.getItem("r-movieweight17");
+                    const scoreElement = document.getElementById("movie17-weight");
+                    if (movie17w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie17w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie17 = localStorage.getItem("r-moviename17");const link = document.getElementById("search-link-movie17");if (movie17 && link) {const query = encodeURIComponent(movie17 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="a18" class="Sub-Cate1">
+        <div class="text-container" id="movie18-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie18-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie18" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie18 = localStorage.getItem("r-moviename18");const textElement = document.getElementById("movie18-text");if (movie18 && textElement) {textElement.textContent = movie18;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie18w = localStorage.getItem("r-movieweight18");
+                    const scoreElement = document.getElementById("movie18-weight");
+                    if (movie18w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie18w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie18 = localStorage.getItem("r-moviename18");const link = document.getElementById("search-link-movie18");if (movie18 && link) {const query = encodeURIComponent(movie18 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="a19" class="Sub-Cate1">
+        <div class="text-container" id="movie19-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie19-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie19" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie19 = localStorage.getItem("r-moviename19");const textElement = document.getElementById("movie19-text");if (movie19 && textElement) {textElement.textContent = movie19;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie19w = localStorage.getItem("r-movieweight19");
+                    const scoreElement = document.getElementById("movie19-weight");
+                    if (movie19w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie19w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie19 = localStorage.getItem("r-moviename19");const link = document.getElementById("search-link-movie19");if (movie19 && link) {const query = encodeURIComponent(movie19 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="a20" class="Sub-Cate1">
+        <div class="text-container" id="movie20-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="movie20-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-movie20" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie20 = localStorage.getItem("r-moviename20");const textElement = document.getElementById("movie20-text");if (movie20 && textElement) {textElement.textContent = movie20;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const movie20w = localStorage.getItem("r-movieweight20");
+                    const scoreElement = document.getElementById("movie20-weight");
+                    if (movie20w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + movie20w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const movie20 = localStorage.getItem("r-moviename20");const link = document.getElementById("search-link-movie20");if (movie20 && link) {const query = encodeURIComponent(movie20 + " 映画");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+</div> 
 
 <div id="tab2" class="tab-content" style="display: none;">
-<div id="b01" class="Sub-Cate1">
-        <div class="text-container">サンプルB-1</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+
+        <div id="b01" class="Sub-Cate1">
+        <div class="text-container" id="tv-drama1-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama1-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama1" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama1 = localStorage.getItem("r-tv-dramaname1");const textElement = document.getElementById("tv-drama1-text");if (tvdrama1 && textElement) {textElement.textContent = tvdrama1;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama1w = localStorage.getItem("r-tv-dramaweight1");
+                    const scoreElement = document.getElementById("tv-drama1-weight");
+                    if (tvdrama1w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama1w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama1 = localStorage.getItem("r-tv-dramaname1");const link = document.getElementById("search-link-tv-drama1");if (tvdrama1 && link) {const query = encodeURIComponent(tvdrama1 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="b02" class="Sub-Cate1">
-        <div class="text-container">サンプルB-2</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="tv-drama2-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama2-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama2" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama2 = localStorage.getItem("r-tv-dramaname2");const textElement = document.getElementById("tv-drama2-text");if (tvdrama2 && textElement) {textElement.textContent = tvdrama2;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama2w = localStorage.getItem("r-tv-dramaweight2");
+                    const scoreElement = document.getElementById("tv-drama2-weight");
+                    if (tvdrama2w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama2w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama2 = localStorage.getItem("r-tv-dramaname2");const link = document.getElementById("search-link-tv-drama2");if (tvdrama2 && link) {const query = encodeURIComponent(tvdrama2 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+            </div>
 
         <div id="b03" class="Sub-Cate1">
-        <div class="text-container">サンプルB-3</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="tv-drama3-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama3-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama3" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama3 = localStorage.getItem("r-tv-dramaname3");const textElement = document.getElementById("tv-drama3-text");if (tvdrama3 && textElement) {textElement.textContent = tvdrama3;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama3w = localStorage.getItem("r-tv-dramaweight3");
+                    const scoreElement = document.getElementById("tv-drama3-weight");
+                    if (tvdrama3w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama3w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama3 = localStorage.getItem("r-tv-dramaname3");const link = document.getElementById("search-link-tv-drama3");if (tvdrama3 && link) {const query = encodeURIComponent(tvdrama3 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+            </div>
 
         <div id="b04" class="Sub-Cate1">
-        <div class="text-container">サンプルB-4</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="tv-drama4-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama4-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama4" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama4 = localStorage.getItem("r-tv-dramaname4");const textElement = document.getElementById("tv-drama4-text");if (tvdrama4 && textElement) {textElement.textContent = tvdrama4;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama4w = localStorage.getItem("r-tv-dramaweight4");
+                    const scoreElement = document.getElementById("tv-drama4-weight");
+                    if (tvdrama4w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama4w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama4 = localStorage.getItem("r-tv-dramaname4");const link = document.getElementById("search-link-tv-drama4");if (tvdrama4 && link) {const query = encodeURIComponent(tvdrama4 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+            </div>
 
         <div id="b05" class="Sub-Cate1">
-        <div class="text-container">サンプルB-5</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="tv-drama5-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama5-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama5" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama5 = localStorage.getItem("r-tv-dramaname5");const textElement = document.getElementById("tv-drama5-text");if (tvdrama5 && textElement) {textElement.textContent = tvdrama5;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama5w = localStorage.getItem("r-tv-dramaweight5");
+                    const scoreElement = document.getElementById("tv-drama5-weight");
+                    if (tvdrama5w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama5w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama5 = localStorage.getItem("r-tv-dramaname5");const link = document.getElementById("search-link-tv-drama5");if (tvdrama5 && link) {const query = encodeURIComponent(tvdrama5 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="b06" class="Sub-Cate1">
-        <div class="text-container">サンプルB-6</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="tv-drama6-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama6-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama6" target="_blank" class="check-button">チェック</a>
+         </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama6 = localStorage.getItem("r-tv-dramaname6");const textElement = document.getElementById("tv-drama6-text");if (tvdrama6 && textElement) {textElement.textContent = tvdrama6;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama6w = localStorage.getItem("r-tv-dramaweight6");
+                    const scoreElement = document.getElementById("tv-drama6-weight");
+                    if (tvdrama6w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama6w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama6 = localStorage.getItem("r-tv-dramaname6");const link = document.getElementById("search-link-tv-drama6");if (tvdrama6 && link) {const query = encodeURIComponent(tvdrama6 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="b07" class="Sub-Cate1">
-        <div class="text-container">サンプルB-7</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="tv-drama7-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama7-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama7" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama7 = localStorage.getItem("r-tv-dramaname7");const textElement = document.getElementById("tv-drama7-text");if (tvdrama7 && textElement) {textElement.textContent = tvdrama7;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama7w = localStorage.getItem("r-tv-dramaweight7");
+                    const scoreElement = document.getElementById("tv-drama7-weight");
+                    if (tvdrama7w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama7w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama7 = localStorage.getItem("r-tv-dramaname7");const link = document.getElementById("search-link-tv-drama7");if (tvdrama7 && link) {const query = encodeURIComponent(tvdrama7 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="b08" class="Sub-Cate1">
-        <div class="text-container">サンプルB-8</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="tv-drama8-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama8-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama8" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama8 = localStorage.getItem("r-tv-dramaname8");const textElement = document.getElementById("tv-drama8-text");if (tvdrama8 && textElement) {textElement.textContent = tvdrama8;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama8w = localStorage.getItem("r-tv-dramaweight8");
+                    const scoreElement = document.getElementById("tv-drama8-weight");
+                    if (tvdrama8w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama8w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama8 = localStorage.getItem("r-tv-dramaname8");const link = document.getElementById("search-link-tv-drama8");if (tvdrama8 && link) {const query = encodeURIComponent(tvdrama8 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="b09" class="Sub-Cate1">
-        <div class="text-container">サンプルB-9</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="tv-drama9-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama9-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama9" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama9 = localStorage.getItem("r-tv-dramaname9");const textElement = document.getElementById("tv-drama9-text");if (tvdrama9 && textElement) {textElement.textContent = tvdrama9;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama9w = localStorage.getItem("r-tv-dramaweight9");
+                    const scoreElement = document.getElementById("tv-drama9-weight");
+                    if (tvdrama9w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama9w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama9 = localStorage.getItem("r-tv-dramaname9");const link = document.getElementById("search-link-tv-drama9");if (tvdrama9 && link) {const query = encodeURIComponent(tvdrama9 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="b10" class="Sub-Cate1">
-        <div class="text-container">サンプルB-10</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="tv-drama10-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama10-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama10" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama10 = localStorage.getItem("r-tv-dramaname10");const textElement = document.getElementById("tv-drama10-text");if (tvdrama10 && textElement) {textElement.textContent = tvdrama10;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama10w = localStorage.getItem("r-tv-dramaweight10");
+                    const scoreElement = document.getElementById("tv-drama10-weight");
+                    if (tvdrama10w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama10w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama10 = localStorage.getItem("r-tv-dramaname10");const link = document.getElementById("search-link-tv-drama10");if (tvdrama10 && link) {const query = encodeURIComponent(tvdrama10 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="b11" class="Sub-Cate1">
+        <div class="text-container" id="tv-drama11-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama11-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama11" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama11 = localStorage.getItem("r-tv-dramaname11");const textElement = document.getElementById("tv-drama11-text");if (tvdrama11 && textElement) {textElement.textContent = tvdrama11;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama11w = localStorage.getItem("r-tv-dramaweight11");
+                    const scoreElement = document.getElementById("tv-drama11-weight");
+                    if (tvdrama11w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama11w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama11 = localStorage.getItem("r-tv-dramaname11");const link = document.getElementById("search-link-tv-drama11");if (tvdrama11 && link) {const query = encodeURIComponent(tvdrama11 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="b12" class="Sub-Cate1">
+        <div class="text-container" id="tv-drama12-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama12-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama12" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama12 = localStorage.getItem("r-tv-dramaname12");const textElement = document.getElementById("tv-drama12-text");if (tvdrama12 && textElement) {textElement.textContent = tvdrama12;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama12w = localStorage.getItem("r-tv-dramaweight12");
+                    const scoreElement = document.getElementById("tv-drama12-weight");
+                    if (tvdrama12w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama12w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama12 = localStorage.getItem("r-tv-dramaname12");const link = document.getElementById("search-link-tv-drama12");if (tvdrama12 && link) {const query = encodeURIComponent(tvdrama12 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="b13" class="Sub-Cate1">
+        <div class="text-container" id="tv-drama13-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama13-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama13" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama13 = localStorage.getItem("r-tv-dramaname13");const textElement = document.getElementById("tv-drama13-text");if (tvdrama13 && textElement) {textElement.textContent = tvdrama13;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama13w = localStorage.getItem("r-tv-dramaweight13");
+                    const scoreElement = document.getElementById("tv-drama13-weight");
+                    if (tvdrama13w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama13w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama13 = localStorage.getItem("r-tv-dramaname13");const link = document.getElementById("search-link-tv-drama13");if (tvdrama13 && link) {const query = encodeURIComponent(tvdrama13 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="b14" class="Sub-Cate1">
+        <div class="text-container" id="tv-drama14-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama14-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama14" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama14 = localStorage.getItem("r-tv-dramaname14");const textElement = document.getElementById("tv-drama14-text");if (tvdrama14 && textElement) {textElement.textContent = tvdrama14;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama14w = localStorage.getItem("r-tv-dramaweight14");
+                    const scoreElement = document.getElementById("tv-drama14-weight");
+                    if (tvdrama14w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama14w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama14 = localStorage.getItem("r-tv-dramaname14");const link = document.getElementById("search-link-tv-drama14");if (tvdrama14 && link) {const query = encodeURIComponent(tvdrama14 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="b15" class="Sub-Cate1">
+        <div class="text-container" id="tv-drama15-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama15-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama15" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama15 = localStorage.getItem("r-tv-dramaname15");const textElement = document.getElementById("tv-drama15-text");if (tvdrama15 && textElement) {textElement.textContent = tvdrama15;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama15w = localStorage.getItem("r-tv-dramaweight15");
+                    const scoreElement = document.getElementById("tv-drama15-weight");
+                    if (tvdrama15w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama15w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama15 = localStorage.getItem("r-tv-dramaname15");const link = document.getElementById("search-link-tv-drama15");if (tvdrama15 && link) {const query = encodeURIComponent(tvdrama15 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="b16" class="Sub-Cate1">
+        <div class="text-container" id="tv-drama16-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama16-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama16" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama16 = localStorage.getItem("r-tv-dramaname16");const textElement = document.getElementById("tv-drama16-text");if (tvdrama16 && textElement) {textElement.textContent = tvdrama16;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama16w = localStorage.getItem("r-tv-dramaweight16");
+                    const scoreElement = document.getElementById("tv-drama16-weight");
+                    if (tvdrama16w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama16w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama16 = localStorage.getItem("r-tv-dramaname16");const link = document.getElementById("search-link-tv-drama16");if (tvdrama16 && link) {const query = encodeURIComponent(tvdrama16 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="b17" class="Sub-Cate1">
+        <div class="text-container" id="tv-drama17-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama17-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama17" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama17 = localStorage.getItem("r-tv-dramaname17");const textElement = document.getElementById("tv-drama17-text");if (tvdrama17 && textElement) {textElement.textContent = tvdrama17;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama17w = localStorage.getItem("r-tv-dramaweight17");
+                    const scoreElement = document.getElementById("tv-drama17-weight");
+                    if (tvdrama17w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama17w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama17 = localStorage.getItem("r-tv-dramaname17");const link = document.getElementById("search-link-tv-drama17");if (tvdrama17 && link) {const query = encodeURIComponent(tvdrama17 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="b18" class="Sub-Cate1">
+        <div class="text-container" id="tv-drama18-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama18-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama18" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama18 = localStorage.getItem("r-tv-dramaname18");const textElement = document.getElementById("tv-drama18-text");if (tvdrama18 && textElement) {textElement.textContent = tvdrama18;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama18w = localStorage.getItem("r-tv-dramaweight18");
+                    const scoreElement = document.getElementById("tv-drama18-weight");
+                    if (tvdrama18w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama18w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama18 = localStorage.getItem("r-tv-dramaname18");const link = document.getElementById("search-link-tv-drama18");if (tvdrama18 && link) {const query = encodeURIComponent(tvdrama18 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="b19" class="Sub-Cate1">
+        <div class="text-container" id="tv-drama19-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama19-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama19" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama19 = localStorage.getItem("r-tv-dramaname19");const textElement = document.getElementById("tv-drama19-text");if (tvdrama19 && textElement) {textElement.textContent = tvdrama19;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama19w = localStorage.getItem("r-tv-dramaweight19");
+                    const scoreElement = document.getElementById("tv-drama19-weight");
+                    if (tvdrama19w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama19w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama19 = localStorage.getItem("r-tv-dramaname19");const link = document.getElementById("search-link-tv-drama19");if (tvdrama19 && link) {const query = encodeURIComponent(tvdrama19 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="b20" class="Sub-Cate1">
+        <div class="text-container" id="tv-drama20-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="tv-drama20-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-tv-drama20" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama20 = localStorage.getItem("r-tv-dramaname20");const textElement = document.getElementById("tv-drama20-text");if (tvdrama20 && textElement) {textElement.textContent = tvdrama20;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tvdrama20w = localStorage.getItem("r-tv-dramaweight20");
+                    const scoreElement = document.getElementById("tv-drama20-weight");
+                    if (tvdrama20w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + tvdrama20w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const tvdrama20 = localStorage.getItem("r-tv-dramaname20");const link = document.getElementById("search-link-tv-drama20");if (tvdrama20 && link) {const query = encodeURIComponent(tvdrama20 + " 作品");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
 </div>
 
 <div id="tab3" class="tab-content" style="display: none;">
         <div id="c01" class="Sub-Cate1">
-        <div class="text-container">サンプルC-1</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="music1-text"></div>
+        <div class="text-container" id="artist1-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music1-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music1" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music1 = localStorage.getItem("r-musicname1");const textElement = document.getElementById("music1-text");if (music1 && textElement) {textElement.textContent = music1;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist1 = localStorage.getItem("r-artistname1");const textElement = document.getElementById("artist1-text");if (artist1 && textElement) {textElement.textContent = "【" + artist1+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music1w = localStorage.getItem("r-musicweight1");
+            const scoreElement = document.getElementById("music1-weight");
+            if (music1w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music1w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music1 = localStorage.getItem("r-musicname1");const link = document.getElementById("search-link-music1");if (music1 && link) {const query = encodeURIComponent(music1 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="c02" class="Sub-Cate1">
-        <div class="text-container">サンプルC-2</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="music2-text"></div>
+        <div class="text-container" id="artist2-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music2-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music2" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music2 = localStorage.getItem("r-musicname2");const textElement = document.getElementById("music2-text");if (music2 && textElement) {textElement.textContent = music2;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist2 = localStorage.getItem("r-artistname2");const textElement = document.getElementById("artist2-text");if (artist2 && textElement) {textElement.textContent = "【" + artist2+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music2w = localStorage.getItem("r-musicweight2");
+            const scoreElement = document.getElementById("music2-weight");
+            if (music2w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music2w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music2 = localStorage.getItem("r-musicname2");const link = document.getElementById("search-link-music2");if (music2 && link) {const query = encodeURIComponent(music2 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="c03" class="Sub-Cate1">
-        <div class="text-container">サンプルC-3</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="music3-text"></div>
+        <div class="text-container" id="artist3-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music3-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music3" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music3 = localStorage.getItem("r-musicname3");const textElement = document.getElementById("music3-text");if (music3 && textElement) {textElement.textContent = music3;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist3 = localStorage.getItem("r-artistname3");const textElement = document.getElementById("artist3-text");if (artist3 && textElement) {textElement.textContent = "【" + artist3+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music3w = localStorage.getItem("r-musicweight3");
+            const scoreElement = document.getElementById("music3-weight");
+            if (music3w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music3w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music3 = localStorage.getItem("r-musicname3");const link = document.getElementById("search-link-music3");if (music3 && link) {const query = encodeURIComponent(music3 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="c04" class="Sub-Cate1">
-        <div class="text-container">サンプルC-4</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="music4-text"></div>
+        <div class="text-container" id="artist4-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music4-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music4" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music4 = localStorage.getItem("r-musicname4");const textElement = document.getElementById("music4-text");if (music4 && textElement) {textElement.textContent = music4;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist4 = localStorage.getItem("r-artistname4");const textElement = document.getElementById("artist4-text");if (artist4 && textElement) {textElement.textContent = "【" + artist4+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music4w = localStorage.getItem("r-musicweight4");
+            const scoreElement = document.getElementById("music4-weight");
+            if (music4w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music4w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music4 = localStorage.getItem("r-musicname4");const link = document.getElementById("search-link-music4");if (music4 && link) {const query = encodeURIComponent(music4 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="c05" class="Sub-Cate1">
-        <div class="text-container">サンプルC-5</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="music5-text"></div>
+        <div class="text-container" id="artist5-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music5-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music5" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music5 = localStorage.getItem("r-musicname5");const textElement = document.getElementById("music5-text");if (music5 && textElement) {textElement.textContent = music5;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist5 = localStorage.getItem("r-artistname5");const textElement = document.getElementById("artist5-text");if (artist5 && textElement) {textElement.textContent = "【" + artist5+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music5w = localStorage.getItem("r-musicweight5");
+            const scoreElement = document.getElementById("music5-weight");
+            if (music5w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music5w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music5 = localStorage.getItem("r-musicname5");const link = document.getElementById("search-link-music5");if (music5 && link) {const query = encodeURIComponent(music5 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="c06" class="Sub-Cate1">
-        <div class="text-container">サンプルC-6</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="music6-text"></div>
+        <div class="text-container" id="artist6-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music6-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music6" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music6 = localStorage.getItem("r-musicname6");const textElement = document.getElementById("music6-text");if (music6 && textElement) {textElement.textContent = music6;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist6 = localStorage.getItem("r-artistname6");const textElement = document.getElementById("artist6-text");if (artist6 && textElement) {textElement.textContent = "【" + artist6+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music6w = localStorage.getItem("r-musicweight6");
+            const scoreElement = document.getElementById("music6-weight");
+            if (music6w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music6w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music6 = localStorage.getItem("r-musicname6");const link = document.getElementById("search-link-music6");if (music6 && link) {const query = encodeURIComponent(music6 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="c07" class="Sub-Cate1">
-        <div class="text-container">サンプルC-7</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="music7-text"></div>
+        <div class="text-container" id="artist7-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music7-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music7" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music7 = localStorage.getItem("r-musicname7");const textElement = document.getElementById("music7-text");if (music7 && textElement) {textElement.textContent = music7;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist7 = localStorage.getItem("r-artistname7");const textElement = document.getElementById("artist7-text");if (artist7 && textElement) {textElement.textContent = "【" + artist7+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music7w = localStorage.getItem("r-musicweight7");
+            const scoreElement = document.getElementById("music7-weight");
+            if (music7w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music7w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music7 = localStorage.getItem("r-musicname7");const link = document.getElementById("search-link-music7");if (music7 && link) {const query = encodeURIComponent(music7 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="c08" class="Sub-Cate1">
-        <div class="text-container">サンプルC-8</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="music8-text"></div>
+        <div class="text-container" id="artist8-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music8-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music8" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music8 = localStorage.getItem("r-musicname8");const textElement = document.getElementById("music8-text");if (music8 && textElement) {textElement.textContent = music8;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist8 = localStorage.getItem("r-artistname8");const textElement = document.getElementById("artist8-text");if (artist8 && textElement) {textElement.textContent = "【" + artist8+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music8w = localStorage.getItem("r-musicweight8");
+            const scoreElement = document.getElementById("music8-weight");
+            if (music8w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music8w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music8 = localStorage.getItem("r-musicname8");const link = document.getElementById("search-link-music8");if (music8 && link) {const query = encodeURIComponent(music8 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="c09" class="Sub-Cate1">
-        <div class="text-container">サンプルC-9</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="music9-text"></div>
+        <div class="text-container" id="artist9-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music9-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music9" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music9 = localStorage.getItem("r-musicname9");const textElement = document.getElementById("music9-text");if (music9 && textElement) {textElement.textContent = music9;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist9 = localStorage.getItem("r-artistname9");const textElement = document.getElementById("artist9-text");if (artist9 && textElement) {textElement.textContent = "【" + artist9+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music9w = localStorage.getItem("r-musicweight9");
+            const scoreElement = document.getElementById("music9-weight");
+            if (music9w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music9w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music9 = localStorage.getItem("r-musicname9");const link = document.getElementById("search-link-music9");if (music9 && link) {const query = encodeURIComponent(music9 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="c10" class="Sub-Cate1">
-        <div class="text-container">サンプルC-10</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="music10-text"></div>
+        <div class="text-container" id="artist10-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music10-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music10" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music10 = localStorage.getItem("r-musicname10");const textElement = document.getElementById("music10-text");if (music10 && textElement) {textElement.textContent = music10;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist10 = localStorage.getItem("r-artistname10");const textElement = document.getElementById("artist10-text");if (artist10 && textElement) {textElement.textContent = "【" + artist10+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music10w = localStorage.getItem("r-musicweight10");
+            const scoreElement = document.getElementById("music10-weight");
+            if (music10w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music10w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music10 = localStorage.getItem("r-musicname10");const link = document.getElementById("search-link-music10");if (music10 && link) {const query = encodeURIComponent(music10 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="c11" class="Sub-Cate1">
+        <div class="text-container" id="music11-text"></div>
+        <div class="text-container" id="artist11-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music11-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music11" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music11 = localStorage.getItem("r-musicname11");const textElement = document.getElementById("music11-text");if (music11 && textElement) {textElement.textContent = music11;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist11 = localStorage.getItem("r-artistname11");const textElement = document.getElementById("artist11-text");if (artist11 && textElement) {textElement.textContent = "【" + artist11+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music11w = localStorage.getItem("r-musicweight11");
+            const scoreElement = document.getElementById("music11-weight");
+            if (music11w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music11w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music11 = localStorage.getItem("r-musicname11");const link = document.getElementById("search-link-music11");if (music11 && link) {const query = encodeURIComponent(music11 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="c12" class="Sub-Cate1">
+        <div class="text-container" id="music12-text"></div>
+        <div class="text-container" id="artist12-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music12-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music12" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music12 = localStorage.getItem("r-musicname12");const textElement = document.getElementById("music12-text");if (music12 && textElement) {textElement.textContent = music12;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist12 = localStorage.getItem("r-artistname12");const textElement = document.getElementById("artist12-text");if (artist12 && textElement) {textElement.textContent = "【" + artist12+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music12w = localStorage.getItem("r-musicweight12");
+            const scoreElement = document.getElementById("music12-weight");
+            if (music12w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music12w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music12 = localStorage.getItem("r-musicname12");const link = document.getElementById("search-link-music12");if (music12 && link) {const query = encodeURIComponent(music12 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="c13" class="Sub-Cate1">
+        <div class="text-container" id="music13-text"></div>
+        <div class="text-container" id="artist13-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music13-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music13" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music13 = localStorage.getItem("r-musicname13");const textElement = document.getElementById("music13-text");if (music13 && textElement) {textElement.textContent = music13;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist13 = localStorage.getItem("r-artistname13");const textElement = document.getElementById("artist13-text");if (artist13 && textElement) {textElement.textContent = "【" + artist13+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music13w = localStorage.getItem("r-musicweight13");
+            const scoreElement = document.getElementById("music13-weight");
+            if (music13w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music13w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music13 = localStorage.getItem("r-musicname13");const link = document.getElementById("search-link-music13");if (music13 && link) {const query = encodeURIComponent(music13 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="c14" class="Sub-Cate1">
+        <div class="text-container" id="music14-text"></div>
+        <div class="text-container" id="artist14-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music14-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music14" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music14 = localStorage.getItem("r-musicname14");const textElement = document.getElementById("music14-text");if (music14 && textElement) {textElement.textContent = music14;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist14 = localStorage.getItem("r-artistname14");const textElement = document.getElementById("artist14-text");if (artist14 && textElement) {textElement.textContent = "【" + artist14+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music14w = localStorage.getItem("r-musicweight14");
+            const scoreElement = document.getElementById("music14-weight");
+            if (music14w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music14w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music14 = localStorage.getItem("r-musicname14");const link = document.getElementById("search-link-music14");if (music14 && link) {const query = encodeURIComponent(music14 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="c15" class="Sub-Cate1">
+        <div class="text-container" id="music15-text"></div>
+        <div class="text-container" id="artist15-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music15-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music15" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music15 = localStorage.getItem("r-musicname15");const textElement = document.getElementById("music15-text");if (music15 && textElement) {textElement.textContent = music15;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist15 = localStorage.getItem("r-artistname15");const textElement = document.getElementById("artist15-text");if (artist15 && textElement) {textElement.textContent = "【" + artist15+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music15w = localStorage.getItem("r-musicweight15");
+            const scoreElement = document.getElementById("music15-weight");
+            if (music15w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music15w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music15 = localStorage.getItem("r-musicname15");const link = document.getElementById("search-link-music15");if (music15 && link) {const query = encodeURIComponent(music15 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="c16" class="Sub-Cate1">
+        <div class="text-container" id="music16-text"></div>
+        <div class="text-container" id="artist16-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music16-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music16" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music16 = localStorage.getItem("r-musicname16");const textElement = document.getElementById("music16-text");if (music16 && textElement) {textElement.textContent = music16;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist16 = localStorage.getItem("r-artistname16");const textElement = document.getElementById("artist16-text");if (artist16 && textElement) {textElement.textContent = "【" + artist16+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music16w = localStorage.getItem("r-musicweight16");
+            const scoreElement = document.getElementById("music16-weight");
+            if (music16w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music16w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music16 = localStorage.getItem("r-musicname16");const link = document.getElementById("search-link-music16");if (music16 && link) {const query = encodeURIComponent(music16 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="c17" class="Sub-Cate1">
+        <div class="text-container" id="music17-text"></div>
+        <div class="text-container" id="artist17-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music17-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music17" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music17 = localStorage.getItem("r-musicname17");const textElement = document.getElementById("music17-text");if (music17 && textElement) {textElement.textContent = music17;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist17 = localStorage.getItem("r-artistname17");const textElement = document.getElementById("artist17-text");if (artist17 && textElement) {textElement.textContent = "【" + artist17+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music17w = localStorage.getItem("r-musicweight17");
+            const scoreElement = document.getElementById("music17-weight");
+            if (music17w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music17w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music17 = localStorage.getItem("r-musicname17");const link = document.getElementById("search-link-music17");if (music17 && link) {const query = encodeURIComponent(music17 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="c18" class="Sub-Cate1">
+        <div class="text-container" id="music18-text"></div>
+        <div class="text-container" id="artist18-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music18-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music18" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music18 = localStorage.getItem("r-musicname18");const textElement = document.getElementById("music18-text");if (music18 && textElement) {textElement.textContent = music18;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist18 = localStorage.getItem("r-artistname18");const textElement = document.getElementById("artist18-text");if (artist18 && textElement) {textElement.textContent = "【" + artist18+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music18w = localStorage.getItem("r-musicweight18");
+            const scoreElement = document.getElementById("music18-weight");
+            if (music18w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music18w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music18 = localStorage.getItem("r-musicname18");const link = document.getElementById("search-link-music18");if (music18 && link) {const query = encodeURIComponent(music18 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="c19" class="Sub-Cate1">
+        <div class="text-container" id="music19-text"></div>
+        <div class="text-container" id="artist19-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music19-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music19" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music19 = localStorage.getItem("r-musicname19");const textElement = document.getElementById("music19-text");if (music19 && textElement) {textElement.textContent = music19;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist19 = localStorage.getItem("r-artistname19");const textElement = document.getElementById("artist19-text");if (artist19 && textElement) {textElement.textContent = "【" + artist19+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music19w = localStorage.getItem("r-musicweight19");
+            const scoreElement = document.getElementById("music19-weight");
+            if (music19w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music19w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music19 = localStorage.getItem("r-musicname19");const link = document.getElementById("search-link-music19");if (music19 && link) {const query = encodeURIComponent(music19 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="c20" class="Sub-Cate1">
+        <div class="text-container" id="music20-text"></div>
+        <div class="text-container" id="artist20-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="music20-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-music20" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const music20 = localStorage.getItem("r-musicname20");const textElement = document.getElementById("music20-text");if (music20 && textElement) {textElement.textContent = music20;}
+            });</script>
+
+             <script>
+            document.addEventListener("DOMContentLoaded", function () {const artist20 = localStorage.getItem("r-artistname20");const textElement = document.getElementById("artist20-text");if (artist20 && textElement) {textElement.textContent = "【" + artist20+ "】";}
+            });</script>
+
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const music20w = localStorage.getItem("r-musicweight20");
+            const scoreElement = document.getElementById("music20-weight");
+            if (music20w && scoreElement) {
+            scoreElement.textContent = "マッチスコア：" + music20w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const music20 = localStorage.getItem("r-musicname20");const link = document.getElementById("search-link-music20");if (music20 && link) {const query = encodeURIComponent(music20 + " 曲");link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
 </div>
 
 <div id="tab4" class="tab-content" style="display: none;">
-        <div id="d01" class="Sub-Cate1">
-        <div class="text-container">サンプルD-1</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+
+	<div id="d01" class="Sub-Cate1">
+        <div class="text-container" id="hobby1-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby1-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby1" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby1 = localStorage.getItem("r-hobbyname1");const textElement = document.getElementById("hobby1-text");if (hobby1 && textElement) {textElement.textContent = hobby1;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby1w = localStorage.getItem("r-hobbyweight1");
+                    const scoreElement = document.getElementById("hobby1-weight");
+                    if (hobby1w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby1w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby1 = localStorage.getItem("r-hobbyname1");const link = document.getElementById("search-link-hobby1");if (hobby1 && link) {const query = encodeURIComponent(hobby1);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="d02" class="Sub-Cate1">
-        <div class="text-container">サンプルD-2</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="hobby2-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby2-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby2" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby2 = localStorage.getItem("r-hobbyname2");const textElement = document.getElementById("hobby2-text");if (hobby2 && textElement) {textElement.textContent = hobby2;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby2w = localStorage.getItem("r-hobbyweight2");
+                    const scoreElement = document.getElementById("hobby2-weight");
+                    if (hobby2w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby2w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby2 = localStorage.getItem("r-hobbyname2");const link = document.getElementById("search-link-hobby2");if (hobby2 && link) {const query = encodeURIComponent(hobby2);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+            </div>
 
         <div id="d03" class="Sub-Cate1">
-        <div class="text-container">サンプルD-3</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="hobby3-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby3-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby3" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby3 = localStorage.getItem("r-hobbyname3");const textElement = document.getElementById("hobby3-text");if (hobby3 && textElement) {textElement.textContent = hobby3;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby3w = localStorage.getItem("r-hobbyweight3");
+                    const scoreElement = document.getElementById("hobby3-weight");
+                    if (hobby3w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby3w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby3 = localStorage.getItem("r-hobbyname3");const link = document.getElementById("search-link-hobby3");if (hobby3 && link) {const query = encodeURIComponent(hobby3);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+            </div>
 
         <div id="d04" class="Sub-Cate1">
-        <div class="text-container">サンプルD-4</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="hobby4-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby4-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby4" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby4 = localStorage.getItem("r-hobbyname4");const textElement = document.getElementById("hobby4-text");if (hobby4 && textElement) {textElement.textContent = hobby4;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby4w = localStorage.getItem("r-hobbyweight4");
+                    const scoreElement = document.getElementById("hobby4-weight");
+                    if (hobby4w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby4w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby4 = localStorage.getItem("r-hobbyname4");const link = document.getElementById("search-link-hobby4");if (hobby4 && link) {const query = encodeURIComponent(hobby4);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+            </div>
 
         <div id="d05" class="Sub-Cate1">
-        <div class="text-container">サンプルD-5</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="hobby5-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby5-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby5" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby5 = localStorage.getItem("r-hobbyname5");const textElement = document.getElementById("hobby5-text");if (hobby5 && textElement) {textElement.textContent = hobby5;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby5w = localStorage.getItem("r-hobbyweight5");
+                    const scoreElement = document.getElementById("hobby5-weight");
+                    if (hobby5w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby5w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby5 = localStorage.getItem("r-hobbyname5");const link = document.getElementById("search-link-hobby5");if (hobby5 && link) {const query = encodeURIComponent(hobby5);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="d06" class="Sub-Cate1">
-        <div class="text-container">サンプルD-6</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="hobby6-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby6-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby6" target="_blank" class="check-button">チェック</a>
+         </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby6 = localStorage.getItem("r-hobbyname6");const textElement = document.getElementById("hobby6-text");if (hobby6 && textElement) {textElement.textContent = hobby6;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby6w = localStorage.getItem("r-hobbyweight6");
+                    const scoreElement = document.getElementById("hobby6-weight");
+                    if (hobby6w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby6w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby6 = localStorage.getItem("r-hobbyname6");const link = document.getElementById("search-link-hobby6");if (hobby6 && link) {const query = encodeURIComponent(hobby6);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="d07" class="Sub-Cate1">
-        <div class="text-container">サンプルD-7</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="hobby7-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby7-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby7" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby7 = localStorage.getItem("r-hobbyname7");const textElement = document.getElementById("hobby7-text");if (hobby7 && textElement) {textElement.textContent = hobby7;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby7w = localStorage.getItem("r-hobbyweight7");
+                    const scoreElement = document.getElementById("hobby7-weight");
+                    if (hobby7w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby7w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby7 = localStorage.getItem("r-hobbyname7");const link = document.getElementById("search-link-hobby7");if (hobby7 && link) {const query = encodeURIComponent(hobby7);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="d08" class="Sub-Cate1">
-        <div class="text-container">サンプルD-8</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="hobby8-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby8-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby8" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby8 = localStorage.getItem("r-hobbyname8");const textElement = document.getElementById("hobby8-text");if (hobby8 && textElement) {textElement.textContent = hobby8;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby8w = localStorage.getItem("r-hobbyweight8");
+                    const scoreElement = document.getElementById("hobby8-weight");
+                    if (hobby8w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby8w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby8 = localStorage.getItem("r-hobbyname8");const link = document.getElementById("search-link-hobby8");if (hobby8 && link) {const query = encodeURIComponent(hobby8);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="d09" class="Sub-Cate1">
-        <div class="text-container">サンプルD-9</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
+        <div class="text-container" id="hobby9-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby9-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby9" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby9 = localStorage.getItem("r-hobbyname9");const textElement = document.getElementById("hobby9-text");if (hobby9 && textElement) {textElement.textContent = hobby9;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby9w = localStorage.getItem("r-hobbyweight9");
+                    const scoreElement = document.getElementById("hobby9-weight");
+                    if (hobby9w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby9w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby9 = localStorage.getItem("r-hobbyname9");const link = document.getElementById("search-link-hobby9");if (hobby9 && link) {const query = encodeURIComponent(hobby9);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
 
         <div id="d10" class="Sub-Cate1">
-        <div class="text-container">サンプルD-10</div>
-        <div class="score-container">マッチスコアXX％</div>
-        </div>
-</div>
+        <div class="text-container" id="hobby10-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby10-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby10" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby10 = localStorage.getItem("r-hobbyname10");const textElement = document.getElementById("hobby10-text");if (hobby10 && textElement) {textElement.textContent = hobby10;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby10w = localStorage.getItem("r-hobbyweight10");
+                    const scoreElement = document.getElementById("hobby10-weight");
+                    if (hobby10w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby10w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby10 = localStorage.getItem("r-hobbyname10");const link = document.getElementById("search-link-hobby10");if (hobby10 && link) {const query = encodeURIComponent(hobby10);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="d11" class="Sub-Cate1">
+        <div class="text-container" id="hobby11-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby11-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby11" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby11 = localStorage.getItem("r-hobbyname11");const textElement = document.getElementById("hobby11-text");if (hobby11 && textElement) {textElement.textContent = hobby11;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby11w = localStorage.getItem("r-hobbyweight11");
+                    const scoreElement = document.getElementById("hobby11-weight");
+                    if (hobby11w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby11w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby11 = localStorage.getItem("r-hobbyname11");const link = document.getElementById("search-link-hobby11");if (hobby11 && link) {const query = encodeURIComponent(hobby11);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="d12" class="Sub-Cate1">
+        <div class="text-container" id="hobby12-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby12-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby12" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby12 = localStorage.getItem("r-hobbyname12");const textElement = document.getElementById("hobby12-text");if (hobby12 && textElement) {textElement.textContent = hobby12;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby12w = localStorage.getItem("r-hobbyweight12");
+                    const scoreElement = document.getElementById("hobby12-weight");
+                    if (hobby12w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby12w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby12 = localStorage.getItem("r-hobbyname12");const link = document.getElementById("search-link-hobby12");if (hobby12 && link) {const query = encodeURIComponent(hobby12);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="d13" class="Sub-Cate1">
+        <div class="text-container" id="hobby13-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby13-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby13" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby13 = localStorage.getItem("r-hobbyname13");const textElement = document.getElementById("hobby13-text");if (hobby13 && textElement) {textElement.textContent = hobby13;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby13w = localStorage.getItem("r-hobbyweight13");
+                    const scoreElement = document.getElementById("hobby13-weight");
+                    if (hobby13w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby13w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby13 = localStorage.getItem("r-hobbyname13");const link = document.getElementById("search-link-hobby13");if (hobby13 && link) {const query = encodeURIComponent(hobby13);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="d14" class="Sub-Cate1">
+        <div class="text-container" id="hobby14-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby14-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby14" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby14 = localStorage.getItem("r-hobbyname14");const textElement = document.getElementById("hobby14-text");if (hobby14 && textElement) {textElement.textContent = hobby14;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby14w = localStorage.getItem("r-hobbyweight14");
+                    const scoreElement = document.getElementById("hobby14-weight");
+                    if (hobby14w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby14w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby14 = localStorage.getItem("r-hobbyname14");const link = document.getElementById("search-link-hobby14");if (hobby14 && link) {const query = encodeURIComponent(hobby14);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="d15" class="Sub-Cate1">
+        <div class="text-container" id="hobby15-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby15-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby15" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby15 = localStorage.getItem("r-hobbyname15");const textElement = document.getElementById("hobby15-text");if (hobby15 && textElement) {textElement.textContent = hobby15;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby15w = localStorage.getItem("r-hobbyweight15");
+                    const scoreElement = document.getElementById("hobby15-weight");
+                    if (hobby15w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby15w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby15 = localStorage.getItem("r-hobbyname15");const link = document.getElementById("search-link-hobby15");if (hobby15 && link) {const query = encodeURIComponent(hobby15);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="d16" class="Sub-Cate1">
+        <div class="text-container" id="hobby16-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby16-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby16" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby16 = localStorage.getItem("r-hobbyname16");const textElement = document.getElementById("hobby16-text");if (hobby16 && textElement) {textElement.textContent = hobby16;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby16w = localStorage.getItem("r-hobbyweight16");
+                    const scoreElement = document.getElementById("hobby16-weight");
+                    if (hobby16w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby16w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby16 = localStorage.getItem("r-hobbyname16");const link = document.getElementById("search-link-hobby16");if (hobby16 && link) {const query = encodeURIComponent(hobby16);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="d17" class="Sub-Cate1">
+        <div class="text-container" id="hobby17-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby17-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby17" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby17 = localStorage.getItem("r-hobbyname17");const textElement = document.getElementById("hobby17-text");if (hobby17 && textElement) {textElement.textContent = hobby17;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby17w = localStorage.getItem("r-hobbyweight17");
+                    const scoreElement = document.getElementById("hobby17-weight");
+                    if (hobby17w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby17w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby17 = localStorage.getItem("r-hobbyname17");const link = document.getElementById("search-link-hobby17");if (hobby17 && link) {const query = encodeURIComponent(hobby17);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="d18" class="Sub-Cate1">
+        <div class="text-container" id="hobby18-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby18-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby18" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby18 = localStorage.getItem("r-hobbyname18");const textElement = document.getElementById("hobby18-text");if (hobby18 && textElement) {textElement.textContent = hobby18;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby18w = localStorage.getItem("r-hobbyweight18");
+                    const scoreElement = document.getElementById("hobby18-weight");
+                    if (hobby18w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby18w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby18 = localStorage.getItem("r-hobbyname18");const link = document.getElementById("search-link-hobby18");if (hobby18 && link) {const query = encodeURIComponent(hobby18);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="d19" class="Sub-Cate1">
+        <div class="text-container" id="hobby19-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby19-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby19" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby19 = localStorage.getItem("r-hobbyname19");const textElement = document.getElementById("hobby19-text");if (hobby19 && textElement) {textElement.textContent = hobby19;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby19w = localStorage.getItem("r-hobbyweight19");
+                    const scoreElement = document.getElementById("hobby19-weight");
+                    if (hobby19w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby19w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby19 = localStorage.getItem("r-hobbyname19");const link = document.getElementById("search-link-hobby19");if (hobby19 && link) {const query = encodeURIComponent(hobby19);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+        <div id="d20" class="Sub-Cate1">
+        <div class="text-container" id="hobby20-text"></div>
+        <div class="score-container">
+        <div class="score-text"  id="hobby20-weight"></div>
+        <div class="score-action">
+        <a href="#" id="search-link-hobby20" target="_blank" class="check-button">チェック</a>
+        </div> </div>
+        
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby20 = localStorage.getItem("r-hobbyname20");const textElement = document.getElementById("hobby20-text");if (hobby20 && textElement) {textElement.textContent = hobby20;}
+            });</script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hobby20w = localStorage.getItem("r-hobbyweight20");
+                    const scoreElement = document.getElementById("hobby20-weight");
+                    if (hobby20w && scoreElement) {
+                        scoreElement.textContent = "マッチスコア：" + hobby20w + "％";}
+            });</script>
+
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {const hobby20 = localStorage.getItem("r-hobbyname20");const link = document.getElementById("search-link-hobby20");if (hobby20 && link) {const query = encodeURIComponent(hobby20);link.href = "https://www.google.com/search?q=" + query;}});</script>
+
+             </div>
+
+</div> 
 
     <script type="text/javascript" src="../jquery-3.4.1.js"></script>
     <script type="text/javascript" src="object.js"></script>

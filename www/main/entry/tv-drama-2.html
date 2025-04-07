@@ -104,7 +104,7 @@
             border-radius: 10px;
             padding: 20px 20px; 
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            font-size: 18px;
+            font-size: 20px;
             color: #2b2929;
             text-align: left;
             margin-top: 10%;
@@ -183,42 +183,17 @@
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .list-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        }
-
-        .list-item .artist {
-        font-weight: bold;
-        text-align: left;
-        flex: 1;
-        }
-
-        .list-item .music {
-        text-align: right;
-        flex: 1;
-        color: #333;
-        }
-
         .item-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+        overflow-y: auto;
         }
+
         .item-list li {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 12px;
-            border-bottom: 1px solid #ddd;
-            cursor: pointer;
-        }
-        .item-list li span {
-            flex: 1;
-            margin: 0;
-            padding: 0;
-            font-size: 16px;
-            text-align: left;
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
         }
 
         .item-list li:hover {
@@ -296,10 +271,7 @@
 
 <body>
     <div class="scroll-block">
-    <div class="message-box">
-    これまでにハマった曲は？（1つ目）<br>
-    <span style="font-size: 15px; color: #575757;">※音楽は現在プロト版につき、過去20年で流行った曲に絞って選択ください</span>
-    </div>
+    <div class="message-box">これまでにハマったドラマやアニメは？（2つ目）</div>
     </div>
 
     <div class="search-page">
@@ -331,7 +303,7 @@
 
         document.querySelector('.loading').style.display = 'block';
         document.getElementById('search-error').textContent = '';
-        fetch("http://ec2-35-75-21-245.ap-northeast-1.compute.amazonaws.com/music.php?keyword=" + encodeURIComponent(keyword))
+        fetch("http://ec2-35-75-21-245.ap-northeast-1.compute.amazonaws.com/tv-drama.php?keyword=" + encodeURIComponent(keyword))
             .then(response => response.json())
             .then(data => {
             document.querySelector('.loading').style.display = 'none';
@@ -350,28 +322,14 @@
             const resultList = document.getElementById('result-list');
             resultList.innerHTML = '';
             data.slice(0, 50).forEach(item => {
-               const li = document.createElement('li');
-
-            const leftSpan = document.createElement('span'); // アーティスト名
-            leftSpan.textContent = item.artistname;
-            leftSpan.style.textAlign = 'left';
-            leftSpan.style.flex = '1';
-
-            const rightSpan = document.createElement('span'); // 曲名
-            rightSpan.textContent = item.musicname;
-            rightSpan.style.textAlign = 'right';
-            rightSpan.style.flex = '1';
-
-            li.appendChild(leftSpan);
-            li.appendChild(rightSpan);
-
-            li.onclick = () => {
-                selectedId = item.musicid;
+                const li = document.createElement('li');
+                li.textContent = item.name;
+                li.onclick = () => {
+                selectedId = item.dramaid;
                 document.querySelectorAll('#result-list li').forEach(li => li.classList.remove('selected'));
                 li.classList.add('selected');
-            };
-
-            resultList.appendChild(li);
+                };
+                resultList.appendChild(li);
             });
 
             document.querySelector('.search-page').style.display = 'none';
@@ -396,9 +354,9 @@
             document.getElementById('select-error').textContent = '項目を選択してください';
             return;
         }
-        localStorage.setItem('neworder-music1', selectedId);
+        localStorage.setItem('neworder-tv-drama2', selectedId);
         function linkToNextPage() {
-        window.location.href = "music-2.html";
+        window.location.href = "jp-pq-001873.html";
         }
 
                 // アニメーションクラスを追加
@@ -411,7 +369,7 @@
         //前ページに戻る
 
         function linkToBackPage() {
-        window.location.href = "jp-pq-001873.html";
+        window.location.href = "tv-drama.html";
         }
 
         $('#backbutton4').on('click', function () {

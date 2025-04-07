@@ -297,7 +297,7 @@
 <body>
     <div class="scroll-block">
     <div class="message-box">
-    これまでにハマった曲は？（1つ目）<br>
+    これまでにハマった曲は？（2つ目）<br>
     <span style="font-size: 15px; color: #575757;">※音楽は現在プロト版につき、過去20年で流行った曲に絞って選択ください</span>
     </div>
     </div>
@@ -396,9 +396,9 @@
             document.getElementById('select-error').textContent = '項目を選択してください';
             return;
         }
-        localStorage.setItem('neworder-music1', selectedId);
+        localStorage.setItem('neworder-music2', selectedId);
         function linkToNextPage() {
-        window.location.href = "music-2.html";
+        window.location.href = "jp-pq-001887.html";
         }
 
                 // アニメーションクラスを追加
@@ -411,7 +411,7 @@
         //前ページに戻る
 
         function linkToBackPage() {
-        window.location.href = "jp-pq-001873.html";
+        window.location.href = "music.html";
         }
 
         $('#backbutton4').on('click', function () {

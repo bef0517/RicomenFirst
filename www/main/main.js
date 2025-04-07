@@ -1,5 +1,5 @@
 window.onload = function() {
-    var UserID = localStorage.getItem('UserID');
+    var UserID = localStorage.getItem('userid');
     if (UserID === null) {
         // ポップアップのHTMLを作成
         var popup = document.createElement('div');
@@ -41,6 +41,7 @@ window.onload = function() {
                     cursor: pointer; 
                     box-shadow: 0 4px 8px rgba(107, 179, 255, 0.4); 
                     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                    width: 80%; 
                 ">次に行く</button>
             </div>
         `;
@@ -105,7 +106,7 @@ window.onload = function() {
         <div style="flex: 1; font-size: 24px; font-weight: bold; margin: 0; padding: 20px; color: #333; background-color: #f9f9f9; border-bottom: 1px solid rgba(0, 0, 0, 0.1); border-radius: 15px 15px 0 0;">
             ご利用について
         </div>
-        <div style="flex: 6; font-size: 20px; color: #2b2929; padding: 40px 20px; text-align: left; line-height: 1.5;">
+        <div style="flex: 6; font-size: 20px; color: #2b2929; padding: 40px 20px; text-align: left; line-height: 1.5; ">
             ご利用にあたっては、ご自身の情報を正確に入力していただくことで、より良い提案を受け取ることができます。<br><br>
             さっそく<span style="font-weight: bold;">画面左上の新規登録</span>（情報入力）を行い、あなたに合ったおすすめの作品や仲間を見つけましょう！
         </div>
@@ -120,6 +121,7 @@ window.onload = function() {
                 cursor: pointer; 
                 box-shadow: 0 4px 8px rgba(107, 179, 255, 0.4); 
                 transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                width: 80%; 
             ">OK</button>
         </div>
     `;
@@ -159,7 +161,7 @@ window.onload = function() {
 const targetClasses = ['Update', 'People', 'Object'];
 
 // localStorage から UserID を取得
-const userId = localStorage.getItem('UserID');
+const userId = localStorage.getItem('userid');
 
 // UserID が null の場合に制御を実施
 if (userId === null) {
@@ -195,6 +197,9 @@ if (userId === null) {
     });
 }};
 
+// body遷移用特別処理
+var body = document.getElementsByTagName('body')[0];
+
 
 // ButtonX押下時のポップアップ処理
 var btX = document.getElementById('buttonX');
@@ -225,7 +230,7 @@ btX.addEventListener('click', function () {
         おすすめ更新について
         </div>
         <div style="flex: 6; font-size: 20px; color: #2b2929; padding: 40px 20px; text-align: left; line-height: 1.5;">
-            おすすめを<span style="font-weight: bold;">最新の情報に更新</span>するためのサービスとなります<br><br>更新は<span style="font-weight: bold;">有料（160円）</span>で、アプリ内課金が完了後、情報の洗い替えを行うため、数分程度お待ち頂くことがあります<br><br>なお、更新を行う場合、現時点のおすすめ表示情報やお仲間とのやり取り情報は全て削除されます
+            こちらはおすすめを<span style="font-weight: bold;">最新の情報に更新</span>するためのサービスとなります<br><br>更新は<span style="font-weight: bold;">有料（160円）</span>で、アプリ内課金が完了後、情報の洗い替えを行うため、数分程度お待ち頂くことがあります<br><br>なお、更新を行う場合、現時点のおすすめ表示情報やお仲間とのやり取り情報は全て削除されます
         </div>
         <div style="flex: 2; display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; border-top: 1px solid rgba(0, 0, 0, 0.1); background-color: #f9f9f9; border-radius: 0 0 15px 15px; padding: 10px;">
             <button id="yesButton" style="
@@ -292,9 +297,11 @@ btX.addEventListener('click', function () {
     });
 
     yesButton.addEventListener('click', function () {
-        alert('更新を実行します。');
-        document.body.removeChild(popup);
-        document.body.removeChild(overlay);
+        function linkUrlD() {
+        location.href = 'update/update1.html';
+    }  
+        body.classList.add('anime-slide-fade');
+        setTimeout(linkUrlD, 200);
     });
 
     noButton.addEventListener('click', function () {
@@ -304,12 +311,11 @@ btX.addEventListener('click', function () {
 });
 
 
-    // 特別処理
-    var body = document.getElementsByTagName('body')[0];
+
 
     // 新規登録画面遷移
     function linkUrlA() {
-        location.href = 'entry/movie.html';
+        location.href = 'entry/first.html';
     }
 
     var bt3 = document.getElementById('button3');

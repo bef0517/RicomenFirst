@@ -1,0 +1,771 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#d6eeff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="../../components/loader.js"></script>
+    <link rel="stylesheet">
+
+    <style>
+        body {
+            width: 100%;
+            height: 93%;
+            position:absolute;
+            top: 15%;
+            margin: 0;
+            padding: 0px;
+            background-color: #e0efff;
+            font-family: 'Helvetica';
+            text-align: center;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            -webkit-appearance: none;
+        }
+
+        header {
+            background-color: #d6eeff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 15%;
+            margin: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding-top: env(safe-area-inset-top);
+            box-sizing: border-box;
+        }
+
+        .option button {
+            background-color: #d6eeff;
+            color: #006DD9;
+            border: 2px solid #006DD9;
+            border-radius: 8px;
+            padding: 8px 8px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: absolute;
+            top: 70%;
+            transform: translateY(-50%);
+            left: 3%;
+        }
+
+        .option button:hover {
+            background-color: #bcd9f3;
+            color: #004c9a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .message-box {
+            width: 80%;
+            height: 37%;
+            background-color: #ffffff;
+            border: 2px solid #006DD9;
+            border-radius: 10px;
+            padding: 20px 20px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+            color: #2b2929;
+            text-align: left;
+            margin-top: 10%;
+            margin-left: 5%;
+            flex: 6; 
+            line-height: 1.5;
+        }
+
+        .UpdateOrder {
+            margin-top: 10%;
+            height:50%;
+            width: 70%;
+            text-align: center;
+            margin-left: 15%;
+            -webkit-appearance: none;
+        }
+
+        .UpdateOrder button {
+            width: 100%;
+            margin: auto;
+            text-align: center;
+            background-color: #A4DDED;
+            color: #ffffff;
+            border: 2px solid #6BB4D6;
+            border-radius: 50px;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            text-transform: none;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .UpdateOrder button:hover {
+            background-color: #89C7E6;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        button[type=button] {
+            background: #31A9EE;
+            color: #ffffff;
+            -webkit-appearance: none;
+            border-radius: 0;
+        }
+
+        /* ローディング表示 */
+        .loading {
+        display: none;
+        text-align: center;
+        margin: 20px 0;
+        }
+
+        .spinner {
+        border: 4px solid #ccc;
+        border-top: 4px solid #333;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: auto;
+        }
+
+        @keyframes spin {
+        100% { transform: rotate(360deg); }
+        }
+
+        .custom-alert {
+        display: none; /* 最初は非表示 */
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.6);
+        }
+
+        .custom-alert-content {
+        background-color: white;
+        margin: 30% auto;
+        padding: 30px;
+        border-radius: 10px;
+        width: 80%;
+        color: #333;
+        }
+
+        .custom-alert-message {
+        text-align: left;
+        font-size: 20px;
+        font-weight:bold;
+        margin-bottom: 20px;
+        }
+
+        .custom-alert-button-wrap {
+        text-align: center;
+        }
+
+        .custom-alert-content button {
+        margin-top: 20px;
+        padding: 10px 30px;
+        font-size: 20px;
+        background-color: #2196F3;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        text-align: center;
+        }
+
+      /* リスト情報表示 */
+
+        h2 {
+        margin-top:5%;
+        width: 100%;
+        height:8%;
+        display: flex;
+        justify-content: space-around;
+        background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+        border-bottom: 2px solid #7abaff;
+        box-sizing: border-box;
+        }
+
+        .people-item {
+        padding: 10px; /* 全体の余白 */
+        width: 100%;
+        font-size: 100%;
+        border: 1px solid white;
+        box-sizing: border-box;
+        background: rgba(253, 251, 251, 0.411);
+        display: flex;
+        flex-direction: column; /* 縦方向に配置 */
+        justify-content: space-between; /* 上下要素を適切に配置 */
+        }
+
+        .people-name {
+        text-align: left; /* 左寄せ */
+        font-size: 20px; /* フォントサイズ */
+        font-weight: bold; /* 強調表示 */
+        color: #333333; /* メインテキスト色 */
+        padding: 5px; /* 区切り線と文字間の余白 */
+        }
+
+        .people-score {
+        display: flex;
+        align-items: left;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #006DD9;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        background-color: #f5faff;
+        border-radius: 8px;
+        gap: 1px;
+        flex-direction: row;
+        }
+
+        .people-rating {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px;
+            border-radius: 8px;
+            gap: 5px;
+        }
+
+        .people-rating label {
+            margin-right: 5px;
+            font-weight: normal;
+            font-size: 18px;
+            font-weight: bold;
+            color: #006DD9;
+        }
+
+        .movie-item {
+        padding: 10px; /* 全体の余白 */
+        width: 100%;
+        font-size: 100%;
+        border: 1px solid white;
+        box-sizing: border-box;
+        background: rgba(253, 251, 251, 0.411);
+        display: flex;
+        flex-direction: column; /* 縦方向に配置 */
+        justify-content: space-between; /* 上下要素を適切に配置 */
+        }
+
+        .movie-name {
+        text-align: left; /* 左寄せ */
+        font-size: 20px; /* フォントサイズ */
+        font-weight: bold; /* 強調表示 */
+        color: #333333; /* メインテキスト色 */
+        padding: 5px; /* 区切り線と文字間の余白 */
+        }
+
+        .movie-score {
+        display: flex;
+        align-items: left;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #006DD9;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        background-color: #f5faff;
+        border-radius: 8px;
+        gap: 1px;
+        flex-direction: row;
+        }
+
+        .movie-rating {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px;
+            border-radius: 8px;
+            gap: 5px;
+        }
+
+        .movie-rating label {
+            margin-right: 5px;
+            font-weight: normal;
+            font-size: 18px;
+            font-weight: bold;
+            color: #006DD9;
+        }
+
+        .tv-drama-item {
+        padding: 10px; /* 全体の余白 */
+        width: 100%;
+        font-size: 100%;
+        border: 1px solid white;
+        box-sizing: border-box;
+        background: rgba(253, 251, 251, 0.411);
+        display: flex;
+        flex-direction: column; /* 縦方向に配置 */
+        justify-content: space-between; /* 上下要素を適切に配置 */
+        }
+
+        .tv-drama-name {
+        text-align: left; /* 左寄せ */
+        font-size: 20px; /* フォントサイズ */
+        font-weight: bold; /* 強調表示 */
+        color: #333333; /* メインテキスト色 */
+        padding: 5px; /* 区切り線と文字間の余白 */
+        }
+
+        .tv-drama-score {
+        display: flex;
+        align-items: left;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #006DD9;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        background-color: #f5faff;
+        border-radius: 8px;
+        gap: 1px;
+        flex-direction: row;
+        }
+
+        .tv-drama-rating {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px;
+            border-radius: 8px;
+            gap: 5px;
+        }
+
+        .tv-drama-rating label {
+            margin-right: 5px;
+            font-weight: normal;
+            font-size: 18px;
+            font-weight: bold;
+            color: #006DD9;
+        }
+
+        .music-item {
+        padding: 10px; /* 全体の余白 */
+        width: 100%;
+        font-size: 100%;
+        border: 1px solid white;
+        box-sizing: border-box;
+        background: rgba(253, 251, 251, 0.411);
+        display: flex;
+        flex-direction: column; /* 縦方向に配置 */
+        justify-content: space-between; /* 上下要素を適切に配置 */
+        }
+
+        .music-name {
+        text-align: left; /* 左寄せ */
+        font-size: 20px; /* フォントサイズ */
+        font-weight: bold; /* 強調表示 */
+        color: #333333; /* メインテキスト色 */
+        padding: 1px; /* 区切り線と文字間の余白 */
+        }
+        
+        .artist-name {
+        text-align: left; /* 左寄せ */
+        font-size: 20px; /* フォントサイズ */
+        font-weight: bold; /* 強調表示 */
+        color: #333333; /* メインテキスト色 */
+        padding: 1px; /* 区切り線と文字間の余白 */
+        }
+
+        .music-score {
+        display: flex;
+        align-items: left;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #006DD9;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        background-color: #f5faff;
+        border-radius: 8px;
+        gap: 1px;
+        flex-direction: row;
+        }
+
+        .music-rating {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px;
+            border-radius: 8px;
+            gap: 5px;
+        }
+
+        .music-rating label {
+            margin-right: 5px;
+            font-weight: normal;
+            font-size: 18px;
+            font-weight: bold;
+            color: #006DD9;
+        }
+        
+        .hobby-item {
+        padding: 10px; /* 全体の余白 */
+        width: 100%;
+        font-size: 100%;
+        border: 1px solid white;
+        box-sizing: border-box;
+        background: rgba(253, 251, 251, 0.411);
+        display: flex;
+        flex-direction: column; /* 縦方向に配置 */
+        justify-content: space-between; /* 上下要素を適切に配置 */
+        }
+
+        .hobby-name {
+        text-align: left; /* 左寄せ */
+        font-size: 20px; /* フォントサイズ */
+        font-weight: bold; /* 強調表示 */
+        color: #333333; /* メインテキスト色 */
+        padding: 5px; /* 区切り線と文字間の余白 */
+        }
+
+        .hobby-score {
+        display: flex;
+        align-items: left;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #006DD9;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        background-color: #f5faff;
+        border-radius: 8px;
+        gap: 1px;
+        flex-direction: row;
+        }
+
+        .hobby-rating {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px;
+            border-radius: 8px;
+            gap: 5px;
+        }
+
+        .hobby-rating label {
+            margin-right: 5px;
+            font-weight: normal;
+            font-size: 18px;
+            font-weight: bold;
+            color: #006DD9;
+        }
+        .rating-title {
+            font-weight: bold;
+            margin-right: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #006DD9;
+        }
+
+    </style>
+</head>
+
+<header>
+    <div class='option'>
+        <button id='backbutton1'>初期画面に戻る</button>
+    </div>
+</header>
+
+<body>
+    <div class="message-box">適切なおすすめを出すため、更新前に現在のおすすめ評価をお願いします<br><br><span style="font-weight: bold;">既におすすめされた人物や作品などに触れた経験がある場合は</span>、以下リストの評価を付け、画面一番下のボタンを押してください</div>
+
+    <h2>おすすめ仲間</h2>
+    <div id="people-list"></div>
+    <script>
+        const peoplecontainer = document.getElementById('people-list');
+
+        for (let i = 1; i <= 20; i++) {
+            const score = localStorage.getItem('r-userweight' + i) || '0';
+
+            const peopleDiv = document.createElement('div');
+            peopleDiv.className = 'people-item';
+
+            peopleDiv.innerHTML = `
+                <div class="people-name">マッチ率${i}位のユーザ</div>
+                <div class="people-score">マッチスコア: ${score}％</div>
+                <div class="people-rating">
+                    <span class="rating-title">評価：</span>
+                    <label><input type="radio" name="people-rating${i}" value="Good"> GOOD</label>
+                    <label><input type="radio" name="people-rating${i}" value="None" checked> 評価無し</label>
+                    <label><input type="radio" name="people-rating${i}" value="Bad"> BAD</label>
+                </div>
+            `;
+            peoplecontainer.appendChild(peopleDiv);
+        }
+    </script>
+
+
+    <h2>おすすめ映画</h2>
+    <div id="movie-list"></div>
+    <script>
+        const moviecontainer = document.getElementById('movie-list');
+
+        for (let i = 1; i <= 20; i++) {
+            const name = localStorage.getItem('r-moviename' + i) || '未登録タイトル';
+            const score = localStorage.getItem('r-movieweight' + i) || '0';
+
+            const movieDiv = document.createElement('div');
+            movieDiv.className = 'movie-item';
+
+            movieDiv.innerHTML = `
+                <div class="movie-name">${i}. ${name}</div>
+                <div class="movie-score">マッチスコア: ${score}％</div>
+                <div class="movie-rating">
+                    <span class="rating-title">評価：</span>
+                    <label><input type="radio" name="movie-rating${i}" value="Good"> GOOD</label>
+                    <label><input type="radio" name="movie-rating${i}" value="None" checked> 評価無し</label>
+                    <label><input type="radio" name="movie-rating${i}" value="Bad"> BAD</label>
+                </div>
+            `;
+            moviecontainer.appendChild(movieDiv);
+        }
+    </script>
+
+    <h2>おすすめドラマ・アニメ</h2>
+    <div id="tv-drama-list"></div>
+    <script>
+        const tvdramacontainer = document.getElementById('tv-drama-list');
+
+        for (let i = 1; i <= 20; i++) {
+            const name = localStorage.getItem('r-tv-dramaname' + i) || '未登録タイトル';
+            const score = localStorage.getItem('r-tv-dramaweight' + i) || '0';
+
+            const tvdramaDiv = document.createElement('div');
+            tvdramaDiv.className = 'tv-drama-item';
+
+            tvdramaDiv.innerHTML = `
+                <div class="tv-drama-name">${i}. ${name}</div>
+                <div class="tv-drama-score">マッチスコア: ${score}％</div>
+                <div class="tv-drama-rating">
+                    <span class="rating-title">評価：</span>
+                    <label><input type="radio" name="tv-drama-rating${i}" value="Good"> GOOD</label>
+                    <label><input type="radio" name="tv-drama-rating${i}" value="None" checked> 評価無し</label>
+                    <label><input type="radio" name="tv-drama-rating${i}" value="Bad"> BAD</label>
+                </div>
+            `;
+            tvdramacontainer.appendChild(tvdramaDiv);
+        }
+    </script>
+
+    <h2>おすすめ音楽</h2>
+    <div id="music-list"></div>
+    <script>
+        const musiccontainer = document.getElementById('music-list');
+
+        for (let i = 1; i <= 20; i++) {
+            const musicname = localStorage.getItem('r-musicname' + i) || '未登録タイトル';
+            const artistname = localStorage.getItem('r-artistname' + i) || '未登録タイトル';
+            const score = localStorage.getItem('r-musicweight' + i) || '0';
+
+            const musicDiv = document.createElement('div');
+            musicDiv.className = 'music-item';
+
+            musicDiv.innerHTML = `
+                <div class="music-name">${i}. ${musicname}</div>
+                <div class="artist-name">【${artistname}】</div>
+                <div class="music-score">マッチスコア: ${score}％</div>
+                <div class="music-rating">
+                    <span class="rating-title">評価：</span>
+                    <label><input type="radio" name="music-rating${i}" value="Good"> GOOD</label>
+                    <label><input type="radio" name="music-rating${i}" value="None" checked> 評価無し</label>
+                    <label><input type="radio" name="music-rating${i}" value="Bad"> BAD</label>
+                </div>
+            `;
+            musiccontainer.appendChild(musicDiv);
+        }
+    </script>
+
+    <h2>おすすめ趣味</h2>
+    <div id="hobby-list"></div>
+    <script>
+        const hobbycontainer = document.getElementById('hobby-list');
+
+        for (let i = 1; i <= 20; i++) {
+            const name = localStorage.getItem('r-hobbyname' + i) || '未登録タイトル';
+            const score = localStorage.getItem('r-hobbyweight' + i) || '0';
+
+            const hobbyDiv = document.createElement('div');
+            hobbyDiv.className = 'hobby-item';
+
+            hobbyDiv.innerHTML = `
+                <div class="hobby-name">${i}. ${name}</div>
+                <div class="hobby-score">マッチスコア: ${score}％</div>
+                <div class="hobby-rating">
+                    <span class="rating-title">評価：</span>
+                    <label><input type="radio" name="hobby-rating${i}" value="Good"> GOOD</label>
+                    <label><input type="radio" name="hobby-rating${i}" value="None" checked> 評価無し</label>
+                    <label><input type="radio" name="hobby-rating${i}" value="Bad"> BAD</label>
+                </div>
+            `;
+            hobbycontainer.appendChild(hobbyDiv);
+        }
+    </script>
+
+    <div id="customAlert" class="custom-alert">
+    <div class="custom-alert-content">
+        <p class="custom-alert-message">
+        処理が完了しました。メインページに戻ります。表示される仲間・映画・ドラマ・趣味の「おすすめ」を確認ください
+        </p>
+        <div class="custom-alert-button-wrap">
+        <button onclick="closeCustomAlert()">OK</button>
+        </div>
+    </div>
+    </div>
+        <div class='UpdateOrder'>
+        <button type="button" id='slideupdate'>おすすめ更新実行</button>
+    </div>
+
+    <script type="text/javascript" src="../jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="update.js"></script>
+
+<script>
+document.getElementById("slideupdate").addEventListener("click", function () {
+
+    // ぐるぐる表示のための要素を追加
+    const loader = document.createElement("div");
+    loader.className = "loading";
+    loader.innerHTML = '<div class="spinner"></div>送信中...';
+    document.body.appendChild(loader);
+    loader.style.display = 'block';
+
+    // 1. 評価内容のlocalStorage への保存
+
+    for (let i = 1; i <= 20; i++) {
+        const peoplerating = document.querySelector(`input[name="people-rating${i}"]:checked`);
+        const peopleID = localStorage.getItem(`r-userid${i}`);
+
+        if (peoplerating && peopleID) {
+            if (peoplerating.value === 'Good') {
+                localStorage.setItem(`update-people-positive-${i}`, peopleID);
+            } else if (peoplerating.value === 'Bad') {
+                localStorage.setItem(`update-people-negative-${i}`, peopleID);
+            }
+            // 評価無し（None）の場合は保存しない
+        }
+    };
+
+    for (let i = 1; i <= 20; i++) {
+        const movierating = document.querySelector(`input[name="movie-rating${i}"]:checked`);
+        const movieID = localStorage.getItem(`r-movieid${i}`);
+
+        if (movierating && movieID) {
+            if (movierating.value === 'Good') {
+                localStorage.setItem(`update-movie-positive-${i}`, movieID);
+            } else if (movierating.value === 'Bad') {
+                localStorage.setItem(`update-movie-negative-${i}`, movieID);
+            }
+            // 評価無し（None）の場合は保存しない
+        }
+    };
+
+    for (let i = 1; i <= 20; i++) {
+        const tvdramarating = document.querySelector(`input[name="tv-drama-rating${i}"]:checked`);
+        const tvdramaID = localStorage.getItem(`r-tv-dramaid${i}`);
+
+        if (tvdramarating && tvdramaID) {
+            if (tvdramarating.value === 'Good') {
+                localStorage.setItem(`update-tvdrama-positive-${i}`, tvdramaID);
+            } else if (tvdramarating.value === 'Bad') {
+                localStorage.setItem(`update-tvdrama-negative-${i}`, tvdramaID);
+            }
+            // 評価無し（None）の場合は保存しない
+        }
+    };
+
+
+    for (let i = 1; i <= 20; i++) {
+        const musicrating = document.querySelector(`input[name="music-rating${i}"]:checked`);
+        const musicID = localStorage.getItem(`r-musicid${i}`);
+
+        if (musicrating && musicID) {
+            if (musicrating.value === 'Good') {
+                localStorage.setItem(`update-music-positive-${i}`, musicID);
+            } else if (musicrating.value === 'Bad') {
+                localStorage.setItem(`update-music-negative-${i}`, musicID);
+            }
+            // 評価無し（None）の場合は保存しない
+        }
+    };
+
+    for (let i = 1; i <= 20; i++) {
+        const hobbyrating = document.querySelector(`input[name="hobby-rating${i}"]:checked`);
+        const hobbyID = localStorage.getItem(`r-hobbyid${i}`);
+
+        if (hobbyrating && hobbyID) {
+            if (hobbyrating.value === 'Good') {
+                localStorage.setItem(`update-hobby-positive-${i}`, hobbyID);
+            } else if (hobbyrating.value === 'Bad') {
+                localStorage.setItem(`update-hobby-negative-${i}`, hobbyID);
+            }
+            // 評価無し（None）の場合は保存しない
+        }
+    };
+
+    // 2. localStorage から update* のキーをすべて取得(＋userIDも)
+    const payload = {};
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith("update") || key === "userid") {
+            payload[key] = localStorage.getItem(key);
+        }
+    }
+
+    // 3. サーバーに送信
+    fetch("http://ec2-35-75-21-245.ap-northeast-1.compute.amazonaws.com/update.php/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(response => response.json())
+    .then(data => {
+        loader.style.display = 'none';
+
+    // 4. 値を localStorage に保存
+        const keysToStore = [
+            "r-movieid", "r-moviename", "r-movieweight",
+            "r-tv-dramaid", "r-tv-dramaname", "r-tv-dramaweight",
+            "r-musicid", "r-musicname","r-musicweight",
+            "r-artistid", "r-artistname",
+            "r-hobbyid", "r-hobbyname","r-hobbyweight",
+            "r-userid","r-userweight"
+        ];
+
+        keysToStore.forEach(prefix => {
+            for (let i = 1; i <= 20; i++) {
+                const fullKey = `${prefix}${i}`;
+                if (data[fullKey] !== undefined && data[fullKey] !== null) {
+                    localStorage.setItem(fullKey, data[fullKey]);
+                }
+            }
+        });
+
+   //5. メッセージを表示して遷移
+   document.getElementById('customAlert').style.display = 'block';
+    })
+    .catch((err) => {
+        loader.style.display = 'none';
+        alert("通信に失敗しました。ネットワーク状態を確認してください。\n" + err);
+        console.error("送信エラー:", err);
+    });
+});
+
+// カスタムアラート閉じる→画面遷移
+function closeCustomAlert() {
+    document.getElementById('customAlert').style.display = 'none';
+    window.location.href = "../main.html";
+}
+
+</script>
+
+</body>
+
+</html>

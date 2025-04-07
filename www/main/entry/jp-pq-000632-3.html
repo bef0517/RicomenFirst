@@ -240,32 +240,17 @@
         document.getElementById("slide000632-3").addEventListener("click", function () {
             const answer = document.getElementById("questionSelect").value;
 
-            function linkToNextPage(answer) {
-                let nextPage = "";
-
-                if (answer === "000632") {
-                    nextPage = "jp-pq-000632-4.html";
-                } else if (answer === "000638") {
-                    nextPage = "jp-pq-000638-4.html";
-                } else {
-                    nextPage = "jp-pq-000654.html";
-                }
-
-                window.location.href = nextPage;
-            }
+        function linkToNextPage() {
+        window.location.href = "jp-pq-000654.html";
+        }
 
             if (!answer) {
                 alert("回答が未登録です");
                 return;
             }
 
-        if (answer === "000644") {
-            localStorage.setItem("neworder000632", "000644");
-        } 
+            localStorage.setItem("neworder000632", answer);
 
-        if (answer === "000645") {
-            localStorage.setItem("neworder000632", "000645");
-        } 
                 // アニメーションクラスを追加
                 document.body.classList.add("anime-slide-fade");
 

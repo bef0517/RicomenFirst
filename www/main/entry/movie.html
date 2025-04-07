@@ -13,7 +13,6 @@
         body {
             position: absolute;
             width: 100%;
-            height: 93%;
             top: 15%;
             margin: 0;
             padding: 0px;
@@ -22,122 +21,6 @@
             text-align: center;
             transition: transform 0.4s ease, opacity 0.4s ease;
             -webkit-appearance: none;
-        }
-
-        h2 {
-        margin-bottom: 10px;
-        font-size: 20px;
-        color: #333;
-        }
-
-        /* 検索ページ */
-        .search-page {
-        margin-top:50%;
-        display: block;
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .search-page input {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        margin-bottom: 10px;
-        box-sizing: border-box;
-        }
-
-        .search-page button {
-        width: 100%;
-        padding: 12px;
-        font-size: 18px;
-        background: #2196f3;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        }
-
-        .search-page button:hover {
-        background: #1976d2;
-        }
-
-        /* ローディング表示 */
-        .loading {
-        display: none;
-        text-align: center;
-        margin: 20px 0;
-        }
-
-        .spinner {
-        border: 4px solid #ccc;
-        border-top: 4px solid #333;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        animation: spin 1s linear infinite;
-        margin: auto;
-        }
-
-        @keyframes spin {
-        100% { transform: rotate(360deg); }
-        }
-
-        /* 結果ページ */
-        .result-page {
-        margin-top:50%;
-        display: none;
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .item-list {
-        list-style: none;
-        padding: 0;
-        margin: 10px 0;
-        max-height: 300px;
-        overflow-y: auto;
-        }
-
-        .item-list li {
-        padding: 12px;
-        border-bottom: 1px solid #ddd;
-        cursor: pointer;
-        }
-
-        .item-list li:hover {
-        background-color: #e0f7fa;
-        }
-
-        .item-list li.selected {
-        background-color: #b2ebf2;
-        }
-
-        /* OKボタン */
-        .result-page button {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-        background: #4caf50;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        margin-top: 10px;
-        }
-
-        .result-page button:hover {
-        background: #388e3c;
-        }
-
-        /* エラーメッセージ */
-        .error {
-        color: #e53935;
-        font-size: 14px;
-        margin-top: 10px;
         }
 
         header {
@@ -205,6 +88,13 @@
             transform: translateY(-50%) scale(1.05);
         }
 
+        .scroll-block {
+            width: 100%;      
+            height: 22%;
+            position: fixed;
+            background-color: #e0efff;
+        }
+
         .message-box {
             width: 80%;
             height: 10%;
@@ -223,66 +113,140 @@
             line-height: 1.5;
         }
 
-        .NewOrder {
-            top: 75%;
-            width: 70%;
-            position: absolute;
-            height: 100%;
-            left: 15%;
-            -webkit-appearance: none;
+        h2 {
+        margin-bottom: 10px;
+        font-size: 20px;
+        color: #333;
         }
 
-        .NewOrder button {
-            width: 100%;
-            margin: auto;
-            text-align: center;
-            background-color: #A4DDED;
-            color: #ffffff;
-            border: 2px solid #6BB4D6;
-            border-radius: 50px;
-            padding: 18px 40px;
-            font-size: 20px;
-            font-weight: bold;
-            font-family: 'Arial', 'Helvetica', sans-serif;
-            text-transform: none;
-            cursor: pointer;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
+        /* 検索ページ */
+        .search-page {
+        margin-top:50%;
+        display: block;
+        background: white;
+        padding: 1px 20px 5px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .NewOrder button:hover {
-            background-color: #89C7E6;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            transform: translateY(-3px);
+        .search-page input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
         }
 
-        button[type=button] {
-            background: #31A9EE;
-            color: #ffffff;
-            -webkit-appearance: none;
-            border-radius: 0;
+        .search-page button {
+        width: 100%;
+        padding: 12px;
+        font-size: 18px;
+        background: #2196f3;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
         }
 
-        .label:hover {
-            background-color: #E2EDF9;
-            -webkit-appearance: none;
+        .search-page button:hover {
+        background: #1976d2;
         }
 
-        .label {
-            display: block;
-            text-align: center;
-            margin: 5%;
-            width: 60%;
-            height: 5%;
-            padding-left: 5px;
-            padding-right: 5px;
-            color: #b20000;
-            line-height: 45px;
-            cursor: pointer;
-            border: 2px solid #006DD9;
-            border-radius: 5px;
-            -webkit-appearance: none;
+        /* ローディング表示 */
+        .loading {
+        display: none;
+        text-align: center;
+        margin: 20px 0;
         }
+
+        .spinner {
+        border: 4px solid #ccc;
+        border-top: 4px solid #333;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: auto;
+        }
+
+        @keyframes spin {
+        100% { transform: rotate(360deg); }
+        }
+
+        /* 結果ページ */
+        .result-page {
+        margin-top:50%;
+        display: none;
+        background: white;
+        padding: 1px 20px 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-list {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+        overflow-y: auto;
+        }
+
+        .item-list li {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+        }
+
+        .item-list li:hover {
+        background-color: #e0f7fa;
+        }
+
+        .item-list li.selected {
+        background-color: #b2ebf2;
+        }
+
+        /* OKボタン */
+        .result-page .ok-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 20px;
+        background: #31A9EE;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-bottom: 10px;
+         -webkit-appearance: none;
+        }
+
+        .result-page .ok-button:hover {
+        background: #E2EDF9;
+        }
+
+        /* キーワード検索戻るボタン */
+        .result-page .back-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 20px;
+        background: #696969;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-bottom: 10px;
+         -webkit-appearance: none;
+        }
+
+        .result-page .back-button:hover {
+        background: #E2EDF9;
+        }
+
+        /* エラーメッセージ */
+        .error {
+        color: #e53935;
+        font-size: 16px;
+        margin-top: 10px;
+        }
+
 
         .anime-slide-fade {
                transform: translateX(-50%);
@@ -306,7 +270,9 @@
 </header>
 
 <body>
-    <div class="message-box">これまでにハマった映画を思い返してください（1つ目）</div>
+    <div class="scroll-block">
+    <div class="message-box">これまでにハマった映画を思い浮かべてください（1つ目）</div>
+    </div>
 
     <div class="search-page">
         <h2>キーワード検索</h2>
@@ -320,7 +286,8 @@
         <h2>検索結果</h2>
         <div id="too-many-error" class="error"></div>
         <ul class="item-list" id="result-list"></ul>
-        <button onclick="confirmSelection()">OK</button>
+        <button onclick="confirmSelection()" class="ok-button">OK</button>
+        <button onclick="returnToSearch()" class="back-button">キーワード検索に戻る</button>
         <div id="select-error" class="error"></div>
     </div>
 
@@ -358,7 +325,7 @@
                 const li = document.createElement('li');
                 li.textContent = item.name;
                 li.onclick = () => {
-                selectedId = item.id;
+                selectedId = item.movieid;
                 document.querySelectorAll('#result-list li').forEach(li => li.classList.remove('selected'));
                 li.classList.add('selected');
                 };
@@ -375,14 +342,21 @@
             });
         }
 
+        function returnToSearch() {
+        document.querySelector('.result-page').style.display = 'none';
+        document.querySelector('.search-page').style.display = 'block';
+        document.getElementById('select-error').textContent = '';
+        document.getElementById('too-many-error').textContent = '';
+         }
+
         function confirmSelection() {
         if (!selectedId) {
             document.getElementById('select-error').textContent = '項目を選択してください';
             return;
         }
-        localStorage.setItem('neworder-music1', selectedId);
+        localStorage.setItem('neworder-movie1', selectedId);
         function linkToNextPage() {
-        window.location.href = "last.html";
+        window.location.href = "movie-2.html";
         }
 
                 // アニメーションクラスを追加
@@ -395,7 +369,7 @@
         //前ページに戻る
 
         function linkToBackPage() {
-        window.location.href = "../main.html";
+        window.location.href = "jp-pq-001843.html";
         }
 
         $('#backbutton4').on('click', function () {

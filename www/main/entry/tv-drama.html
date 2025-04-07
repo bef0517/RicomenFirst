@@ -2,18 +2,385 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-    <script src="cordova.js"></script>
-    <link rel="stylesheet" href="components/loader.css">
-    <script src="components/loader.js"></script>
-    <script>
-        //
-        // TODO: Write JavaScript code here
-        //
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#d6eeff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="../../components/loader.js"></script>
+    <link rel="stylesheet">
+
+    <style>
+        body {
+            position: absolute;
+            width: 100%;
+            top: 15%;
+            margin: 0;
+            padding: 0px;
+            background-color: #e0efff;
+            font-family: 'Helvetica';
+            text-align: center;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            -webkit-appearance: none;
+        }
+
+        header {
+            background-color: #d6eeff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 15%;
+            margin: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding-top: env(safe-area-inset-top);
+            box-sizing: border-box;
+        }
+
+        .option button {
+            background-color: #d6eeff;
+            color: #006DD9;
+            border: 2px solid #006DD9;
+            border-radius: 8px;
+            padding: 8px 8px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: absolute;
+            top: 70%;
+            transform: translateY(-50%);
+            left: 3%;
+        }
+
+        .option button:hover {
+            background-color: #bcd9f3;
+            color: #004c9a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .option2 button {
+            background-color: #d6eeff;
+            color: #006DD9;
+            border: 2px solid #006DD9;
+            border-radius: 8px;
+            padding: 8px 8px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: absolute;
+            top: 70%;
+            transform: translateY(-50%);
+            right: 3%;
+        }
+
+        .option2 button:hover {
+            background-color: #bcd9f3;
+            color: #004c9a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .scroll-block {
+            width: 100%;      
+            height: 22%;
+            position: fixed;
+            background-color: #e0efff;
+        }
+
+        .message-box {
+            width: 80%;
+            height: 10%;
+            position: fixed;
+            background-color: #ffffff;
+            border: 2px solid #006DD9;
+            border-radius: 10px;
+            padding: 20px 20px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+            color: #2b2929;
+            text-align: left;
+            margin-top: 10%;
+            left: 5%;
+            flex: 6; 
+            line-height: 1.5;
+        }
+
+        h2 {
+        margin-bottom: 10px;
+        font-size: 20px;
+        color: #333;
+        }
+
+        /* 検索ページ */
+        .search-page {
+        margin-top:50%;
+        display: block;
+        background: white;
+        padding: 1px 20px 5px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-page input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        }
+
+        .search-page button {
+        width: 100%;
+        padding: 12px;
+        font-size: 18px;
+        background: #2196f3;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        }
+
+        .search-page button:hover {
+        background: #1976d2;
+        }
+
+        /* ローディング表示 */
+        .loading {
+        display: none;
+        text-align: center;
+        margin: 20px 0;
+        }
+
+        .spinner {
+        border: 4px solid #ccc;
+        border-top: 4px solid #333;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: auto;
+        }
+
+        @keyframes spin {
+        100% { transform: rotate(360deg); }
+        }
+
+        /* 結果ページ */
+        .result-page {
+        margin-top:50%;
+        display: none;
+        background: white;
+        padding: 1px 20px 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-list {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+        overflow-y: auto;
+        }
+
+        .item-list li {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+        }
+
+        .item-list li:hover {
+        background-color: #e0f7fa;
+        }
+
+        .item-list li.selected {
+        background-color: #b2ebf2;
+        }
+
+        /* OKボタン */
+        .result-page .ok-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 20px;
+        background: #31A9EE;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-bottom: 10px;
+         -webkit-appearance: none;
+        }
+
+        .result-page .ok-button:hover {
+        background: #E2EDF9;
+        }
+
+        /* キーワード検索戻るボタン */
+        .result-page .back-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 20px;
+        background: #696969;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-bottom: 10px;
+         -webkit-appearance: none;
+        }
+
+        .result-page .back-button:hover {
+        background: #E2EDF9;
+        }
+
+        /* エラーメッセージ */
+        .error {
+        color: #e53935;
+        font-size: 16px;
+        margin-top: 10px;
+        }
+
+
+        .anime-slide-fade {
+               transform: translateX(-50%);
+               opacity: 0;
+        }
+        .anime-slide-fade2 {
+               transform: translateX(50%);
+               opacity: 0;
+        }
+
+    </style>
 </head>
+
+<header>
+    <div class='option'>
+        <button id='backbutton3'>初期画面に戻る</button>
+    </div>
+    <div class='option2'>
+        <button id='backbutton4'>前ページに戻る</button>
+    </div>
+</header>
+
 <body>
-    <!-- TODO: Please edit here -->
+    <div class="scroll-block">
+    <div class="message-box">これまでにハマったドラマやアニメは？（1つ目）</div>
+    </div>
+
+    <div class="search-page">
+        <h2>キーワード検索</h2>
+        <input type="text" id="keyword" placeholder="キーワード入力">
+        <button onclick="performSearch()">検索</button>
+        <div class="loading"><div class="spinner"></div>検索中...</div>
+        <div id="search-error" class="error"></div>
+    </div>
+
+    <div class="result-page">
+        <h2>検索結果</h2>
+        <div id="too-many-error" class="error"></div>
+        <ul class="item-list" id="result-list"></ul>
+        <button onclick="confirmSelection()" class="ok-button">OK</button>
+        <button onclick="returnToSearch()" class="back-button">キーワード検索に戻る</button>
+        <div id="select-error" class="error"></div>
+    </div>
+
+    <script type="text/javascript" src="../jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="entry.js"></script>
+
+    <script>
+        let selectedId = null;
+
+        function performSearch() {
+        const keyword = document.getElementById('keyword').value.trim();
+        if (!keyword) return;
+
+        document.querySelector('.loading').style.display = 'block';
+        document.getElementById('search-error').textContent = '';
+        fetch("http://ec2-35-75-21-245.ap-northeast-1.compute.amazonaws.com/tv-drama.php?keyword=" + encodeURIComponent(keyword))
+            .then(response => response.json())
+            .then(data => {
+            document.querySelector('.loading').style.display = 'none';
+
+            if (!Array.isArray(data)) {
+                document.getElementById('search-error').textContent = 'サーバーエラーが発生しました';
+                return;
+            }
+
+            if (data.length > 50) {
+                document.getElementById('too-many-error').textContent = '検索結果が50件を超えました。キーワードを絞ってください。';
+            } else {
+                document.getElementById('too-many-error').textContent = '';
+            }
+
+            const resultList = document.getElementById('result-list');
+            resultList.innerHTML = '';
+            data.slice(0, 50).forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item.name;
+                li.onclick = () => {
+                selectedId = item.dramaid;
+                document.querySelectorAll('#result-list li').forEach(li => li.classList.remove('selected'));
+                li.classList.add('selected');
+                };
+                resultList.appendChild(li);
+            });
+
+            document.querySelector('.search-page').style.display = 'none';
+            document.querySelector('.result-page').style.display = 'block';
+            })
+            .catch(() => {
+            console.error('通信エラー詳細:', error);
+            document.querySelector('.loading').style.display = 'none';
+            document.getElementById('search-error').textContent = '通信に失敗しました';
+            });
+        }
+
+        function returnToSearch() {
+        document.querySelector('.result-page').style.display = 'none';
+        document.querySelector('.search-page').style.display = 'block';
+        document.getElementById('select-error').textContent = '';
+        document.getElementById('too-many-error').textContent = '';
+         }
+
+        function confirmSelection() {
+        if (!selectedId) {
+            document.getElementById('select-error').textContent = '項目を選択してください';
+            return;
+        }
+        localStorage.setItem('neworder-tv-drama1', selectedId);
+        function linkToNextPage() {
+        window.location.href = "tv-drama-2.html";
+        }
+
+                // アニメーションクラスを追加
+                document.body.classList.add("anime-slide-fade");
+
+                // アニメ完了後に遷移（200ms）
+                setTimeout(linkToNextPage, 200);
+        }
+
+        //前ページに戻る
+
+        function linkToBackPage() {
+        window.location.href = "movie-2.html";
+        }
+
+        $('#backbutton4').on('click', function () {
+        // アニメーションクラスを追加
+        document.body.classList.add("anime-slide-fade2");
+
+        // アニメ完了後に遷移（200ms）
+        setTimeout(linkToBackPage, 200);
+        });
+
+    </script>
+
 </body>
 </html>
